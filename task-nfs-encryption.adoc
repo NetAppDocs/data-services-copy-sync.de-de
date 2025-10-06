@@ -44,7 +44,7 @@ Wenn Sie Daten häufiger synchronisieren möchten,link:task-managing-relationshi
 
 
 
-== Unterstützte NFS -Versionen
+== Unterstützte NFS-Versionen
 
 * Für NFS-Server wird die Data-in-Flight-Verschlüsselung mit den NFS-Versionen 3, 4.0, 4.1 und 4.2 unterstützt.
 * Für Azure NetApp Files wird die Data-in-Flight-Verschlüsselung mit den NFS-Versionen 3 und 4.1 unterstützt.
@@ -109,12 +109,12 @@ Beachten Sie Folgendes:
 
 .. *Verzeichnisse*: Wählen Sie die Verzeichnisse aus, die Sie synchronisieren möchten, indem Sie alle Verzeichnisse auswählen oder indem Sie einen Drilldown durchführen und ein Unterverzeichnis auswählen.
 +
-Wählen Sie *Quellobjekte filtern*, um Einstellungen zu ändern, die definieren, wie Quelldateien und -ordner am Zielspeicherort synchronisiert und verwaltet werden.
+Wählen Sie *Quellobjekte filtern*, um Einstellungen zu ändern, die definieren, wie Quelldateien und -ordner synchronisiert und am Zielspeicherort verwaltet werden.
 
 +
 image:screenshot_directories.gif["Ein Screenshot, der die Option zum Auswählen eines Verzeichnisses der obersten Ebene, zum Aufschlüsseln und Auswählen der Option „Quellobjekte filtern“ zeigt."]
 
-.. *Ziel-NFS-Server*/*Ziel- Azure NetApp Files*: Wählen Sie die NFS-Version und geben Sie dann ein neues NFS-Ziel ein oder wählen Sie einen vorhandenen Server aus.
+.. *Ziel-NFS-Server*/*Ziel Azure NetApp Files*: Wählen Sie die NFS-Version und geben Sie dann ein neues NFS-Ziel ein oder wählen Sie einen vorhandenen Server aus.
 .. *Zieldatenbroker*: Folgen Sie den Anweisungen, um einen neuen Quelldatenbroker hinzuzufügen, oder wählen Sie einen vorhandenen Datenbroker aus.
 +
 Wenn der Zieldatenbroker als Listener fungiert, muss es sich um einen neuen Datenbroker handeln.

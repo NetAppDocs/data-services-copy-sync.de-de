@@ -16,9 +16,9 @@ summary: Der Einstieg in NetApp Copy and Sync umfasst einige Schritte.
 [role="lead"]
 Der Einstieg in NetApp Copy and Sync umfasst einige Schritte.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]Anmelden und die NetApp Konsole einrichten
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]Anmelden und die NetApp Console einrichten
 [role="quick-margin-para"]
-Sie sollten mit der NetApp Konsole begonnen haben. Dazu gehören die Anmeldung, das Einrichten eines Kontos und möglicherweise die Bereitstellung eines Konsolenagenten sowie das Erstellen von Systemen.
+Sie sollten bereits mit der NetApp Console begonnen haben. Dazu gehören die Anmeldung, das Einrichten eines Kontos und möglicherweise die Bereitstellung eines Konsolenagenten sowie das Erstellen von Systemen.
 
 [role="quick-margin-para"]
 Wenn Sie Synchronisierungsbeziehungen für eines der folgenden Elemente erstellen möchten, müssen Sie zunächst ein System erstellen oder ermitteln:
@@ -34,7 +34,7 @@ Wenn Sie Synchronisierungsbeziehungen für eines der folgenden Elemente erstelle
 Für Cloud Volumes ONTAP, lokale ONTAP Cluster und Amazon FSx für ONTAP ist ein Konsolenagent erforderlich.
 
 [role="quick-margin-list"]
-* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["Erfahren Sie, wie Sie mit der NetApp -Konsole loslegen"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["Erfahren Sie, wie Sie mit der NetApp Console loslegen"^]
 * https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html["Erfahren Sie mehr über Konsolenagenten"^]
 
 
@@ -63,8 +63,8 @@ NetApp Copy and Sync führt Sie durch den Installationsprozess, wenn Sie eine Sy
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"]Erstellen Sie Ihre erste Synchronisierungsbeziehung
 [role="quick-margin-para"]
-Melden Sie sich an bei https://console.netapp.com/["die NetApp Konsole"^] , wählen Sie *Synchronisieren* und ziehen Sie dann Ihre Auswahl für Quelle und Ziel per Drag & Drop.  Folgen Sie den Anweisungen, um die Einrichtung abzuschließen. link:task-creating-relationships.html["Mehr erfahren"] .
+Melden Sie sich an bei https://console.netapp.com/["die NetApp Console"^] , wählen Sie *Synchronisieren* und ziehen Sie dann Ihre Auswahl für Quelle und Ziel per Drag & Drop.  Folgen Sie den Anweisungen, um die Einrichtung abzuschließen. link:task-creating-relationships.html["Mehr erfahren"] .
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Fünf"]Bezahlen Sie für Ihre Synchronisierungsbeziehungen nach Ablauf Ihrer kostenlosen Testversion
 [role="quick-margin-para"]
-Abonnieren Sie AWS oder Azure mit Pay-as-you-go- oder jährlicher Zahlung.  Oder kaufen Sie Lizenzen direkt bei NetApp.  Gehen Sie einfach zur Seite „Lizenzeinstellungen“ in NetApp Copy and Sync, um es einzurichten. link:task-licensing.html["Mehr erfahren"] .
+Abonnieren Sie AWS oder Azure mit Pay-as-you-go- oder Jahreszahlung.  Oder kaufen Sie Lizenzen direkt bei NetApp.  Gehen Sie einfach zur Seite „Lizenzeinstellungen“ in NetApp Copy and Sync, um es einzurichten. link:task-licensing.html["Mehr erfahren"] .

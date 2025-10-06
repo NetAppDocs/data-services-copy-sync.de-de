@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task-external-vault.html 
 keywords: hashicorp, vault, credentials, secrets, API 
-summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync-Benutzeroberfläche oder API angeben.  Alternativ können Sie den Datenbroker so einrichten, dass er direkt von einem externen HashiCorp Vault auf die Anmeldeinformationen zugreift. 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync -Benutzeroberfläche oder API angeben.  Alternativ können Sie den Datenbroker so einrichten, dass er direkt von einem externen HashiCorp Vault auf die Anmeldeinformationen zugreift. 
 ---
 = Richten Sie eine Datenbrokergruppe ein, um einen externen HashiCorp Vault in NetApp Copy and Sync zu verwenden
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azu
 
 
 [role="lead"]
-Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync-Benutzeroberfläche oder API angeben.  Eine Alternative besteht darin, die Datenbrokergruppe so einzurichten, dass sie direkt von einem externen HashiCorp-Tresor auf die Anmeldeinformationen (oder _Geheimnisse_) zugreift.
+Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync -Benutzeroberfläche oder API angeben.  Eine Alternative besteht darin, die Datenbrokergruppe so einzurichten, dass sie direkt von einem externen HashiCorp-Tresor auf die Anmeldeinformationen (oder _Geheimnisse_) zugreift.
 
 Diese Funktion wird durch die Copy and Sync-API mit Synchronisierungsbeziehungen unterstützt, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordern.
 
@@ -83,7 +83,7 @@ ermöglicht::
 ** Gültige Werte: true/false
 ** Typ: Boolean
 ** Standardwert: false
-** Wahr: Der Datenbroker erhält Geheimnisse aus Ihrem eigenen externen HashiCorp Vault
+** Richtig: Der Datenbroker erhält Geheimnisse aus Ihrem eigenen externen HashiCorp Vault
 ** Falsch: Der Datenbroker speichert Anmeldeinformationen in seinem lokalen Tresor
 
 
@@ -229,7 +229,7 @@ x-netapp-external-request-id-src: request ID as part of path for source credenti
 x-netapp-external-request-id-trg: request ID as part of path for target credentials
 Body: post relationship v2 body
 ....
-* So erhalten Sie ein Benutzertoken und Ihre NetApp Konsolen-Konto-ID:link:api-sync.html["siehe diese Seite in der Dokumentation"] .
+* Um ein Benutzertoken und Ihre NetApp Console -Konto-ID zu erhalten,link:api-sync.html["siehe diese Seite in der Dokumentation"] .
 * Um einen Körper für Ihre Post-Beziehung aufzubauen, https://api.cloudsync.netapp.com/docs/#/Relationships-v2/post_relationships_v2["siehe den API-Aufruf „relationships-v2“"^] .
 
 

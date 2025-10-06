@@ -24,13 +24,13 @@ Die folgenden Fragen beziehen sich auf die ersten Schritte mit NetApp Copy and S
 
 
 
-=== Wie funktioniert NetApp Copy and Sync?
+=== Wie funktioniert NetApp Copy and Sync ?
 
 Copy and Sync verwendet die NetApp Data Broker-Software, um Daten von einer Quelle mit einem Ziel zu synchronisieren (dies wird als _Synchronisierungsbeziehung_ bezeichnet).
 
 Eine Datenbrokergruppe steuert die Synchronisierungsbeziehungen zwischen Ihren Quellen und Zielen.  Nachdem Sie eine Synchronisierungsbeziehung eingerichtet haben, analysiert Copy and Sync Ihr Quellsystem und unterteilt es in mehrere Replikationsströme, um die Daten an die von Ihnen ausgewählten Zielsysteme zu übertragen.
 
-Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten basierend auf dem von Ihnen festgelegten Zeitplan.
+Nach dem ersten Kopieren synchronisiert Copy and Sync alle geänderten Daten basierend auf dem von Ihnen festgelegten Zeitplan.
 
 
 
@@ -86,7 +86,7 @@ Beachten Sie die folgenden wichtigen Punkte zur Verwendung von Copy and Sync au�
 
 === Wie greife ich auf „Kopieren und Synchronisieren“ zu?
 
-Kopieren und Synchronisieren ist über die NetApp Konsole verfügbar.  Wählen Sie in der linken Navigation der Konsole *Mobilität* > *Kopieren und Synchronisieren*.
+Kopieren und Synchronisieren ist über die NetApp Console verfügbar.  Wählen Sie in der linken Navigation der Konsole *Mobilität* > *Kopieren und Synchronisieren*.
 
 
 

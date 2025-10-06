@@ -30,9 +30,9 @@ BlueXP copy and sync wurde in NetApp Copy and Sync umbenannt.
 
 === BlueXP heißt jetzt NetApp Console
 
-Die NetApp Console basiert auf der verbesserten und neu strukturierten BlueXP -Grundlage und ermöglicht die zentrale Verwaltung von NetApp Storage und NetApp Data Services in On-Premises- und Cloud-Umgebungen auf Unternehmensniveau. Sie liefert Einblicke in Echtzeit, schnellere Workflows und eine vereinfachte Administration mit hoher Sicherheit und Konformität.
+Die NetApp Console basiert auf der verbesserten und neu strukturierten BlueXP -Grundlage und ermöglicht die zentrale Verwaltung von NetApp -Speicher und NetApp Data Services in On-Premises- und Cloud-Umgebungen auf Unternehmensniveau. Sie liefert Einblicke in Echtzeit, schnellere Arbeitsabläufe und eine vereinfachte Verwaltung mit hoher Sicherheit und Konformität.
 
-Einzelheiten zu den Änderungen finden Sie imlink:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["Versionshinweise zur NetApp Konsole"] .
+Einzelheiten zu den Änderungen finden Sie imlink:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["Versionshinweise zur NetApp Console"] .
 
 
 
@@ -54,7 +54,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-linux.html#linux-
 
 === Fehlerbehebungen
 
-Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.56.
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben. Die neue Data Broker-Version ist 1.0.56.
 
 
 
@@ -64,7 +64,7 @@ Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehle
 
 === Fehlerbehebungen
 
-Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.55.
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben. Die neue Data Broker-Version ist 1.0.55.
 
 
 
@@ -74,7 +74,7 @@ Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehle
 
 === Fehlerbehebungen
 
-Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.54.
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben. Die neue Data Broker-Version ist 1.0.54.
 
 
 
@@ -84,7 +84,7 @@ Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehle
 
 === Fehlerbehebungen
 
-Wir haben Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.53.
+Wir haben Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben. Die neue Data Broker-Version ist 1.0.53.
 
 
 
@@ -94,7 +94,7 @@ Wir haben Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu be
 
 === Fehlerbehebungen
 
-NetApp Copy and Sync wurde aktualisiert, um einige Fehler zu beheben.  Der Datenbroker wurde ebenfalls aktualisiert, um Sicherheitsupdates anzuwenden.  Die neue Data Broker-Version ist 1.0.52.
+NetApp Copy and Sync wurde aktualisiert, um einige Fehler zu beheben.  Der Datenbroker wurde ebenfalls aktualisiert, um Sicherheitsupdates anzuwenden. Die neue Data Broker-Version ist 1.0.52.
 
 
 
@@ -252,7 +252,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#
 
 === Hardlink-Funktionen
 
-Benutzer können jetzt Hardlinks für Synchronisierungen mit ungesicherten NFS-zu-NFS-Beziehungen einschließen.
+Benutzer können jetzt Hardlinks für Synchronisierungen mit ungesicherten NFS-zu-NFS-Beziehungen einfügen.
 
 https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Dateitypen“"] .
 
@@ -302,7 +302,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships
 
 === Verzeichnisse nach vollständigem Pfad filtern
 
-Zusätzlich zum Filtern von Verzeichnissen nach Namen können Sie Verzeichnisse jetzt auch nach ihrem vollständigen Pfad filtern.
+Zusätzlich zum Herausfiltern von Verzeichnissen nach Namen können Sie Verzeichnisse jetzt auch nach ihrem vollständigen Pfad filtern.
 
 https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Verzeichnisse ausschließen“"] .
 
@@ -391,7 +391,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#
 
 Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für AWS S3 und ONTAP S3 Storage:
 
-* AWS S3 zu ONTAP S3 Storage
+* AWS S3 zu ONTAP S3-Speicher
 * ONTAP S3-Speicher zu AWS S3
 
 
@@ -465,7 +465,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#
 
 Sie können jetzt Cloud Sync -Benachrichtigungen per E-Mail erhalten.
 
-Um die Benachrichtigungen per E-Mail zu erhalten, müssen Sie die Einstellung *Benachrichtigungen* für die Synchronisierungsbeziehung aktivieren und dann die Warn- und Benachrichtigungseinstellungen in der NetApp Konsole konfigurieren.
+Um die Benachrichtigungen per E-Mail zu erhalten, müssen Sie die Einstellung *Benachrichtigungen* für die Synchronisierungsbeziehung aktivieren und dann die Einstellungen für Warnungen und Benachrichtigungen in der NetApp Console konfigurieren.
 
 https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#setting-up-notifications["Erfahren Sie, wie Sie Benachrichtigungen einrichten"] .
 
@@ -508,15 +508,15 @@ Wir haben zusätzliche Möglichkeiten hinzugefügt, Synchronisierungsbeziehungen
 
 Sie können jetzt auf der Seite „Systeme“ eine Synchronisierungsbeziehung einrichten, indem Sie ein System per Drag & Drop auf ein anderes ziehen.
 
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-drag-and-drop.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-drag-and-drop.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp Console zeigt."]
 
 
 
 ==== Einrichtung des rechten Bedienfelds
 
-Sie können jetzt eine Synchronisierungsbeziehung für Azure Blob Storage oder Google Cloud Storage einrichten, indem Sie das System auf der Seite „Systeme“ auswählen und dann im rechten Bereich die Synchronisierungsoption auswählen.
+Sie können jetzt eine Synchronisierungsbeziehung für Azure Blob Storage oder für Google Cloud Storage einrichten, indem Sie das System auf der Seite „Systeme“ auswählen und dann im rechten Bereich die Synchronisierungsoption auswählen.
 
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-panel.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-panel.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp Console zeigt."]
 
 
 
@@ -538,7 +538,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships
 
 Die Einstellung „Continuous Sync“ wird jetzt von einem Quell-Google Cloud Storage-Bucket zu einem Cloud Storage-Ziel unterstützt.
 
-Nach der ersten Datensynchronisierung überwacht Cloud Sync Änderungen am Quell-Bucket von Google Cloud Storage und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Diese Einstellung ist verfügbar, wenn von einem Google Cloud Storage-Bucket mit S3, Google Cloud Storage, Azure Blob Storage, StorageGRID oder IBM Storage synchronisiert wird.
+Nach der ersten Datensynchronisierung überwacht Cloud Sync Änderungen im Quell-Bucket von Google Cloud Storage und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Diese Einstellung ist verfügbar, wenn von einem Google Cloud Storage-Bucket mit S3, Google Cloud Storage, Azure Blob Storage, StorageGRID oder IBM Storage synchronisiert wird.
 
 Das mit Ihrem Datenbroker verknüpfte Dienstkonto benötigt die folgenden Berechtigungen, um diese Einstellung verwenden zu können:
 
@@ -637,7 +637,7 @@ https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#
 
 Für Synchronisierungsbeziehungen ist jetzt eine neue Einstellung *Benachrichtigungen* verfügbar.  Mit dieser Einstellung können Sie auswählen, ob Sie Cloud Sync -Benachrichtigungen im Benachrichtigungscenter der NetApp Konsole erhalten möchten.  Sie können Benachrichtigungen für erfolgreiche, fehlgeschlagene und abgebrochene Datensynchronisierungen aktivieren.
 
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-notification-center.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-notification-center.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp Console zeigt."]
 
 https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Weitere Informationen zum Ändern der Einstellungen für eine Synchronisierungsbeziehung"] .
 
@@ -702,7 +702,7 @@ image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/s
 
 Auf der Registerkarte *Datenbroker verwalten* zeigen wir auch die Anzahl der Synchronisierungsbeziehungen an, die eine Datenbrokergruppe verwaltet.
 
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-group-relationships.png["Ein Screenshot der Seite „Datenbroker verwalten“, der eine Datenbrokergruppe und Details zu dieser Gruppe zeigt, einschließlich der Anzahl der von ihr verwalteten Beziehungen."]
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-group-relationships.png["Ein Screenshot der Seite „Datenbroker verwalten“, der eine Datenbrokergruppe und Details zu dieser Gruppe anzeigt, einschließlich der Anzahl der von ihr verwalteten Beziehungen."]
 
 
 
@@ -938,7 +938,7 @@ link:reference-supported-relationships.html["Liste der unterstützten Synchronis
 
 Cloud Sync kann jetzt Objektmetadaten und Tags zwischen objektbasiertem Speicher kopieren, wenn Sie eine Synchronisierungsbeziehung erstellen und eine Einstellung aktivieren.
 
-link:task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Kopieren für Objekte“"] .
+link:task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Für Objekte kopieren“"] .
 
 
 
@@ -952,7 +952,7 @@ link:task-external-vault.html["Erfahren Sie mehr über die Verwendung eines Hash
 
 === Definieren Sie Tags oder Metadaten für den S3-Bucket
 
-Beim Einrichten einer Synchronisierungsbeziehung zu einem Amazon S3-Bucket können Sie mit dem Synchronisierungsbeziehungsassistenten jetzt die Tags oder Metadaten definieren, die Sie für die Objekte im Ziel-S3-Bucket speichern möchten.
+Beim Einrichten einer Synchronisierungsbeziehung zu einem Amazon S3-Bucket können Sie mit dem Synchronisierungsbeziehungsassistenten jetzt die Tags oder Metadaten definieren, die Sie auf den Objekten im Ziel-S3-Bucket speichern möchten.
 
 Die Tagging-Option war zuvor Teil der Einstellungen der Synchronisierungsbeziehung.
 
@@ -1002,9 +1002,9 @@ link:task-managing-relationships.html#change-the-settings-for-a-sync-relationshi
 
 === Der eigenständige Cloud Sync -Dienst wurde eingestellt
 
-Der eigenständige Cloud Sync -Dienst wurde eingestellt.  Sie sollten jetzt direkt von der NetApp Konsole aus auf Cloud Sync zugreifen, wo alle gleichen Features und Funktionen verfügbar sind.
+Der eigenständige Cloud Sync -Dienst wurde eingestellt.  Sie sollten jetzt direkt von der NetApp Console aus auf Cloud Sync zugreifen, wo alle gleichen Features und Funktionen verfügbar sind.
 
-Nach der Anmeldung an der NetApp Konsole können Sie oben auf die Registerkarte „Synchronisieren“ wechseln und wie zuvor Ihre Beziehungen anzeigen.
+Nach der Anmeldung an der NetApp Console können Sie oben auf die Registerkarte „Synchronisieren“ wechseln und wie zuvor Ihre Beziehungen anzeigen.
 
 
 

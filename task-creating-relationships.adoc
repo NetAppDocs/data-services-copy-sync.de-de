@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task-creating-relationships.html 
 keywords: sync, relationship, create, tags, settings, create a relationship, creating relationships, bucket setup, tags, bluexp, copy and sync 
-summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, kopiert NetApp Copy and Sync Dateien von der Quelle zum Ziel.  Nach der ersten Kopie synchronisiert der Dienst alle geänderten Daten alle 24 Stunden. 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, NetApp Copy and Sync Dateien von der Quelle zum Ziel.  Nach der ersten Kopie synchronisiert der Dienst alle geänderten Daten alle 24 Stunden. 
 ---
 = Erstellen Sie Synchronisierungsbeziehungen in NetApp Copy and Sync
 :hardbreaks:
@@ -14,9 +14,9 @@ summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, kopiert NetApp Copy
 
 
 [role="lead"]
-Wenn Sie eine Synchronisierungsbeziehung erstellen, kopiert NetApp Copy and Sync Dateien von der Quelle zum Ziel.  Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten alle 24 Stunden.
+Wenn Sie eine Synchronisierungsbeziehung erstellen, NetApp Copy and Sync Dateien von der Quelle zum Ziel.  Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten alle 24 Stunden.
 
-Bevor Sie bestimmte Arten von Synchronisierungsbeziehungen erstellen können, müssen Sie zunächst ein System in der NetApp Konsole erstellen.
+Bevor Sie bestimmte Arten von Synchronisierungsbeziehungen erstellen können, müssen Sie zunächst ein System in der NetApp Console erstellen.
 
 
 
@@ -58,7 +58,7 @@ image:screenshot_sync_we.gif["Ein Screenshot, der die im Synchronisierungsmenü 
 
 Verwenden Sie diese Schritte, um Daten mit einem anderen unterstützten Speichertyp als Amazon FSx for ONTAP, Azure NetApp Files, Cloud Volumes ONTAP oder lokalen ONTAP Clustern zu synchronisieren oder von diesem zu übertragen.  Die folgenden Schritte stellen ein Beispiel dar, das zeigt, wie eine Synchronisierungsbeziehung von einem NFS-Server zu einem S3-Bucket eingerichtet wird.
 
-. Wählen Sie in der NetApp Konsole *Synchronisieren* aus.
+. Wählen Sie in der NetApp Console*Synchronisieren* aus.
 . Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus.
 +
 Die folgenden Schritte bieten ein Beispiel für die Erstellung einer Synchronisierungsbeziehung von einem NFS-Server zu einem S3-Bucket.
@@ -110,7 +110,7 @@ image:screenshot_bucket_setup.gif["Dieser Screenshot zeigt die Seite „Bucket-S
 Zeitplan:: Wählen Sie einen wiederkehrenden Zeitplan für zukünftige Synchronisierungen oder deaktivieren Sie den Synchronisierungszeitplan.  Sie können eine Beziehung so planen, dass die Daten alle 1 Minute synchronisiert werden.
 Synchronisierungs-Timeout:: Legen Sie fest, ob Copy and Sync eine Datensynchronisierung abbrechen soll, wenn die Synchronisierung nicht innerhalb der angegebenen Anzahl von Minuten, Stunden oder Tagen abgeschlossen ist.
 Benachrichtigungen:: Ermöglicht Ihnen die Auswahl, ob Sie Kopier- und Synchronisierungsbenachrichtigungen im Benachrichtigungscenter der NetApp Konsole erhalten möchten.  Sie können Benachrichtigungen für erfolgreiche, fehlgeschlagene und abgebrochene Datensynchronisierungen aktivieren.
-Wiederholungsversuche:: Legen Sie fest, wie oft Copy and Sync erneut versuchen soll, eine Datei zu synchronisieren, bevor sie übersprungen wird.
+Wiederholungsversuche:: Definieren Sie, wie oft Copy and Sync erneut versuchen soll, eine Datei zu synchronisieren, bevor sie übersprungen wird.
 Kontinuierliche Synchronisierung:: Nach der ersten Datensynchronisierung überwacht Copy and Sync Änderungen am Quell-S3-Bucket oder Google Cloud Storage-Bucket und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Es ist nicht erforderlich, die Quelle in geplanten Intervallen erneut zu scannen.
 +
 --
@@ -185,7 +185,7 @@ Das Kopieren von Metadaten wird mit „Cloud-zu-Cloud“-Beziehungen zwischen de
 
 
 --
-Kürzlich geänderte Dateien:: Wählen Sie aus, ob Dateien ausgeschlossen werden sollen, die vor der geplanten Synchronisierung kürzlich geändert wurden.
+Kürzlich geänderte Dateien:: Wählen Sie aus, ob Dateien ausgeschlossen werden sollen, die vor der geplanten Synchronisierung geändert wurden.
 Dateien auf der Quelle löschen:: Wählen Sie, ob Dateien vom Quellspeicherort gelöscht werden sollen, nachdem Copy and Sync die Dateien an den Zielspeicherort kopiert hat.  Bei dieser Option besteht das Risiko eines Datenverlusts, da die Quelldateien nach dem Kopieren gelöscht werden.
 +
 --
@@ -251,9 +251,9 @@ TIP: Dieselbe Funktion ist beim Synchronisieren von Daten mit StorageGRID und IB
 
 
 
-== Erstellen Sie Synchronisierungsbeziehungen aus der NetApp Datenklassifizierung
+== Erstellen Sie Synchronisierungsbeziehungen aus der NetApp Data Classification
 
-Copy and Sync ist in die NetApp Datenklassifizierung integriert.  Innerhalb der NetApp Datenklassifizierung können Sie die Quelldateien auswählen, die Sie mithilfe von „Kopieren und Synchronisieren“ mit einem Zielspeicherort synchronisieren möchten.
+Copy and Sync ist in die NetApp Data Classification integriert.  Innerhalb von NetApp Data Classification können Sie die Quelldateien auswählen, die Sie mithilfe von „Kopieren und Synchronisieren“ mit einem Zielspeicherort synchronisieren möchten.
 
 Nachdem Sie eine Datensynchronisierung von NetApp Data Classification initiiert haben, sind alle Quellinformationen in einem einzigen Schritt enthalten und Sie müssen nur einige wichtige Details eingeben.  Anschließend wählen Sie den Zielort für die neue Synchronisierungsbeziehung.
 

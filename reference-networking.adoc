@@ -100,10 +100,10 @@ Ein Datenbroker kontaktiert die folgenden Endpunkte:
 | \https://support.netapp.com | So wenden Sie sich an den NetApp -Support, wenn Sie eine BYOL-Lizenz für Synchronisierungsbeziehungen verwenden. 
 
 
-| \https://fedoraproject.org | So installieren Sie 7z während der Installation und Aktualisierung auf der virtuellen Data Broker-Maschine.  7z wird benötigt, um AutoSupport -Nachrichten an den technischen Support von NetApp zu senden. 
+| \https://fedoraproject.org | Um 7z während der Installation und Aktualisierung auf der virtuellen Data Broker-Maschine zu installieren.  7z wird benötigt, um AutoSupport -Nachrichten an den technischen Support von NetApp zu senden. 
 
 
-| \https://sts.amazonaws.com \https://sts.us-east-1.amazonaws.com | Zum Überprüfen der AWS-Anmeldeinformationen, wenn der Datenbroker in AWS bereitgestellt wird oder wenn er bei Ihnen vor Ort bereitgestellt wird und AWS-Anmeldeinformationen bereitgestellt werden.  Der Datenbroker kontaktiert diesen Endpunkt während der Bereitstellung, bei Aktualisierungen und bei Neustarts. 
+| \https://sts.amazonaws.com \https://sts.us-east-1.amazonaws.com | Zum Überprüfen der AWS-Anmeldeinformationen, wenn der Datenbroker in AWS bereitgestellt wird oder wenn er bei Ihnen vor Ort bereitgestellt wird und AWS-Anmeldeinformationen bereitgestellt werden.  Der Datenbroker kontaktiert diesen Endpunkt während der Bereitstellung, wenn er aktualisiert wird und wenn er neu gestartet wird. 
 
 
 | \https://api.bluexp.netapp.com \https://netapp-cloud-account.auth0.com | So wenden Sie sich an NetApp Data Classification, wenn Sie die Klassifizierung zum Auswählen der Quelldateien für eine neue Synchronisierungsbeziehung verwenden. 

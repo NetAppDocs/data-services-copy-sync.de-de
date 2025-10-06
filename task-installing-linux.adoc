@@ -44,7 +44,7 @@ Ein Red Hat Enterprise Linux-System muss bei Red Hat Subscription Management reg
 * *Freier Speicherplatz*: 10 GB
 * *SELinux*: Wir empfehlen, SELinux auf dem Host zu deaktivieren.
 +
-SELinux erzwingt eine Richtlinie, die Softwareaktualisierungen des Datenbrokers blockiert und den Datenbroker daran hindern kann, mit Endpunkten Kontakt aufzunehmen, die für den normalen Betrieb erforderlich sind.
+SELinux erzwingt eine Richtlinie, die Software-Updates des Datenbrokers blockiert und den Datenbroker daran hindern kann, mit Endpunkten Kontakt aufzunehmen, die für den normalen Betrieb erforderlich sind.
 
 
 
@@ -143,7 +143,7 @@ Die Anleitungsseite wird in Kürze geladen.  Sie müssen diese Anweisungen befol
 .. Wählen Sie eine Installationsoption: *Kein Proxy*, *Proxyserver verwenden* oder *Proxyserver mit Authentifizierung verwenden*.
 +
 
-NOTE: Der Benutzer muss ein lokaler Benutzer sein.  Domänenbenutzer werden nicht unterstützt.
+NOTE: Der Benutzer muss ein lokaler Benutzer sein. Domänenbenutzer werden nicht unterstützt.
 
 .. Verwenden Sie die Befehle, um den Datenbroker herunterzuladen und zu installieren.
 +

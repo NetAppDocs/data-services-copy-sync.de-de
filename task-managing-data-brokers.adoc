@@ -261,9 +261,9 @@ Beispielsweise müssen Sie den Datenbroker möglicherweise einfach neu starten, 
 
 
 
-== Einen Datenbroker aus einer Gruppe entfernen
+== Entfernen eines Datenbrokers aus einer Gruppe
 
-Sie können einen Datenbroker aus einer Gruppe entfernen, wenn er nicht mehr benötigt wird oder die anfängliche Bereitstellung fehlgeschlagen ist.  Diese Aktion löscht nur den Datenbroker aus den Datensätzen von Copy and Sync.  Sie müssen den Datenbroker und alle zusätzlichen Cloud-Ressourcen manuell löschen.
+Sie können einen Datenbroker aus einer Gruppe entfernen, wenn er nicht mehr benötigt wird oder die anfängliche Bereitstellung fehlgeschlagen ist.  Diese Aktion löscht nur den Datenbroker aus den Datensätzen von Copy and Sync.  Sie müssen den Datenbroker und alle zusätzlichen Cloud-Ressourcen manuell selbst löschen.
 
 .Dinge, die Sie wissen sollten
 * Kopieren und Synchronisieren löscht eine Gruppe, wenn Sie den letzten Datenbroker aus der Gruppe entfernen.

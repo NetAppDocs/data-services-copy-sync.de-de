@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: api-sync.html 
 keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis, 202, https status code 202, status code 202, id, id field, box 
-summary: Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy- und Sync-Funktionen sind auch über RESTful-APIs verfügbar. 
+summary: Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy and Sync Funktionen sind auch über RESTful-APIs verfügbar. 
 ---
-= NetApp Copy- und Sync-APIs
+= NetApp Copy and Sync -APIs
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,16 +14,16 @@ summary: Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy- und Syn
 
 
 [role="lead"]
-Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy- und Sync-Funktionen sind auch über die RESTful-API verfügbar.
+Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy and Sync Funktionen sind auch über die RESTful-API verfügbar.
 
 
 
 == Erste Schritte
 
-Um mit der Copy and Sync-API zu beginnen, benötigen Sie ein Benutzertoken und Ihre NetApp -Konsolenkonto-ID.  Sie müssen das Token und die Konto-ID zum Autorisierungsheader hinzufügen, wenn Sie API-Aufrufe tätigen.
+Um mit der Copy and Sync-API zu beginnen, benötigen Sie ein Benutzertoken und Ihre NetApp Console -ID.  Sie müssen das Token und die Konto-ID zum Autorisierungsheader hinzufügen, wenn Sie API-Aufrufe tätigen.
 
 .Schritte
-. Besorgen Sie sich ein Benutzertoken von der NetApp Konsole.
+. Besorgen Sie sich ein Benutzertoken von der NetApp Console.
 +
 [source, http]
 ----
@@ -43,7 +43,7 @@ Body:
 
 NOTE: Wenn Sie ein persönliches E-Mail-Konto ohne Client-ID verwenden, können Sie die Standard-Client-ID „QC3AgHk6qdbmC7Yyr82ApBwaaJLwRrNO“ verwenden.
 
-. Besorgen Sie sich Ihre NetApp Konsolen-Konto-ID.
+. Besorgen Sie sich Ihre NetApp Console Konto-ID.
 +
 [source, http]
 ----
@@ -83,7 +83,7 @@ Body: { "name": "databroker1", "type": "AZURE" }
 
 
 .Wie geht es weiter?
-Das Benutzertoken der NetApp -Konsole hat ein Ablaufdatum.  Um das Token zu aktualisieren, müssen Sie die API aus Schritt 1 erneut aufrufen.
+Das Benutzertoken der NetApp Console hat ein Ablaufdatum.  Um das Token zu aktualisieren, müssen Sie die API aus Schritt 1 erneut aufrufen.
 
 Die API-Antwort enthält ein Feld „expires_in“, das angibt, wann das Token abläuft.
 

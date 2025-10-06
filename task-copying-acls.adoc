@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task-copying-acls.html 
 keywords: permissions, access control list, acls, ntfs, cifs, smb, shares, robocopy, copy, transfer, activate, operating system, os, ram, cpu, networking, copy acls to the target 
-summary: 'NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben mithilfe von Robocopy manuell beizubehalten.' 
+summary: 'NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben manuell mithilfe von Robocopy beizubehalten.' 
 ---
 = Kopieren von ACLs von SMB-Freigaben in NetApp Copy and Sync
 :hardbreaks:
@@ -14,10 +14,10 @@ summary: 'NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-F
 
 
 [role="lead"]
-NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben mithilfe von Robocopy manuell beizubehalten.
+NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben manuell mithilfe von Robocopy beizubehalten.
 
 .Auswahlmöglichkeiten
-* <<Einrichten von „Kopieren und Synchronisieren“ zum Kopieren von ACLs,Einrichten von „Kopieren und Synchronisieren“, um ACLs automatisch zu kopieren>>
+* <<Einrichten von „Kopieren und Synchronisieren“ zum Kopieren von ACLs,Richten Sie „Kopieren und Synchronisieren“ ein, um ACLs automatisch zu kopieren>>
 * <<Manuelles Kopieren von ACLs zwischen SMB-Freigaben,Manuelles Kopieren der ACLs zwischen SMB-Freigaben>>
 
 
