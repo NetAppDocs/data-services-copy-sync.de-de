@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: task-managing-reports.html 
+keywords: reports, sync reports, NetApp Copy and Sync reports, report errors, path reports 
+summary: Erstellen und zeigen Sie Berichte an, um Informationen zu erhalten, die Sie mithilfe von NetApp -Mitarbeitern verwenden können, um die Konfiguration eines Datenbrokers zu optimieren und die Leistung zu verbessern. 
+---
+= Erstellen und Anzeigen von Berichten zur Optimierung Ihrer Konfiguration in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erstellen und zeigen Sie Berichte in NetApp Copy and Sync an, um Informationen zu erhalten, die Sie mit Hilfe von NetApp -Mitarbeitern verwenden können, um die Konfiguration eines Datenbrokers zu optimieren und die Leistung zu verbessern.
+
+Jeder Bericht enthält ausführliche Details zu einem Pfad in einer Synchronisierungsbeziehung.  Es enthält Informationen zur Anzahl der vorhandenen Verzeichnisse, Dateien und symbolischen Links, zur Verteilung der Dateigrößen, zur Tiefe und Breite der Verzeichnisse sowie zu Änderungs- und Zugriffszeiten.  Dies unterscheidet sich von Synchronisierungsstatistiken, die über das Dashboard verfügbar sind, nachdem https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html["erfolgreiches Erstellen und Abschließen einer Synchronisierung"] .
+
+
+
+== Erstellen von Berichten
+
+Jedes Mal, wenn Sie einen Bericht erstellen, scannt Copy and Sync den Pfad und fasst die Details dann in einem Bericht zusammen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Berichte*.
++
+Die Pfade (Quelle oder Ziel) in jeder Ihrer Synchronisierungsbeziehungen werden in einer Tabelle angezeigt.
+
+. Gehen Sie in der Spalte *Berichtsaktionen* zu einem bestimmten Pfad und wählen Sie *Erstellen* oder wählen Sie das Aktionsmenü und wählen Sie *Neu erstellen*.
+. Wenn der Bericht fertig ist, wählen Sie das Aktionsmenü und dann *Anzeigen*.
++
+Hier ist ein Beispielbericht für einen Dateisystempfad.
+
++
+image:screenshot_sync_report.gif["Ein Bericht, der die Anzahl der synchronisierten Elemente, die Dateigröße, Maximalwerte, Zugriffszeit, Änderungszeit und Änderungszeit anzeigt."]
+
++
+Und hier ist ein Beispielbericht für die Objektspeicherung.
+
++
+image:screenshot_sync_report_object.gif["Ein Bericht, der die Anzahl der Pfadelemente, die Objektgröße, die Änderungszeit und die Speicherklasse anzeigt."]
+
+
+
+
+
+== Berichte herunterladen
+
+Sie können einen Bericht im PDF-Format herunterladen, um ihn offline anzuzeigen oder freizugeben.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Berichte*.
+. Wählen Sie in der Spalte *Berichtsaktionen* das Aktionsmenü und wählen Sie *Anzeigen*.
+. Wählen Sie oben rechts im Bericht das Aktionsmenü und wählen Sie *PDF herunterladen*.
++
+image:screenshot-sync-download-report.png["Ein Screenshot der Option „PDF herunterladen“, die angezeigt wird, nachdem Sie das Aktionsmenü in einem Bericht ausgewählt haben."]
+
+
+
+
+
+== Berichtsfehler anzeigen
+
+Die Pfadtabelle gibt an, ob im aktuellsten Bericht Fehler vorhanden sind.  Ein Fehler weist auf ein Problem hin, das beim Scannen des Pfads bei Copy and Sync aufgetreten ist.
+
+Beispielsweise kann ein Bericht Fehler aufgrund verweigerter Berechtigung enthalten.  Diese Art von Fehler kann die Fähigkeit von Copy and Sync beeinträchtigen, den gesamten Satz von Dateien und Verzeichnissen zu scannen.
+
+Nachdem Sie die Liste der Fehler angezeigt haben, können Sie die Probleme beheben und den Bericht erneut ausführen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Berichte*.
+. Geben Sie in der Spalte *Fehler* an, ob in einem Bericht Fehler vorhanden sind.
+. Wenn Fehler vorhanden sind, wählen Sie den Pfeil neben der Anzahl der Fehler aus.
++
+image:screenshot_sync_report_errors.gif["Ein Screenshot der Pfadtabelle, der die Anzahl der Fehler und einen kleinen anklickbaren Pfeil in der Spalte „Fehler“ anzeigt."]
+
+. Verwenden Sie die Informationen im Fehler, um das Problem zu beheben.
++
+Nachdem Sie das Problem behoben haben, sollte der Fehler beim nächsten Ausführen des Berichts nicht mehr auftreten.
+
+
+
+
+
+== Berichte löschen
+
+Sie können einen Bericht löschen, wenn dieser einen Fehler enthielt, den Sie behoben haben, oder wenn der Bericht mit einer Synchronisierungsbeziehung zusammenhängt, die Sie entfernt haben.
+
+.Schritte
+. Wählen Sie *Synchronisieren > Berichte*.
+. Wählen Sie in der Spalte *Berichtsaktionen* das Aktionsmenü für einen Pfad aus und wählen Sie *Letzten Bericht löschen* oder *Alle Berichte löschen*.
+. Bestätigen Sie, dass Sie den bzw. die Berichte löschen möchten.
+

@@ -1,0 +1,11 @@
+= Neue Betriebssystemunterstützung für Datenbroker
+:allow-uri-read: 
+
+
+
+
+=== Neue Betriebssystemunterstützung für Datenbroker
+
+Der Datenbroker wird jetzt auf Hosts unterstützt, auf denen Red Hat Enterprise 9.4, Ubuntu 23.04 und Ubuntu 24.04 ausgeführt wird.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-linux.html#linux-host-requirements["Linux-Hostanforderungen anzeigen"] .

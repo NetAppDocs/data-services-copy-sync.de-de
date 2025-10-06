@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: concept-cloud-sync.html 
+keywords: NetApp Copy and Sync, overview, conceptual, how, data broker, service, cloudsync, bluexp, copy and sync 
+summary: NetApp Copy and Sync bietet eine einfache, sichere und automatisierte Möglichkeit, Ihre Daten zu jedem beliebigen Ziel in der Cloud oder vor Ort zu migrieren. 
+---
+= Erfahren Sie mehr über NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Copy and Sync bietet eine einfache, sichere und automatisierte Möglichkeit, Ihre Daten zu jedem beliebigen Ziel in der Cloud oder vor Ort zu migrieren.  Unabhängig davon, ob es sich um einen dateibasierten NAS-Datensatz (NFS oder SMB), ein Amazon Simple Storage Service (S3)-Objektformat, ein NetApp StorageGRID -Gerät oder einen anderen Objektspeicher eines Cloud-Anbieters handelt, kann Copy and Sync ihn für Sie konvertieren und verschieben.
+
+
+
+== NetApp Konsole
+
+Auf NetApp Copy and Sync kann über die NetApp Konsole zugegriffen werden.
+
+Die NetApp Konsole ermöglicht eine zentrale Verwaltung von NetApp -Speicher- und Datendiensten in lokalen und Cloud-Umgebungen auf Unternehmensebene. Die Konsole ist für den Zugriff auf und die Nutzung der NetApp -Datendienste erforderlich. Als Verwaltungsschnittstelle ermöglicht es Ihnen, viele Speicherressourcen über eine Schnittstelle zu verwalten. Konsolenadministratoren können den Zugriff auf Speicher und Dienste für alle Systeme innerhalb des Unternehmens steuern.
+
+Sie benötigen weder eine Lizenz noch ein Abonnement, um die NetApp -Konsole zu verwenden. Es fallen nur dann Kosten an, wenn Sie Konsolenagenten in Ihrer Cloud bereitstellen müssen, um die Konnektivität zu Ihren Speichersystemen oder NetApp -Datendiensten sicherzustellen. Einige NetApp -Datendienste, auf die über die Konsole zugegriffen werden kann, sind jedoch lizenz- oder abonnementbasiert.
+
+Erfahren Sie mehr über die https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp Konsole"] .
+
+
+
+== So funktioniert NetApp Copy and Sync
+
+NetApp Copy and Sync ist eine Software-as-a-Service (SaaS)-Plattform, die aus einer Datenbrokergruppe, einer über die NetApp Konsole verfügbaren Cloud-basierten Schnittstelle sowie einer Quelle und einem Ziel besteht.
+
+Das folgende Bild zeigt die Beziehung zwischen den Komponenten „Kopieren“ und „Synchronisieren“:
+
+image:diagram_cloud_sync_overview.png["Konzeptbild, das den Datenfluss von einer Quelle zu einem Ziel zeigt.  Die Data-Broker-Software fungiert als Vermittler und fragt Copy und Sync nach Aufgaben ab."]
+
+Die NetApp Data Broker-Software synchronisiert Daten von einer Quelle mit einem Ziel (dies wird als _Synchronisierungsbeziehung_ bezeichnet).  Sie können den Datenbroker in AWS, Azure, Google Cloud Platform oder bei Ihnen vor Ort ausführen.  Eine Datenbrokergruppe, die aus einem oder mehreren Datenbrokern besteht, benötigt eine ausgehende Internetverbindung über Port 443, damit sie mit Copy and Sync kommunizieren und einige andere Dienste und Repositories kontaktieren kann. link:reference-networking.html["Liste der Endpunkte anzeigen"] .
+
+Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten basierend auf dem von Ihnen festgelegten Zeitplan.
+
+
+
+== Unterstützte Speichertypen
+
+Copy and Sync unterstützt die folgenden Speichertypen:
+
+* Jeder NFS-Server
+* Jeder SMB-Server
+* Amazon EFS
+* Amazon FSx für ONTAP
+* Amazon S3
+* Azure-Blob
+* Azure Data Lake Storage Gen2
+* Azure NetApp Files
+* Box (als Vorschau verfügbar)
+* Cloud Volumes ONTAP
+* Google Cloud-Speicher
+* Google Drive
+* IBM Cloud Object Storage
+* On-Premises- ONTAP -Cluster
+* ONTAP S3 Speicher
+* SFTP (nur mit API)
+* StorageGRID
+
+
+link:reference-supported-relationships.html["Anzeigen der unterstützten Synchronisierungsbeziehungen"] .
+
+
+
+== Kosten
+
+Mit der Verwendung von Copy and Sync sind zwei Arten von Kosten verbunden: Ressourcengebühren und Servicegebühren.
+
+Ressourcengebühren:: Ressourcengebühren beziehen sich auf die Rechen- und Speicherkosten für den Betrieb eines oder mehrerer Datenbroker in der Cloud.
+Servicegebühren:: Es gibt zwei Möglichkeiten, nach Ablauf Ihrer 14-tägigen kostenlosen Testversion für Synchronisierungsbeziehungen zu bezahlen.  Die erste Möglichkeit besteht darin, ein Abonnement von AWS oder Azure abzuschließen, bei dem Sie stundenweise oder jährlich zahlen können.  Die zweite Möglichkeit besteht darin, Lizenzen direkt von NetApp zu erwerben.
+
+
+link:concept-licensing.html["Erfahren Sie, wie die Lizenzierung funktioniert"] .

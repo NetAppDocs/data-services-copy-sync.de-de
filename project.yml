@@ -1,0 +1,91 @@
+---
+settings:
+  name: NetApp Copy and Sync
+  harmony_integration: maestro
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  rss_page: whats-new.html
+  langs: de-de,us-en,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: NetApp Copy and Sync-Dokumente
+    url: "/index.html"
+  - title: Versionshinweise
+    entries:
+    - title: Was ist neu
+      url: "/whats-new.html"
+    - title: Einschränkungen
+      url: "/reference-limitations.html"
+  - title: Erste Schritte
+    entries:
+    - title: Erfahren Sie mehr über NetApp Copy and Sync
+      url: "/concept-cloud-sync.html"
+    - title: Schnellstart
+      url: "/task-quick-start.html"
+    - title: Anzeigen unterstützter Synchronisierungsbeziehungen
+      url: "/reference-supported-relationships.html"
+    - title: Vorbereiten der Quelle und des Ziels
+      url: "/reference-requirements.html"
+    - title: Netzwerk vorbereiten
+      url: "/reference-networking.html"
+    - title: Melden Sie sich bei NetApp Copy and Sync an
+      url: "/task-login-copyandsync.html"
+    - title: Installieren Sie einen Datenbroker
+      entries:
+      - title: In AWS installieren
+        url: "/task-installing-aws.html"
+      - title: Installieren in Azure
+        url: "/task-installing-azure.html"
+      - title: In Google Cloud installieren
+        url: "/task-installing-gcp.html"
+      - title: Installation auf einem Linux-Host
+        url: "/task-installing-linux.html"
+  - title: Verwenden Sie NetApp Copy and Sync
+    entries:
+    - title: Daten zwischen Quelle und Ziel synchronisieren
+      entries:
+      - title: Bereiten Sie einen Datenbroker vor, um Daten zwischen Objektspeichern
+          zu synchronisieren
+        url: "/task-prepare-object-storage.html"
+      - title: Erstellen einer Synchronisierungsbeziehung
+        url: "/task-creating-relationships.html"
+      - title: Kopieren von ACLs aus einer SMB-Freigabe
+        url: "/task-copying-acls.html"
+      - title: NFS-Daten während der Übertragung verschlüsseln
+        url: "/task-nfs-encryption.html"
+      - title: Verwenden Sie Geheimnisse aus HashiCorp Vault
+        url: "/task-external-vault.html"
+    - title: Einrichten der Lizenzierung
+      url: "/task-licensing.html"
+    - title: Verwalten von Synchronisierungsbeziehungen
+      url: "/task-managing-relationships.html"
+    - title: Datenbroker verwalten
+      url: "/task-managing-data-brokers.html"
+    - title: Anzeigen von Berichten zum Optimieren Ihrer Konfiguration
+      url: "/task-managing-reports.html"
+    - title: Deinstallieren eines Datenbrokers
+      url: "/task-uninstalling.html"
+  - title: Automatisieren mit der REST-API
+    url: "/api-sync.html"
+  - title: Konzepte
+    entries:
+    - title: Lizenzierung
+      url: "/concept-licensing.html"
+    - title: Datenschutz
+      url: "/concept-privacy.html"
+    - title: FAQ
+      url: "/faq.html"
+  - title: Wissen und Unterstützung
+    entries:
+    - title: Für Support registrieren
+      url: "/task-support-registration.html"
+    - title: Hilfe erhalten
+      url: "/task-get-help.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"
+product-family:
+  name: NetApp Data Services
+  repo: data-services-family

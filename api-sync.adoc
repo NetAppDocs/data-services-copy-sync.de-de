@@ -1,0 +1,190 @@
+---
+sidebar: sidebar 
+permalink: api-sync.html 
+keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis, 202, https status code 202, status code 202, id, id field, box 
+summary: Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy- und Sync-Funktionen sind auch über RESTful-APIs verfügbar. 
+---
+= NetApp Copy- und Sync-APIs
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die über die Web-Benutzeroberfläche verfügbaren NetApp Copy- und Sync-Funktionen sind auch über die RESTful-API verfügbar.
+
+
+
+== Erste Schritte
+
+Um mit der Copy and Sync-API zu beginnen, benötigen Sie ein Benutzertoken und Ihre NetApp -Konsolenkonto-ID.  Sie müssen das Token und die Konto-ID zum Autorisierungsheader hinzufügen, wenn Sie API-Aufrufe tätigen.
+
+.Schritte
+. Besorgen Sie sich ein Benutzertoken von der NetApp Konsole.
++
+[source, http]
+----
+POST https://netapp-cloud-account.auth0.com/oauth/token
+Header: Content-Type: application/json
+Body:
+{
+              "username": "<user_email>",
+              "scope": "profile",
+              "audience": "https://api.cloud.netapp.com",
+              "client_id": "UaVhOIXMWQs5i1WdDxauXe5Mqkb34NJQ",
+              "grant_type": "password",
+              "password": "<user_password>"
+}
+----
++
+
+NOTE: Wenn Sie ein persönliches E-Mail-Konto ohne Client-ID verwenden, können Sie die Standard-Client-ID „QC3AgHk6qdbmC7Yyr82ApBwaaJLwRrNO“ verwenden.
+
+. Besorgen Sie sich Ihre NetApp Konsolen-Konto-ID.
++
+[source, http]
+----
+GET https://api.cloudsync.netapp.com/api/accounts
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+----
++
+Diese API gibt eine Antwort wie die folgende zurück:
+
++
+[source, json]
+----
+[
+  {
+    "accountId": "account-JeL97Ry3",
+    "name": "Test"
+  }
+]
+----
+. Fügen Sie das Benutzertoken und die Konto-ID im Autorisierungsheader jedes API-Aufrufs hinzu.
++
+*Beispiel*
+
++
+Das folgende Beispiel zeigt einen API-Aufruf zum Erstellen eines Datenbrokers in Microsoft Azure.  Sie ersetzen einfach <user_token> und <accountId> durch das Token und die ID, die Sie in den vorherigen Schritten erhalten haben.
+
++
+[source, http]
+----
+POST https://api.cloudsync.netapp.com/api/data-brokers
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+Body: { "name": "databroker1", "type": "AZURE" }
+----
+
+
+.Wie geht es weiter?
+Das Benutzertoken der NetApp -Konsole hat ein Ablaufdatum.  Um das Token zu aktualisieren, müssen Sie die API aus Schritt 1 erneut aufrufen.
+
+Die API-Antwort enthält ein Feld „expires_in“, das angibt, wann das Token abläuft.
+
+
+
+== Verwenden von Listen-APIs
+
+Listen-APIs sind asynchrone APIs, daher wird das Ergebnis nicht sofort zurückgegeben (zum Beispiel: `GET /data-brokers/{id}/list-nfs-export-folders` Und `GET /data-brokers/{id}/list-s3-buckets` ).  Die einzige Antwort vom Server ist der HTTP-Status 202.  Um das tatsächliche Ergebnis zu erhalten, müssen Sie die `GET /messages/client` API.
+
+.Schritte
+. Rufen Sie die Listen-API auf, die Sie verwenden möchten.
+. Verwenden Sie die `GET /messages/client` API zum Anzeigen des Ergebnisses der Operation.
+. Verwenden Sie dieselbe API, indem Sie ihr die ID anhängen, die Sie gerade erhalten haben: `GET \http://api.cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>`
++
+Beachten Sie, dass sich die ID bei jedem Aufruf des `GET /messages/client` API.
+
+
+
+*Beispiel*
+
+Wenn Sie anrufen `list-s3-buckets` API, ein Ergebnis wird nicht sofort zurückgegeben:
+
+[source, http]
+----
+GET http://api.cloudsync.netapp.com/api/data-brokers/<data-broker-id>/list-s3-buckets
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Das Ergebnis ist der HTTP-Statuscode 202, was bedeutet, dass die Nachricht akzeptiert, aber noch nicht verarbeitet wurde.
+
+Um das Ergebnis der Operation zu erhalten, müssen Sie die folgende API verwenden:
+
+[source, http]
+----
+GET http://api.cloudsync.netapp.com/api/messages/client
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Das Ergebnis ist ein Array mit einem Objekt, das ein ID-Feld enthält.  Das ID-Feld stellt die letzte vom Server gesendete Nachricht dar. Beispiel:
+
+[source, json]
+----
+[
+    {
+        "header": {
+            "requestId": "init",
+            "clientId": "init",
+            "agentId": "init"
+        },
+        "payload": {
+            "init": {}
+        },
+        "id": "5801"
+    }
+]
+----
+Sie würden nun den folgenden API-Aufruf mit der ID durchführen, die Sie gerade erhalten haben:
+
+[source, http]
+----
+GET http://api.cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Das Ergebnis ist ein Array von Nachrichten.  In jeder Nachricht befindet sich ein Nutzlastobjekt, das aus dem Namen der Operation (als Schlüssel) und ihrem Ergebnis (als Wert) besteht. Beispiel:
+
+[source, json]
+----
+[
+    {
+        "payload": {
+            "list-s3-buckets": [
+                {
+                    "tags": [
+                        {
+                            "Value": "100$",
+                            "Key": "price"
+                        }
+                    ],
+                    "region": {
+                        "displayName": "US West (Oregon)",
+                        "name": "us-west-2"
+                    },
+                    "name": "small"
+                }
+            ]
+        },
+        "header": {
+            "requestId": "f687ac55-2f0c-40e3-9fa6-57fb8c4094a3",
+            "clientId": "5beb032f548e6e35f4ed1ba9",
+            "agentId": "5bed61f4489fb04e34a9aac6"
+        },
+        "id": "5802"
+    }
+]
+----
+
+
+== API-Referenz
+
+Dokumentation für jede Copy- und Sync-API ist verfügbar unter https://api.cloudsync.netapp.com/docs[] .

@@ -1,0 +1,1037 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, enhancements, fixes' 
+summary: Erfahren Sie, was es Neues bei NetApp Copy and Sync gibt. 
+---
+= Was ist neu bei NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erfahren Sie, was es Neues bei NetApp Copy and Sync gibt.
+
+
+
+== 06. Oktober 2025
+
+
+
+=== BlueXP copy and sync heißt jetzt NetApp Copy and Sync
+
+BlueXP copy and sync wurde in NetApp Copy and Sync umbenannt.
+
+
+
+=== BlueXP heißt jetzt NetApp Console
+
+Die NetApp Console basiert auf der verbesserten und neu strukturierten BlueXP -Grundlage und ermöglicht die zentrale Verwaltung von NetApp Storage und NetApp Data Services in On-Premises- und Cloud-Umgebungen auf Unternehmensniveau. Sie liefert Einblicke in Echtzeit, schnellere Workflows und eine vereinfachte Administration mit hoher Sicherheit und Konformität.
+
+Einzelheiten zu den Änderungen finden Sie imlink:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["Versionshinweise zur NetApp Konsole"] .
+
+
+
+== 02. Februar 2025
+
+
+
+=== Neue Betriebssystemunterstützung für Datenbroker
+
+Der Datenbroker wird jetzt auf Hosts unterstützt, auf denen Red Hat Enterprise 9.4, Ubuntu 23.04 und Ubuntu 24.04 ausgeführt wird.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-linux.html#linux-host-requirements["Linux-Hostanforderungen anzeigen"] .
+
+
+
+== 27. Oktober 2024
+
+
+
+=== Fehlerbehebungen
+
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.56.
+
+
+
+== 16. September 2024
+
+
+
+=== Fehlerbehebungen
+
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.55.
+
+
+
+== 11. August 2024
+
+
+
+=== Fehlerbehebungen
+
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.54.
+
+
+
+== 14. Juli 2024
+
+
+
+=== Fehlerbehebungen
+
+Wir haben Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.53.
+
+
+
+== 02. Juni 2024
+
+
+
+=== Fehlerbehebungen
+
+NetApp Copy and Sync wurde aktualisiert, um einige Fehler zu beheben.  Der Datenbroker wurde ebenfalls aktualisiert, um Sicherheitsupdates anzuwenden.  Die neue Data Broker-Version ist 1.0.52.
+
+
+
+== 08. April 2024
+
+
+
+=== Unterstützung für RHEL 8.9
+
+Der Datenbroker wird jetzt auf Hosts unterstützt, auf denen Red Hat Enterprise Linux 8.9 ausgeführt wird.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-linux.html#linux-host-requirements["Linux-Hostanforderungen anzeigen"] .
+
+
+
+== 11. Februar 2024
+
+
+
+=== Verzeichnisse nach regulären Ausdrücken filtern
+
+Benutzer haben jetzt die Möglichkeit, Verzeichnisse mithilfe von regulären Ausdrücken zu filtern.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#create-other-types-of-sync-relationships["Erfahren Sie mehr über die Funktion *Verzeichnisse ausschließen*."]
+
+
+
+== 26. November 2023
+
+
+
+=== Unterstützung der Cold-Storage-Klasse für Azure Blob
+
+Die Azure Blob-Ebene für Cold Storage ist jetzt beim Erstellen einer Synchronisierungsbeziehung verfügbar.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html["Erfahren Sie mehr über das Erstellen einer Synchronisierungsbeziehung."]
+
+
+
+=== Unterstützung für die Region Tel Aviv in AWS-Datenbrokern
+
+Tel Aviv ist jetzt eine unterstützte Region beim Erstellen eines Datenbrokers in AWS.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-aws.html#creating-the-data-broker["Erfahren Sie mehr über das Erstellen eines Datenbrokers in AWS"] .
+
+
+
+=== Update der Knotenversion für Datenbroker
+
+Alle neuen Datenbroker verwenden jetzt die Knotenversion 21.2.0.  Datenbroker, die mit diesem Update nicht kompatibel sind, wie z. B. CentOS 7.0 und Ubuntu Server 18.0, funktionieren nicht mehr mit NetApp Copy and Sync.
+
+
+
+== 03. September 2023
+
+
+
+=== Dateien per regulärem Ausdruck ausschließen
+
+Benutzer haben jetzt die Möglichkeit, Dateien mithilfe von regulären Ausdrücken auszuschließen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#create-other-types-of-sync-relationships["Erfahren Sie mehr über die Funktion *Dateierweiterungen ausschließen*."]
+
+
+
+=== Fügen Sie beim Erstellen des Azure-Datenbrokers S3-Schlüssel hinzu
+
+Benutzer können jetzt beim Erstellen eines Azure-Datenbrokers AWS S3-Zugriffsschlüssel und geheime Schlüssel hinzufügen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-azure.html#creating-the-data-broker["Erfahren Sie mehr über das Erstellen eines Datenbrokers in Azure."]
+
+
+
+== 06. August 2023
+
+
+
+=== Verwenden Sie beim Erstellen eines Datenbrokers vorhandene Azure-Sicherheitsgruppen
+
+Benutzer haben jetzt die Möglichkeit, beim Erstellen eines Datenbrokers vorhandene Azure-Sicherheitsgruppen zu verwenden.
+
+Das beim Erstellen des Datenbrokers verwendete Dienstkonto muss über die folgenden Berechtigungen verfügen:
+
+* „Microsoft.Network/networkSecurityGroups/securityRules/read“
+* „Microsoft.Network/networkSecurityGroups/read“
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-azure.html["Erfahren Sie mehr über das Erstellen eines Datenbrokers in Azure."]
+
+
+
+=== Daten beim Synchronisieren mit Google Storage verschlüsseln
+
+Benutzer haben jetzt die Möglichkeit, beim Erstellen einer Synchronisierungsbeziehung mit einem Google Storage-Bucket als Ziel einen vom Kunden verwalteten Verschlüsselungsschlüssel anzugeben. Sie können Ihren Schlüssel manuell eingeben oder aus einer Liste Ihrer Schlüssel in einer einzelnen Region auswählen.
+
+Das beim Erstellen des Datenbrokers verwendete Dienstkonto muss über die folgenden Berechtigungen verfügen:
+
+* cloudkms.cryptoKeys.list
+* cloudkms.keyRings.list
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-requirements.html#google-cloud-storage-bucket-requirements["Erfahren Sie mehr über die Bucket-Anforderungen von Google Cloud Storage."]
+
+
+
+== 09. Juli 2023
+
+
+
+=== Mehrere Synchronisierungsbeziehungen gleichzeitig entfernen
+
+Benutzer können jetzt in der Benutzeroberfläche mehrere Synchronisierungsbeziehungen gleichzeitig löschen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#deleting-relationships["Erfahren Sie mehr über das Löschen von Synchronisierungsbeziehungen."]
+
+
+
+=== Nur ACL kopieren
+
+Benutzer haben jetzt zusätzliche Optionen zum Kopieren von ACL-Informationen in CIF- und NFS-Beziehungen.  Beim Erstellen oder Verwalten einer Synchronisierungsbeziehung können Sie nur Dateien kopieren, nur ACL-Informationen kopieren oder Dateien und ACL-Informationen kopieren.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-copying-acls.html["Erfahren Sie mehr über das Kopieren von ACLs."]
+
+
+
+=== Aktualisiert auf Node.js 20
+
+Copy and Sync wurde auf Node.js 20 aktualisiert.  Alle verfügbaren Datenbroker werden aktualisiert.  Mit diesem Update nicht kompatible Betriebssysteme können nicht installiert werden und bei inkompatiblen vorhandenen Systemen können Leistungsprobleme auftreten.
+
+
+
+== 11. Juni 2023
+
+
+
+=== Unterstützt automatischen Abbruch nach Minuten
+
+Aktive Synchronisierungen, die nicht abgeschlossen wurden, können jetzt nach fünfzehn Minuten mit der Funktion *Sync-Timeout* abgebrochen werden.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Sync Timeout“"] .
+
+
+
+=== Kopieren der Zugriffszeit-Metadaten
+
+In Beziehungen, die ein Dateisystem enthalten, kopiert die Funktion *Kopieren für Objekte* jetzt Metadaten zur Zugriffszeit.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Für Objekte kopieren“"] .
+
+
+
+== 08. Mai 2023
+
+
+
+=== Hardlink-Funktionen
+
+Benutzer können jetzt Hardlinks für Synchronisierungen mit ungesicherten NFS-zu-NFS-Beziehungen einschließen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Dateitypen“"] .
+
+
+
+=== Möglichkeit zum Hinzufügen von Benutzerzertifikaten für Datenbroker in sicheren NFS-Beziehungen
+
+Benutzer können jetzt beim Erstellen einer sicheren NFS-Beziehung ihr eigenes Zertifikat für den Zieldatenbroker festlegen.  Sie müssen dabei einen Servernamen festlegen und einen privaten Schlüssel und eine Zertifikats-ID angeben.  Diese Funktion ist für alle Datenbroker verfügbar.
+
+
+
+=== Verlängerter Ausschlusszeitraum für kürzlich geänderte Dateien
+
+Benutzer können jetzt Dateien ausschließen, die bis zu 365 Tage vor der geplanten Synchronisierung geändert wurden.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Zuletzt geänderte Dateien“"] .
+
+
+
+=== Filtern Sie Beziehungen in der Benutzeroberfläche nach Beziehungs-ID
+
+Benutzer der RESTful-API können Beziehungen jetzt mithilfe von Beziehungs-IDs filtern.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/api-sync.html["Erfahren Sie mehr über die Verwendung der RESTful API mit NetApp Copy and Sync"] .
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Verzeichnisse ausschließen“"] .
+
+
+
+== 02. April 2023
+
+
+
+=== Zusätzliche Unterstützung für Azure Data Lake Storage Gen2-Beziehungen
+
+Sie können jetzt Synchronisierungsbeziehungen mit Azure Data Lake Storage Gen2 als Quelle und Ziel mit Folgendem erstellen:
+
+* Azure NetApp Files
+* Amazon FSx für ONTAP
+* Cloud Volumes ONTAP
+* On-Premises ONTAP
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Erfahren Sie mehr über unterstützte Synchronisierungsbeziehungen"] .
+
+
+
+=== Verzeichnisse nach vollständigem Pfad filtern
+
+Zusätzlich zum Filtern von Verzeichnissen nach Namen können Sie Verzeichnisse jetzt auch nach ihrem vollständigen Pfad filtern.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Verzeichnisse ausschließen“"] .
+
+
+
+== 07. März 2023
+
+
+
+=== EBS-Verschlüsselung für AWS-Datenbroker
+
+Sie können jetzt AWS-Datenbroker-Volumes mit einem KMS-Schlüssel aus Ihrem Konto verschlüsseln.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-aws.html#creating-the-data-broker["Erfahren Sie mehr über das Erstellen eines Datenbrokers in AWS"] .
+
+
+
+== 05. Februar 2023
+
+
+
+=== Zusätzliche Unterstützung für Azure Data Lake Storage Gen2, ONTAP S3 Storage und NFS
+
+Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für ONTAP S3 Storage und NFS:
+
+* ONTAP S3-Speicher zu NFS
+* NFS zu ONTAP S3-Speicher
+
+
+Cloud Sync bietet außerdem zusätzliche Unterstützung für Azure Data Lake Storage Gen2 als Quelle und Ziel für:
+
+* NFS-Server
+* SMB-Server
+* ONTAP S3 Speicher
+* StorageGRID
+* IBM Cloud Object Storage
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Erfahren Sie mehr über unterstützte Synchronisierungsbeziehungen"] .
+
+
+
+=== Upgrade auf das Datenbroker-Betriebssystem von Amazon Web Services
+
+Das Betriebssystem für AWS-Datenbroker wurde auf Amazon Linux 2022 aktualisiert.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-aws.html#details-about-the-data-broker-instance["Erfahren Sie mehr über die Data Broker-Instanz in AWS"] .
+
+
+
+== 03. Januar 2023
+
+
+
+=== Lokale Data Broker-Konfiguration auf der Benutzeroberfläche anzeigen
+
+Es gibt jetzt eine Option „Konfiguration anzeigen“, mit der Benutzer die lokale Konfiguration jedes Datenbrokers auf der Benutzeroberfläche anzeigen können.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-data-brokers.html["Weitere Informationen zum Verwalten von Datenbrokergruppen"] .
+
+
+
+=== Upgrade auf das Azure- und Google Cloud-Datenbroker-Betriebssystem
+
+Das Betriebssystem für Datenbroker in Azure und Google Cloud wurde auf Rocky Linux 9.0 aktualisiert.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-azure.html#details-about-the-data-broker-vm["Erfahren Sie mehr über die Data Broker-Instanz in Azure"] .
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-gcp.html#details-about-the-data-broker-vm-instance["Erfahren Sie mehr über die Data Broker-Instanz in Google Cloud"] .
+
+
+
+== 11. Dez. 2022
+
+
+
+=== Verzeichnisse nach Namen filtern
+
+Für Synchronisierungsbeziehungen ist jetzt eine neue Einstellung „Verzeichnisnamen ausschließen“ verfügbar.  Benutzer können maximal 15 Verzeichnisnamen aus ihrer Synchronisierung herausfiltern.  Die Verzeichnisse .copy-offload, .snapshot und ~snapshot sind standardmäßig ausgeschlossen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Verzeichnisnamen ausschließen“"] .
+
+
+
+=== Zusätzliche Amazon S3- und ONTAP S3-Speicherunterstützung
+
+Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für AWS S3 und ONTAP S3 Storage:
+
+* AWS S3 zu ONTAP S3 Storage
+* ONTAP S3-Speicher zu AWS S3
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Erfahren Sie mehr über unterstützte Synchronisierungsbeziehungen"] .
+
+
+
+== 30. Oktober 2022
+
+
+
+=== Kontinuierliche Synchronisierung von Microsoft Azure
+
+Die Einstellung „Continuous Sync“ wird jetzt von einem Azure-Quellspeicher-Bucket zu einem Cloud-Speicher mithilfe eines Azure-Datenbrokers unterstützt.
+
+Nach der ersten Datensynchronisierung überwacht Cloud Sync Änderungen am Azure-Quellspeicher-Bucket und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Diese Einstellung ist verfügbar, wenn von einem Azure-Speicher-Bucket mit Azure Blob Storage, CIFS, Google Cloud Storage, IBM Cloud Object Storage, NFS und StorageGRID synchronisiert wird.
+
+Der Azure-Datenbroker benötigt eine benutzerdefinierte Rolle und die folgenden Berechtigungen, um diese Einstellung verwenden zu können:
+
+[source, json]
+----
+'Microsoft.Storage/storageAccounts/read',
+'Microsoft.EventGrid/systemTopics/eventSubscriptions/write',
+'Microsoft.EventGrid/systemTopics/eventSubscriptions/read',
+'Microsoft.EventGrid/systemTopics/eventSubscriptions/delete',
+'Microsoft.EventGrid/systemTopics/eventSubscriptions/getFullUrl/action',
+'Microsoft.EventGrid/systemTopics/eventSubscriptions/getDeliveryAttributes/action',
+'Microsoft.EventGrid/systemTopics/read',
+'Microsoft.EventGrid/systemTopics/write',
+'Microsoft.EventGrid/systemTopics/delete',
+'Microsoft.EventGrid/eventSubscriptions/write',
+'Microsoft.Storage/storageAccounts/write'
+----
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Kontinuierliche Synchronisierung“"] .
+
+
+
+== 04. September 2022
+
+
+
+=== Zusätzliche Google Drive-Unterstützung
+
+* Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für Google Drive:
++
+** Google Drive zu NFS-Servern
+** Google Drive zu SMB-Servern
+
+
+* Sie können auch Berichte für Synchronisierungsbeziehungen erstellen, die Google Drive umfassen.
++
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-reports.html["Weitere Informationen zu Berichten"] .
+
+
+
+
+
+=== Verbesserung der kontinuierlichen Synchronisierung
+
+Sie können jetzt die Einstellung „Kontinuierliche Synchronisierung“ für die folgenden Arten von Synchronisierungsbeziehungen aktivieren:
+
+* S3-Bucket zu einem NFS-Server
+* Google Cloud Storage zu einem NFS-Server
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Kontinuierliche Synchronisierung“"] .
+
+
+
+=== E-Mail-Benachrichtigungen
+
+Sie können jetzt Cloud Sync -Benachrichtigungen per E-Mail erhalten.
+
+Um die Benachrichtigungen per E-Mail zu erhalten, müssen Sie die Einstellung *Benachrichtigungen* für die Synchronisierungsbeziehung aktivieren und dann die Warn- und Benachrichtigungseinstellungen in der NetApp Konsole konfigurieren.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#setting-up-notifications["Erfahren Sie, wie Sie Benachrichtigungen einrichten"] .
+
+
+
+== 31. Juli 2022
+
+
+
+=== Google Drive
+
+Sie können jetzt Daten von einem NFS-Server oder SMB-Server mit Google Drive synchronisieren.  Als Ziele werden sowohl „Mein Laufwerk“ als auch „Gemeinsame Laufwerke“ unterstützt.
+
+Bevor Sie eine Synchronisierungsbeziehung erstellen können, die Google Drive umfasst, müssen Sie ein Dienstkonto einrichten, das über die erforderlichen Berechtigungen und einen privaten Schlüssel verfügt. https://docs.netapp.com/us-en/bluexp-copy-sync/reference-requirements.html#google-drive["Erfahren Sie mehr über die Anforderungen von Google Drive"] .
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Zusätzliche Azure Data Lake-Unterstützung
+
+Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für Azure Data Lake Storage Gen2:
+
+* Amazon S3 zu Azure Data Lake Storage Gen2
+* IBM Cloud Object Storage zu Azure Data Lake Storage Gen2
+* StorageGRID zu Azure Data Lake Storage Gen2
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Neue Möglichkeiten zum Einrichten von Synchronisierungsbeziehungen
+
+Wir haben zusätzliche Möglichkeiten hinzugefügt, Synchronisierungsbeziehungen direkt von der Systemseite der NetApp Konsole aus einzurichten.
+
+
+
+==== Ziehen und Ablegen
+
+Sie können jetzt auf der Seite „Systeme“ eine Synchronisierungsbeziehung einrichten, indem Sie ein System per Drag & Drop auf ein anderes ziehen.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-drag-and-drop.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+
+
+
+==== Einrichtung des rechten Bedienfelds
+
+Sie können jetzt eine Synchronisierungsbeziehung für Azure Blob Storage oder Google Cloud Storage einrichten, indem Sie das System auf der Seite „Systeme“ auswählen und dann im rechten Bereich die Synchronisierungsoption auswählen.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-enable-panel.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+
+
+
+== 03. Juli 2022
+
+
+
+=== Unterstützung für Azure Data Lake Storage Gen2
+
+Sie können jetzt Daten von einem NFS-Server oder SMB-Server mit Azure Data Lake Storage Gen2 synchronisieren.
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen, die Azure Data Lake umfasst, müssen Sie Cloud Sync die Verbindungszeichenfolge des Speicherkontos bereitstellen.  Es muss sich um eine reguläre Verbindungszeichenfolge handeln, nicht um eine Shared Access Signature (SAS).
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Kontinuierliche Synchronisierung von Google Cloud Storage
+
+Die Einstellung „Continuous Sync“ wird jetzt von einem Quell-Google Cloud Storage-Bucket zu einem Cloud Storage-Ziel unterstützt.
+
+Nach der ersten Datensynchronisierung überwacht Cloud Sync Änderungen am Quell-Bucket von Google Cloud Storage und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Diese Einstellung ist verfügbar, wenn von einem Google Cloud Storage-Bucket mit S3, Google Cloud Storage, Azure Blob Storage, StorageGRID oder IBM Storage synchronisiert wird.
+
+Das mit Ihrem Datenbroker verknüpfte Dienstkonto benötigt die folgenden Berechtigungen, um diese Einstellung verwenden zu können:
+
+[source, json]
+----
+- pubsub.subscriptions.consume
+- pubsub.subscriptions.create
+- pubsub.subscriptions.delete
+- pubsub.subscriptions.list
+- pubsub.topics.attachSubscription
+- pubsub.topics.create
+- pubsub.topics.delete
+- pubsub.topics.list
+- pubsub.topics.setIamPolicy
+- storage.buckets.update
+----
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Kontinuierliche Synchronisierung“"] .
+
+
+
+=== Neue Unterstützung für Google Cloud-Regionen
+
+Der Cloud Sync Datenbroker wird jetzt in den folgenden Google Cloud-Regionen unterstützt:
+
+* Columbus (us-east5)
+* Dallas (us-south1)
+* Madrid (Europa-Südwest1)
+* Mailand (Europa-West8)
+* Paris (Europa-West9)
+
+
+
+
+=== Neuer Google Cloud-Maschinentyp
+
+Der Standardmaschinentyp für den Datenbroker in Google Cloud ist jetzt n2-standard-4.
+
+
+
+== 06. Juni 2022
+
+
+
+=== Kontinuierliche Synchronisierung
+
+Eine neue Einstellung ermöglicht Ihnen die kontinuierliche Synchronisierung von Änderungen von einem Quell-S3-Bucket mit einem Ziel.
+
+Nach der ersten Datensynchronisierung überwacht Cloud Sync Änderungen am Quell-S3-Bucket und synchronisiert alle Änderungen kontinuierlich mit dem Ziel, sobald sie auftreten.  Es ist nicht erforderlich, die Quelle in geplanten Intervallen erneut zu scannen.  Diese Einstellung ist nur verfügbar, wenn von einem S3-Bucket mit S3, Google Cloud Storage, Azure Blob Storage, StorageGRID oder IBM Storage synchronisiert wird.
+
+Beachten Sie, dass die mit Ihrem Datenbroker verknüpfte IAM-Rolle die folgenden Berechtigungen benötigt, um diese Einstellung zu verwenden:
+
+[source, json]
+----
+"s3:GetBucketNotification",
+"s3:PutBucketNotification"
+----
+Diese Berechtigungen werden automatisch allen neuen Datenbrokern hinzugefügt, die Sie erstellen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Erfahren Sie mehr über die Einstellung „Kontinuierliche Synchronisierung“"] .
+
+
+
+=== Alle ONTAP -Volumes anzeigen
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen, zeigt Cloud Sync jetzt alle Volumes auf einem Cloud Volumes ONTAP -Quellsystem, einem lokalen ONTAP Cluster oder einem FSx for ONTAP Dateisystem an.
+
+Bisher zeigte Cloud Sync nur die Volumes an, die dem ausgewählten Protokoll entsprachen.  Jetzt werden alle Volumes angezeigt, aber alle Volumes, die nicht mit dem ausgewählten Protokoll übereinstimmen oder für die keine Freigabe oder kein Export vorhanden ist, sind ausgegraut und nicht auswählbar.
+
+
+
+=== Kopieren von Tags in Azure Blob
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen, bei der Azure Blob das Ziel ist, können Sie mit Cloud Sync jetzt Tags in den Azure Blob-Container kopieren:
+
+* Auf der Seite *Einstellungen* können Sie mit der Einstellung *Für Objekte kopieren* Tags aus der Quelle in den Azure Blob-Container kopieren.  Dies erfolgt zusätzlich zum Kopieren von Metadaten.
+* Auf der Seite *Tags/Metadaten* können Sie Blob-Index-Tags angeben, die für die Objekte festgelegt werden sollen, die in den Azure Blob-Container kopiert werden.  Bisher konnten Sie nur Beziehungsmetadaten angeben.
+
+
+Diese Optionen werden unterstützt, wenn Azure Blob das Ziel ist und die Quelle entweder Azure Blob oder ein S3-kompatibler Endpunkt (S3, StorageGRID oder IBM Cloud Object Storage) ist.
+
+
+
+== 01. Mai 2022
+
+
+
+=== Synchronisierungs-Timeout
+
+Für Synchronisierungsbeziehungen ist jetzt eine neue Einstellung *Sync Timeout* verfügbar.  Mit dieser Einstellung können Sie festlegen, ob Cloud Sync eine Datensynchronisierung abbrechen soll, wenn die Synchronisierung nicht innerhalb der angegebenen Anzahl von Stunden oder Tagen abgeschlossen wurde.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Weitere Informationen zum Ändern der Einstellungen für eine Synchronisierungsbeziehung"] .
+
+
+
+=== Benachrichtigungen
+
+Für Synchronisierungsbeziehungen ist jetzt eine neue Einstellung *Benachrichtigungen* verfügbar.  Mit dieser Einstellung können Sie auswählen, ob Sie Cloud Sync -Benachrichtigungen im Benachrichtigungscenter der NetApp Konsole erhalten möchten.  Sie können Benachrichtigungen für erfolgreiche, fehlgeschlagene und abgebrochene Datensynchronisierungen aktivieren.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-notification-center.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Weitere Informationen zum Ändern der Einstellungen für eine Synchronisierungsbeziehung"] .
+
+
+
+== 03. April 2022
+
+
+
+=== Verbesserungen der Datenbrokergruppe
+
+Wir haben mehrere Verbesserungen an Datenbrokergruppen vorgenommen:
+
+* Sie können jetzt einen Datenbroker in eine neue oder bestehende Gruppe verschieben.
+* Sie können jetzt die Proxy-Konfiguration für einen Datenbroker aktualisieren.
+* Abschließend können Sie auch Datenbrokergruppen löschen.
+
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-data-brokers.html["Erfahren Sie, wie Sie Datenbrokergruppen verwalten"] .
+
+
+
+=== Dashboard-Filter
+
+Sie können jetzt den Inhalt des Synchronisierungs-Dashboards filtern, um Synchronisierungsbeziehungen mit einem bestimmten Status leichter zu finden.  Sie können beispielsweise nach Synchronisierungsbeziehungen filtern, die den Status „Fehlgeschlagen“ haben.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-filter.png["Ein Screenshot, der die Option „Nach Synchronisierungsstatus filtern“ oben im Dashboard zeigt."]
+
+
+
+== 03. März 2022
+
+
+
+=== Sortierung im Dashboard
+
+Sie sortieren das Dashboard jetzt nach dem Namen der Synchronisierungsbeziehung.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-sort.png["Ein Screenshot, der die im Dashboard verfügbare Option „Nach Namen sortieren“ zeigt."]
+
+
+
+=== Verbesserung der Data Sense-Integration
+
+In der vorherigen Version haben wir die Cloud Sync Integration mit Cloud Data Sense eingeführt.  In diesem Update haben wir die Integration verbessert, indem wir die Erstellung der Synchronisierungsbeziehung vereinfacht haben.  Nachdem Sie eine Datensynchronisierung von Cloud Data Sense aus gestartet haben, sind alle Quellinformationen in einem einzigen Schritt enthalten und Sie müssen nur einige wichtige Details eingeben.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-data-sense.png["Ein Screenshot, der die Data Sense-Integrationsseite zeigt, die nach dem Starten einer neuen Synchronisierung direkt von Cloud Data Sense angezeigt wird."]
+
+
+
+== 06. Februar 2022
+
+
+
+=== Erweiterung der Datenbrokergruppen
+
+Wir haben die Art und Weise geändert, wie Sie mit Datenbrokern interagieren, indem wir die Datenbroker-_Gruppen_ hervorheben.
+
+Wenn Sie beispielsweise eine neue Synchronisierungsbeziehung erstellen, wählen Sie die Datenbroker-_Gruppe_ aus, die mit der Beziehung verwendet werden soll, und nicht einen bestimmten Datenbroker.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-select-data-broker-group.png["Ein Screenshot des Assistenten „Synchronisierungsbeziehung“, der die Auswahl der Datenbrokergruppe zeigt."]
+
+Auf der Registerkarte *Datenbroker verwalten* zeigen wir auch die Anzahl der Synchronisierungsbeziehungen an, die eine Datenbrokergruppe verwaltet.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-sync-group-relationships.png["Ein Screenshot der Seite „Datenbroker verwalten“, der eine Datenbrokergruppe und Details zu dieser Gruppe zeigt, einschließlich der Anzahl der von ihr verwalteten Beziehungen."]
+
+
+
+=== PDF-Berichte herunterladen
+
+Sie können jetzt ein PDF eines Berichts herunterladen.
+
+https://docs.netapp.com/us-en/bluexp-copy-sync/task-managing-reports.html["Weitere Informationen zu Berichten"] .
+
+
+
+== 02. Januar 2022
+
+
+
+=== Neue Box-Synchronisierungsbeziehungen
+
+Es werden zwei neue Synchronisierungsbeziehungen unterstützt:
+
+* Box zu Azure NetApp Files
+* Box zu Amazon FSx für ONTAP
+
+
+link:reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Beziehungsnamen
+
+Sie können jetzt jeder Ihrer Synchronisierungsbeziehungen einen aussagekräftigen Namen geben, um den Zweck jeder Beziehung leichter zu erkennen.  Sie können den Namen beim Erstellen der Beziehung und jederzeit danach hinzufügen.
+
+image:screenshot-sync-relationship-edit-name.png["Ein Screenshot einer Synchronisierungsbeziehung, der die Schaltfläche „Bearbeiten“ neben dem Namen einer Beziehung zeigt."]
+
+
+
+=== Private S3-Links
+
+Wenn Sie Daten mit oder von Amazon S3 synchronisieren, können Sie wählen, ob Sie einen privaten S3-Link verwenden möchten.  Wenn der Datenbroker Daten von der Quelle zum Ziel kopiert, geschieht dies über die private Verbindung.
+
+Beachten Sie, dass die mit Ihrem Datenbroker verknüpfte IAM-Rolle die folgende Berechtigung benötigt, um diese Funktion zu verwenden:
+
+[source, json]
+----
+"ec2:DescribeVpcEndpoints"
+----
+Diese Berechtigung wird automatisch allen neuen Datenbrokern hinzugefügt, die Sie erstellen.
+
+
+
+=== Sofortiger Gletscherabruf
+
+Sie können jetzt die Speicherklasse _Glacier Instant Retrieval_ auswählen, wenn Amazon S3 das Ziel in einer Synchronisierungsbeziehung ist.
+
+
+
+=== ACLs vom Objektspeicher zu SMB-Freigaben
+
+Cloud Sync unterstützt jetzt das Kopieren von ACLs vom Objektspeicher in SMB-Freigaben.  Bisher haben wir nur das Kopieren von ACLs von einer SMB-Freigabe in den Objektspeicher unterstützt.
+
+
+
+=== SFTP zu S3
+
+Das Erstellen einer Synchronisierungsbeziehung von SFTP zu Amazon S3 wird jetzt in der Benutzeroberfläche unterstützt.  Diese Synchronisierungsbeziehung wurde zuvor nur mit der API unterstützt.
+
+
+
+=== Verbesserung der Tabellenansicht
+
+Wir haben die Tabellenansicht im Dashboard für eine einfachere Verwendung neu gestaltet.  Wenn Sie *Weitere Informationen* auswählen, filtert Cloud Sync das Dashboard, um Ihnen weitere Informationen zu dieser bestimmten Beziehung anzuzeigen.
+
+image:screenshot-sync-table.png["Ein Screenshot der Tabellenansicht im Dashboard."]
+
+
+
+=== Unterstützung für die Region Jarkarta
+
+Cloud Sync unterstützt jetzt die Bereitstellung des Datenbrokers in der AWS-Region Asien-Pazifik (Jakarta).
+
+
+
+== 28. November 2021
+
+
+
+=== ACLs von SMB zum Objektspeicher
+
+Cloud Sync kann jetzt Zugriffskontrolllisten (ACLs) kopieren, wenn eine Synchronisierungsbeziehung von einer Quell-SMB-Freigabe zum Objektspeicher eingerichtet wird (außer ONTAP S3).
+
+Cloud Sync unterstützt das Kopieren von ACLs vom Objektspeicher in SMB-Freigaben nicht.
+
+link:task-copying-acls.html["Erfahren Sie, wie Sie ACLs von einer SMB-Freigabe kopieren"] .
+
+
+
+=== Lizenzen aktualisieren
+
+Sie können jetzt Cloud Sync -Lizenzen aktualisieren, die Sie verlängert haben.
+
+Wenn Sie eine Cloud Sync -Lizenz verlängert haben, die Sie bei NetApp erworben haben, können Sie die Lizenz erneut hinzufügen, um das Ablaufdatum zu aktualisieren.
+
+link:task-licensing.html["Erfahren Sie, wie Sie eine Lizenz aktualisieren"] .
+
+
+
+=== Box-Anmeldeinformationen aktualisieren
+
+Sie können jetzt die Box-Anmeldeinformationen für eine bestehende Synchronisierungsbeziehung aktualisieren.
+
+link:task-managing-relationships.html["Erfahren Sie, wie Sie Anmeldeinformationen aktualisieren"] .
+
+
+
+== 31. Oktober 2021
+
+
+
+=== Box-Unterstützung
+
+Box-Unterstützung ist jetzt als Vorschau in der Cloud Sync Benutzeroberfläche verfügbar.
+
+Box kann in mehreren Arten von Synchronisierungsbeziehungen die Quelle oder das Ziel sein. link:reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Einstellung „Erstellungsdatum“
+
+Wenn ein SMB-Server die Quelle ist, können Sie mit einer neuen Synchronisierungsbeziehungseinstellung namens „Erstellungsdatum“ Dateien synchronisieren, die nach einem bestimmten Datum, vor einem bestimmten Datum oder innerhalb eines bestimmten Zeitraums erstellt wurden.
+
+link:task-managing-relationships.html["Erfahren Sie mehr über die Cloud Sync -Einstellungen"] .
+
+
+
+== 04. Oktober 2021
+
+
+
+=== Zusätzliche Box-Unterstützung
+
+Cloud Sync unterstützt jetzt zusätzliche Synchronisierungsbeziehungen für https://www.box.com/home["Kasten"^] bei Verwendung der Cloud Sync API:
+
+* Amazon S3 zu Box
+* IBM Cloud Object Storage zu Box
+* StorageGRID zu Box
+* Box an einen NFS-Server
+* Box an einen SMB-Server
+
+
+link:api-sync.html["Erfahren Sie, wie Sie mithilfe der API eine Synchronisierungsbeziehung einrichten"] .
+
+
+
+=== Berichte für SFTP-Pfade
+
+Sie können jetztlink:task-managing-reports.html["Erstellen eines Berichts"] für SFTP-Pfade.
+
+
+
+== 02. September 2021
+
+
+
+=== Unterstützung für FSx für ONTAP
+
+Sie können jetzt Daten mit einem Amazon FSx for ONTAP -Dateisystem synchronisieren oder von diesem empfangen.
+
+* https://docs.netapp.com/us-en/bluexp-fsx-ontap/start/concept-fsx-aws.html["Erfahren Sie mehr über Amazon FSx für ONTAP"^]
+* link:reference-requirements.html["Anzeigen unterstützter Synchronisierungsbeziehungen"]
+* link:task-creating-relationships.html["Erfahren Sie, wie Sie eine Synchronisierungsbeziehung für Amazon FSx for ONTAP erstellen"]
+
+
+
+
+== 01. August 2021
+
+
+
+=== Anmeldeinformationen aktualisieren
+
+Mit Cloud Sync können Sie jetzt den Datenbroker mit den neuesten Anmeldeinformationen der Quelle oder des Ziels in einer bestehenden Synchronisierungsbeziehung aktualisieren.
+
+Diese Verbesserung kann hilfreich sein, wenn Ihre Sicherheitsrichtlinien eine regelmäßige Aktualisierung der Anmeldeinformationen erfordern. link:task-managing-relationships.html["Erfahren Sie, wie Sie Anmeldeinformationen aktualisieren"] .
+
+image:screenshot_sync_update_credentials.png["Ein Screenshot, der die Option „Anmeldeinformationen aktualisieren“ auf der Seite „Beziehungen synchronisieren“ direkt unter dem Namen der Quelle oder des Ziels zeigt."]
+
+
+
+=== Tags für Objektspeicherziele
+
+Beim Erstellen einer Synchronisierungsbeziehung können Sie jetzt Tags zum Objektspeicherziel in einer Synchronisierungsbeziehung hinzufügen.
+
+Das Hinzufügen von Tags wird mit Amazon S3, Azure Blob, Google Cloud Storage, IBM Cloud Object Storage und StorageGRID unterstützt.
+
+image:screenshot_sync_tags.png["Ein Screenshot, der die Seite im Systemassistenten zeigt, auf der Sie Beziehungs-Tags zum Objektspeicherziel in der Beziehung hinzufügen können."]
+
+
+
+=== Support für Box
+
+Cloud Sync unterstützt jetzt https://www.box.com/home["Kasten"^] als Quelle in einer Synchronisierungsbeziehung zu Amazon S3, StorageGRID und IBM Cloud Object Storage bei Verwendung der Cloud Sync -API.
+
+link:api-sync.html["Erfahren Sie, wie Sie mithilfe der API eine Synchronisierungsbeziehung einrichten"] .
+
+
+
+=== Öffentliche IP für Datenbroker in Google Cloud
+
+Wenn Sie einen Datenbroker in Google Cloud bereitstellen, können Sie jetzt auswählen, ob Sie eine öffentliche IP-Adresse für die VM-Instanz aktivieren oder deaktivieren möchten.
+
+link:task-installing-gcp.html["Erfahren Sie, wie Sie einen Datenbroker in Google Cloud bereitstellen"] .
+
+
+
+=== Dualprotokoll-Volume für Azure NetApp Files
+
+Wenn Sie das Quell- oder Zielvolume für Azure NetApp Files auswählen, zeigt Cloud Sync jetzt ein Dualprotokollvolume an, unabhängig davon, welches Protokoll Sie für die Synchronisierungsbeziehung ausgewählt haben.
+
+
+
+== 07. Juli 2021
+
+
+
+=== ONTAP S3 Storage und Google Cloud Storage
+
+Cloud Sync unterstützt jetzt Synchronisierungsbeziehungen zwischen ONTAP S3 Storage und einem Google Cloud Storage-Bucket über die Benutzeroberfläche.
+
+link:reference-supported-relationships.html["Liste der unterstützten Synchronisierungsbeziehungen anzeigen"] .
+
+
+
+=== Objektmetadaten-Tags
+
+Cloud Sync kann jetzt Objektmetadaten und Tags zwischen objektbasiertem Speicher kopieren, wenn Sie eine Synchronisierungsbeziehung erstellen und eine Einstellung aktivieren.
+
+link:task-creating-relationships.html#settings["Weitere Informationen zur Einstellung „Kopieren für Objekte“"] .
+
+
+
+=== Unterstützung für HashiCorp Vaults
+
+Sie können den Datenbroker jetzt so einrichten, dass er auf Anmeldeinformationen aus einem externen HashiCorp Vault zugreift, indem Sie sich mit einem Google Cloud-Dienstkonto authentifizieren.
+
+link:task-external-vault.html["Erfahren Sie mehr über die Verwendung eines HashiCorp Vault mit einem Datenbroker"] .
+
+
+
+=== Definieren Sie Tags oder Metadaten für den S3-Bucket
+
+Beim Einrichten einer Synchronisierungsbeziehung zu einem Amazon S3-Bucket können Sie mit dem Synchronisierungsbeziehungsassistenten jetzt die Tags oder Metadaten definieren, die Sie für die Objekte im Ziel-S3-Bucket speichern möchten.
+
+Die Tagging-Option war zuvor Teil der Einstellungen der Synchronisierungsbeziehung.
+
+
+
+== 07. Juni 2021
+
+
+
+=== Speicherklassen in Google Cloud
+
+Wenn ein Google Cloud Storage-Bucket das Ziel einer Synchronisierungsbeziehung ist, können Sie jetzt die Speicherklasse auswählen, die Sie verwenden möchten.  Cloud Sync unterstützt die folgenden Speicherklassen:
+
+* Standard
+* Nearline
+* Coldline
+* Archiv
+
+
+
+
+== 02. Mai 2021
+
+
+
+=== Fehler in Berichten
+
+Sie können nun die in Berichten gefundenen Fehler anzeigen und den letzten Bericht oder alle Berichte löschen.
+
+link:task-managing-reports.html["Erfahren Sie mehr über das Erstellen und Anzeigen von Berichten zur Optimierung Ihrer Konfiguration"] .
+
+
+
+=== Attribute vergleichen
+
+Für jede Synchronisierungsbeziehung ist jetzt eine neue Einstellung „Vergleichen nach“ verfügbar.
+
+Mit dieser erweiterten Einstellung können Sie auswählen, ob Cloud Sync bestimmte Attribute vergleichen soll, wenn festgestellt wird, ob sich eine Datei oder ein Verzeichnis geändert hat und erneut synchronisiert werden sollte.
+
+link:task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Weitere Informationen zum Ändern der Einstellungen für eine Synchronisierungsbeziehung"] .
+
+
+
+== 11. April 2021
+
+
+
+=== Der eigenständige Cloud Sync -Dienst wurde eingestellt
+
+Der eigenständige Cloud Sync -Dienst wurde eingestellt.  Sie sollten jetzt direkt von der NetApp Konsole aus auf Cloud Sync zugreifen, wo alle gleichen Features und Funktionen verfügbar sind.
+
+Nach der Anmeldung an der NetApp Konsole können Sie oben auf die Registerkarte „Synchronisieren“ wechseln und wie zuvor Ihre Beziehungen anzeigen.
+
+
+
+=== Google Cloud-Buckets in verschiedenen Projekten
+
+Beim Einrichten einer Synchronisierungsbeziehung können Sie aus Google Cloud-Buckets in verschiedenen Projekten auswählen, wenn Sie dem Dienstkonto des Datenbrokers die erforderlichen Berechtigungen erteilen.
+
+link:task-installing-gcp.html["Erfahren Sie, wie Sie das Dienstkonto einrichten"] .
+
+
+
+=== Metadaten zwischen Google Cloud Storage und S3
+
+Cloud Sync kopiert jetzt Metadaten zwischen Google Cloud Storage und S3-Anbietern (AWS S3, StorageGRID und IBM Cloud Object Storage).
+
+
+
+=== Datenbroker neu starten
+
+Sie können jetzt einen Datenbroker von Cloud Sync aus neu starten.
+
+image:screenshot_sync_restart_data_broker.gif["Ein Screenshot, der die Aktion „Data Broker neu starten“ auf der Seite „Data Broker verwalten“ zeigt."]
+
+
+
+=== Meldung, wenn die neueste Version nicht ausgeführt wird
+
+Cloud Sync erkennt jetzt, wenn ein Datenbroker nicht die neueste Softwareversion ausführt.  Mithilfe dieser Nachricht können Sie sicherstellen, dass Sie die neuesten Features und Funktionen erhalten.
+
+image:screenshot_sync_warning.gif["Ein Screenshot, der eine Warnung beim Anzeigen eines Datenbrokers auf dem Dashboard zeigt."]

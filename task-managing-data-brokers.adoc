@@ -1,0 +1,306 @@
+---
+sidebar: sidebar 
+permalink: task-managing-data-brokers.html 
+keywords: manage data brokers, manage data broker groups, data broker performance, data broker configuration, data broker removal, remove data broker, delete data broker, groups, data broker group, rename data broker group, add data broker, data broker cpu, data broker ram, data broker status, edit group name, change group name, modify group name 
+summary: Ein Datenbroker synchronisiert Daten von einem Quellstandort mit einem Zielstandort.  Für jede von Ihnen erstellte Synchronisierungsbeziehung ist ein Datenbroker erforderlich.  Verwalten Sie Datenbroker, indem Sie einer Gruppe einen neuen Datenbroker hinzufügen, Informationen zu Datenbrokern anzeigen und vieles mehr. 
+---
+= Verwalten von Datenbrokergruppen in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Eine Datenbrokergruppe in NetApp Copy and Sync synchronisiert Daten von einem Quellstandort mit einem Zielstandort.  Für jede von Ihnen erstellte Synchronisierungsbeziehung ist mindestens ein Datenbroker in einer Gruppe erforderlich.  Verwalten Sie Datenbrokergruppen, indem Sie einer Gruppe einen neuen Datenbroker hinzufügen, Informationen zu Gruppen anzeigen und vieles mehr.
+
+
+
+== So funktionieren Datenbrokergruppen
+
+Eine Datenbrokergruppe kann einen oder mehrere Datenbroker umfassen.  Durch die Gruppierung von Datenbrokern kann die Leistung von Synchronisierungsbeziehungen verbessert werden.
+
+
+
+=== Gruppen können mehrere Beziehungen verwalten
+
+Eine Datenbrokergruppe kann eine oder mehrere Synchronisierungsbeziehungen gleichzeitig verwalten.
+
+Nehmen wir beispielsweise an, Sie haben drei Beziehungen:
+
+* Beziehung 1 wird von der Datenbrokergruppe A verwaltet
+* Beziehung 2 wird von der Datenbrokergruppe B verwaltet
+* Beziehung 3 wird von der Datenbrokergruppe A verwaltet
+
+
+Sie möchten die Leistung der Beziehung 1 beschleunigen und fügen daher der Datenbrokergruppe A einen neuen Datenbroker hinzu. Da Gruppe A auch die Synchronisierungsbeziehung 3 verwaltet, wird die Synchronisierungsleistung für die Beziehung ebenfalls automatisch beschleunigt.
+
+
+
+=== Anzahl der Datenbroker in einer Gruppe
+
+In vielen Fällen kann ein einzelner Datenbroker die Leistungsanforderungen für eine Synchronisierungsbeziehung erfüllen.  Wenn dies nicht der Fall ist, können Sie die Synchronisierungsleistung beschleunigen, indem Sie der Gruppe zusätzliche Datenbroker hinzufügen.  Sie sollten jedoch zunächst andere Faktoren prüfen, die die Synchronisierungsleistung beeinträchtigen können. link:faq.html#how-many-data-brokers-are-required-in-a-group["Erfahren Sie mehr darüber, wie Sie feststellen, wann mehrere Datenbroker erforderlich sind"] .
+
+
+
+== Sicherheitsempfehlungen
+
+Um die Sicherheit Ihrer Data Broker-Maschine zu gewährleisten, empfiehlt NetApp Folgendes:
+
+* SSH sollte X11-Weiterleitung nicht zulassen
+* SSH sollte keine TCP-Verbindungsweiterleitung zulassen
+* SSH sollte keine Tunnel zulassen
+* SSH sollte keine Client-Umgebungsvariablen akzeptieren
+
+
+Diese Sicherheitsempfehlungen können dazu beitragen, nicht autorisierte Verbindungen zum Datenbroker-Computer zu verhindern.
+
+
+
+== Einen neuen Datenbroker zu einer Gruppe hinzufügen
+
+Es gibt mehrere Möglichkeiten, einen neuen Datenbroker zu erstellen:
+
+* Beim Erstellen einer neuen Synchronisierungsbeziehung
++
+link:task-creating-relationships.html["Erfahren Sie, wie Sie beim Erstellen einer Synchronisierungsbeziehung einen neuen Datenbroker erstellen"] .
+
+* Auf der Seite *Datenbroker verwalten* wählen Sie *Neuen Datenbroker hinzufügen*, wodurch der Datenbroker in einer neuen Gruppe erstellt wird.
+* Von der Seite *Datenbroker verwalten* aus, indem Sie einen neuen Datenbroker in einer bestehenden Gruppe erstellen
+
+
+.Bevor Sie beginnen
+* Sie können einer Gruppe, die eine verschlüsselte Synchronisierungsbeziehung verwaltet, keine Datenbroker hinzufügen.
+* Wenn Sie einen Datenbroker in einer vorhandenen Gruppe erstellen möchten, muss es sich bei dem Datenbroker um einen lokalen Datenbroker oder um einen Datenbroker desselben Typs handeln.
++
+Wenn eine Gruppe beispielsweise einen AWS-Datenbroker enthält, können Sie in dieser Gruppe einen AWS-Datenbroker oder einen lokalen Datenbroker erstellen.  Sie können keinen Azure-Datenbroker oder Google Cloud-Datenbroker erstellen, da es sich nicht um denselben Datenbrokertyp handelt.
+
+
+
+.Schritte zum Erstellen eines Datenbrokers in einer neuen Gruppe
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählen Sie *Neuen Datenbroker hinzufügen*.
+. Folgen Sie den Anweisungen zum Erstellen des Datenbrokers.
++
+Hilfe finden Sie auf den folgenden Seiten:
+
++
+** link:task-installing-aws.html["Erstellen Sie einen Datenbroker in AWS"]
+** link:task-installing-azure.html["Erstellen eines Datenbrokers in Azure"]
+** link:task-installing-gcp.html["Erstellen Sie einen Datenbroker in Google Cloud"]
+** link:task-installing-linux.html["Installieren des Datenbrokers auf einem Linux-Host"]
+
+
+
+
+.Schritte zum Erstellen eines Datenbrokers in einer vorhandenen Gruppe
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählen Sie das Aktionsmenü und wählen Sie *Data Broker hinzufügen*.
++
+image:screenshot_sync_group_add.png["Ein Screenshot des Aktionsmenüs, das für jeden einzelnen Datenbroker in einer Gruppe verfügbar ist."]
+
+. Folgen Sie den Anweisungen, um den Datenbroker in der Gruppe zu erstellen.
++
+Hilfe finden Sie auf den folgenden Seiten:
+
++
+** link:task-installing-aws.html["Erstellen Sie einen Datenbroker in AWS"]
+** link:task-installing-azure.html["Erstellen eines Datenbrokers in Azure"]
+** link:task-installing-gcp.html["Erstellen Sie einen Datenbroker in Google Cloud"]
+** link:task-installing-linux.html["Installieren des Datenbrokers auf einem Linux-Host"]
+
+
+
+
+
+
+== Den Namen einer Gruppe bearbeiten
+
+Ändern Sie den Namen einer Datenbrokergruppe jederzeit.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählen Sie das Aktionsmenü und wählen Sie *Gruppennamen bearbeiten*.
++
+image:screenshot_sync_group_edit.gif["Ein Screenshot des Aktionsmenüs, das für jeden einzelnen Datenbroker in einer Gruppe verfügbar ist."]
+
+. Geben Sie einen neuen Namen ein und wählen Sie *Speichern*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren aktualisiert den Namen der Datenbrokergruppe.
+
+
+
+== Einrichten einer einheitlichen Konfiguration
+
+Wenn während des Synchronisierungsprozesses einer Synchronisierungsbeziehung Fehler auftreten, kann die Vereinheitlichung der Parallelität der Datenbrokergruppe dazu beitragen, die Anzahl der Synchronisierungsfehler zu verringern.  Beachten Sie, dass Änderungen an der Gruppenkonfiguration die Leistung beeinträchtigen können, indem sie die Übertragung verlangsamen.
+
+Wir empfehlen nicht, die Konfiguration selbst zu ändern.  Sie sollten sich an NetApp wenden, um zu erfahren, wann und wie die Konfiguration geändert werden muss.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Datenbroker verwalten*.
+. Wählen Sie das Symbol „Einstellungen“ für eine Datenbrokergruppe aus.
++
+image:screenshot_sync_group_settings.png["Ein Screenshot, der das Einstellungssymbol für eine Datenbrokergruppe zeigt."]
+
+. Ändern Sie die Einstellungen nach Bedarf und wählen Sie dann *Unify-Konfiguration*.
++
+Beachten Sie Folgendes:
+
++
+** Sie können auswählen, welche Einstellungen Sie ändern möchten. Sie müssen nicht alle vier auf einmal ändern.
+** Nachdem eine neue Konfiguration an einen Datenbroker gesendet wurde, wird der Datenbroker automatisch neu gestartet und verwendet die neue Konfiguration.
+** Es kann bis zu einer Minute dauern, bis diese Änderung erfolgt und in der Copy-and-Sync-Oberfläche sichtbar ist.
+** Wenn ein Datenbroker nicht ausgeführt wird, ändert sich seine Konfiguration nicht, da Copy and Sync nicht mit ihm kommunizieren kann.  Die Konfiguration ändert sich nach dem Neustart des Datenbrokers.
+** Nachdem Sie eine einheitliche Konfiguration festgelegt haben, verwenden alle neuen Datenbroker automatisch die neue Konfiguration.
+
+
+
+
+
+
+== Verschieben Sie Datenbroker zwischen Gruppen
+
+Verschieben Sie einen Datenbroker von einer Gruppe in eine andere, wenn Sie die Leistung der Zieldatenbrokergruppe beschleunigen müssen.
+
+Wenn beispielsweise ein Datenbroker eine Synchronisierungsbeziehung nicht mehr verwaltet, können Sie ihn problemlos in eine andere Gruppe verschieben, die Synchronisierungsbeziehungen verwaltet.
+
+.Einschränkungen
+* Wenn eine Datenbrokergruppe eine Synchronisierungsbeziehung verwaltet und es in der Gruppe nur einen Datenbroker gibt, können Sie diesen Datenbroker nicht in eine andere Gruppe verschieben.
+* Sie können einen Datenbroker nicht in eine Gruppe verschieben oder aus einer Gruppe entfernen, die verschlüsselte Synchronisierungsbeziehungen verwaltet.
+* Sie können einen Datenbroker, der derzeit bereitgestellt wird, nicht verschieben.
+
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählenimage:screenshot_sync_group_expand.gif["Ein Screenshot der Schaltfläche, mit der Sie die Liste der Datenbroker in einer Gruppe erweitern können."] um die Liste der Datenbroker in einer Gruppe zu erweitern.
+. Wählen Sie das Aktionsmenü für einen Datenbroker und wählen Sie *Datenbroker verschieben*.
++
+image:screenshot_sync_group_remove.png["Ein Screenshot des Aktionsmenüs, das für jede einzelne Datenbrokergruppe verfügbar ist."]
+
+. Erstellen Sie eine neue Datenbrokergruppe oder wählen Sie eine vorhandene Datenbrokergruppe aus.
+. Wählen Sie *Verschieben*.
+
+
+.Ergebnis
+Durch Kopieren und Synchronisieren wird der Datenbroker in eine neue oder vorhandene Datenbrokergruppe verschoben.  Wenn in der vorherigen Gruppe keine anderen Datenbroker vorhanden sind, wird sie von Copy and Sync gelöscht.
+
+
+
+== Aktualisieren der Proxy-Konfiguration
+
+Aktualisieren Sie die Proxy-Konfiguration für einen Datenbroker, indem Sie Details zu einer neuen Proxy-Konfiguration hinzufügen oder die vorhandene Proxy-Konfiguration bearbeiten.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählenimage:screenshot_sync_group_expand.gif["Ein Screenshot der Schaltfläche, mit der Sie die Liste der Datenbroker in einer Gruppe erweitern können."] um die Liste der Datenbroker in einer Gruppe zu erweitern.
+. Wählen Sie das Aktionsmenü für einen Datenbroker und wählen Sie *Proxy-Konfiguration bearbeiten*.
+. Geben Sie Details zum Proxy an: Hostname, Portnummer, Benutzername und Kennwort.
+. Wählen Sie *Aktualisieren*.
+
+
+.Ergebnis
+Copy and Sync aktualisiert den Datenbroker, um die Proxy-Konfiguration für den Internetzugriff zu verwenden.
+
+
+
+== Anzeigen der Konfiguration eines Datenbrokers
+
+Möglicherweise möchten Sie Details zu einem Datenbroker anzeigen, um beispielsweise dessen Hostnamen, IP-Adresse, verfügbare CPU und RAM usw. zu ermitteln.
+
+Copy and Sync bietet die folgenden Details zu einem Datenbroker:
+
+* Grundlegende Informationen: Instanz-ID, Hostname usw.
+* Netzwerk: Region, Netzwerk, Subnetz, private IP usw.
+* Software: Linux-Distribution, Data Broker-Version usw.
+* Hardware: CPU und RAM
+* Konfiguration: Details zu den beiden Hauptprozessen des Datenbrokers – Scanner und Transferrer
++
+
+TIP: Der Scanner scannt Quelle und Ziel und entscheidet, was kopiert werden soll.  Der Übertragende führt das eigentliche Kopieren durch.  NetApp -Mitarbeiter können diese Konfigurationsdetails verwenden, um Maßnahmen zur Leistungsoptimierung vorzuschlagen.
+
+
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählenimage:screenshot_sync_group_expand.gif["Ein Screenshot der Schaltfläche, mit der Sie die Liste der Datenbroker in einer Gruppe erweitern können."] um die Liste der Datenbroker in einer Gruppe zu erweitern.
+. Wählenimage:screenshot_sync_group_expand.gif["Ein Screenshot der Schaltfläche, mit der Sie Details zu einem Datenbroker erweitern können."] um Details zu einem Datenbroker anzuzeigen.
++
+image:screenshot_sync_data_broker_details.gif["Ein Screenshot mit Informationen zu einem Datenbroker."]
+
+
+
+
+
+== Beheben Sie Probleme mit einem Datenbroker
+
+Copy and Sync zeigt für jeden Datenbroker einen Status an, der Ihnen bei der Fehlerbehebung helfen kann.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Identifizieren Sie alle Datenbroker mit dem Status „Unbekannt“ oder „Fehlgeschlagen“.
++
+image:screenshot_sync_broker_status.gif["Ein Screenshot der Statusanzeige „Kopieren und Synchronisieren“, in der ein Datenbroker den Status „unbekannt“ hat."]
+
+. Bewegen Sie den Mauszeiger über dasimage:screenshot_sync_status_icon.gif["Ein „Info“-Symbol."] Symbol, um den Fehlergrund anzuzeigen.
+. Beheben Sie das Problem.
++
+Beispielsweise müssen Sie den Datenbroker möglicherweise einfach neu starten, wenn er offline ist, oder Sie müssen den Datenbroker entfernen, wenn die anfängliche Bereitstellung fehlgeschlagen ist.
+
+
+
+
+
+== Einen Datenbroker aus einer Gruppe entfernen
+
+Sie können einen Datenbroker aus einer Gruppe entfernen, wenn er nicht mehr benötigt wird oder die anfängliche Bereitstellung fehlgeschlagen ist.  Diese Aktion löscht nur den Datenbroker aus den Datensätzen von Copy and Sync.  Sie müssen den Datenbroker und alle zusätzlichen Cloud-Ressourcen manuell löschen.
+
+.Dinge, die Sie wissen sollten
+* Kopieren und Synchronisieren löscht eine Gruppe, wenn Sie den letzten Datenbroker aus der Gruppe entfernen.
+* Sie können den letzten Datenbroker nicht aus einer Gruppe entfernen, wenn eine Beziehung besteht, die diese Gruppe verwendet.
+
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählenimage:screenshot_sync_group_expand.gif["Ein Screenshot der Schaltfläche, mit der Sie die Liste der Datenbroker in einer Gruppe erweitern können."] um die Liste der Datenbroker in einer Gruppe zu erweitern.
+. Wählen Sie das Aktionsmenü für einen Datenbroker und wählen Sie *Datenbroker entfernen*.
++
+image:screenshot_sync_group_remove.gif["Ein Screenshot des Aktionsmenüs, das für jede einzelne Datenbrokergruppe verfügbar ist."]
+
+. Wählen Sie *Data Broker entfernen*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren entfernt den Datenbroker aus der Gruppe.
+
+
+
+== Löschen einer Datenbrokergruppe
+
+Wenn eine Datenbrokergruppe keine Synchronisierungsbeziehungen mehr verwaltet, können Sie die Gruppe löschen, wodurch alle Datenbroker aus „Kopieren und Synchronisieren“ entfernt werden.
+
+Von Copy and Sync entfernte Datenbroker werden nur aus den Datensätzen von Copy and Sync gelöscht.  Sie müssen die Data Broker-Instanz und alle zusätzlichen Cloud-Ressourcen manuell von Ihrem Cloud-Anbieter löschen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Synchronisieren > Datenbroker verwalten*.
+. Wählen Sie das Aktionsmenü und wählen Sie *Gruppe löschen*.
++
+image:screenshot_sync_group_add.png["Ein Screenshot des Aktionsmenüs, das für jeden einzelnen Datenbroker in einer Gruppe verfügbar ist."]
+
+. Geben Sie zur Bestätigung den Namen der Gruppe ein und wählen Sie *Gruppe löschen*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren entfernt die Datenbroker und löscht die Gruppe.

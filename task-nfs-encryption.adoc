@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: task-nfs-encryption.html 
+keywords: encryption, in flight, data in flight, in-flight, data-in-flight, nfs, initiator, listener, port 
+summary: Wenn in Ihrem Unternehmen strenge Sicherheitsrichtlinien gelten, synchronisieren Sie Daten zwischen NFS-Servern in verschiedenen Netzwerken mithilfe der Data-in-Flight-Verschlüsselung. 
+---
+= Synchronisieren Sie NFS-Daten mithilfe der Data-in-Flight-Verschlüsselung in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn in Ihrem Unternehmen strenge Sicherheitsrichtlinien gelten, können Sie NFS-Daten mithilfe der Data-in-Flight-Verschlüsselung in NetApp Copy and Sync synchronisieren.  Diese Funktion wird von einem NFS-Server zu einem anderen NFS-Server und von Azure NetApp Files zu Azure NetApp Files unterstützt.
+
+Beispielsweise möchten Sie möglicherweise Daten zwischen zwei NFS-Servern synchronisieren, die sich in unterschiedlichen Netzwerken befinden.  Oder Sie müssen möglicherweise Daten auf Azure NetApp Files sicher über Subnetze oder Regionen hinweg übertragen.
+
+
+
+== So funktioniert die Data-in-Flight-Verschlüsselung
+
+Die Data-in-Flight-Verschlüsselung verschlüsselt NFS-Daten, wenn sie über das Netzwerk zwischen zwei Datenbrokern gesendet werden.  Das folgende Bild zeigt eine Beziehung zwischen zwei NFS-Servern und zwei Datenbrokern:
+
+image:diagram_nfs_encryption.gif["Ein Diagramm, das zwei NFS-Server und zwei Datenbroker zeigt.  Die Daten fließen vom Quell-NFS-Server zu einem Quelldatenbroker, wo sie verschlüsselt werden.  Die Daten werden dann an den Zieldatenbroker und dann an den Ziel-NFS-Server gesendet."]
+
+Ein Datenbroker fungiert als _Initiator_.  Wenn es Zeit ist, Daten zu synchronisieren, sendet es eine Verbindungsanforderung an den anderen Datenbroker, der der _Listener_ ist.  Dieser Datenbroker lauscht auf Port 443 auf Anfragen.  Sie können bei Bedarf einen anderen Port verwenden, achten Sie jedoch darauf, dass der Port nicht von einem anderen Dienst verwendet wird.
+
+Wenn Sie beispielsweise Daten von einem lokalen NFS-Server mit einem Cloud-basierten NFS-Server synchronisieren, können Sie auswählen, welcher Datenbroker auf die Verbindungsanforderungen wartet und welche diese sendet.
+
+So funktioniert die Verschlüsselung während der Übertragung:
+
+. Nachdem Sie die Synchronisierungsbeziehung erstellt haben, startet der Initiator eine verschlüsselte Verbindung mit dem anderen Datenbroker.
+. Der Quelldatenbroker verschlüsselt Daten aus der Quelle mit TLS 1.3.
+. Anschließend sendet es die Daten über das Netzwerk an den Zieldatenbroker.
+. Der Zieldatenbroker entschlüsselt die Daten, bevor er sie an das Ziel sendet.
+. Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten alle 24 Stunden.  Wenn Daten zu synchronisieren sind, beginnt der Prozess damit, dass der Initiator eine verschlüsselte Verbindung mit dem anderen Datenbroker öffnet.
++
+Wenn Sie Daten häufiger synchronisieren möchten,link:task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Sie können den Zeitplan ändern, nachdem Sie die Beziehung erstellt haben"] .
+
+
+
+
+
+== Unterstützte NFS -Versionen
+
+* Für NFS-Server wird die Data-in-Flight-Verschlüsselung mit den NFS-Versionen 3, 4.0, 4.1 und 4.2 unterstützt.
+* Für Azure NetApp Files wird die Data-in-Flight-Verschlüsselung mit den NFS-Versionen 3 und 4.1 unterstützt.
+
+
+
+
+== Proxyserver-Beschränkung
+
+Wenn Sie eine verschlüsselte Synchronisierungsbeziehung erstellen, werden die verschlüsselten Daten über HTTPS gesendet und können nicht über einen Proxyserver weitergeleitet werden.
+
+
+
+== Was Sie für den Einstieg benötigen
+
+Stellen Sie sicher, dass Sie Folgendes haben:
+
+* Zwei NFS-Server, die sich treffenlink:reference-requirements.html["Quell- und Zielanforderungen"] oder Azure NetApp Files in zwei Subnetzen oder Regionen.
+* Die IP-Adressen oder vollqualifizierten Domänennamen der Server.
+* Netzwerkstandorte für zwei Datenbroker.
++
+Sie können einen vorhandenen Datenbroker auswählen, dieser muss jedoch als Initiator fungieren.  Der Listener-Datenbroker muss ein _neuer_ Datenbroker sein.
+
++
+Wenn Sie eine vorhandene Datenbrokergruppe verwenden möchten, darf die Gruppe nur einen Datenbroker haben.  Mehrere Datenbroker in einer Gruppe werden bei verschlüsselten Synchronisierungsbeziehungen nicht unterstützt.
+
++
+Wenn Sie noch keinen Datenbroker bereitgestellt haben, überprüfen Sie die Anforderungen für den Datenbroker.  Da Sie strenge Sicherheitsrichtlinien haben, sollten Sie unbedingt die Netzwerkanforderungen überprüfen, die den ausgehenden Datenverkehr von Port 443 und dielink:reference-networking.html["Internet-Endpunkte"] die der Datenbroker kontaktiert.
+
++
+** link:task-installing-aws.html["Überprüfen der AWS-Installation"]
+** link:task-installing-azure.html["Überprüfen der Azure-Installation"]
+** link:task-installing-gcp.html["Überprüfen Sie die Google Cloud-Installation"]
+** link:task-installing-linux.html["Überprüfen der Linux-Hostinstallation"]
+
+
+
+
+
+
+== Synchronisieren Sie NFS-Daten mithilfe der Data-in-Flight-Verschlüsselung
+
+Erstellen Sie eine neue Synchronisierungsbeziehung zwischen zwei NFS-Servern oder zwischen Azure NetApp Files, aktivieren Sie die Option zur In-Flight-Verschlüsselung und folgen Sie den Anweisungen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Neue Synchronisierung erstellen*.
+. Ziehen Sie *NFS-Server* per Drag & Drop an die Quell- und Zielspeicherorte oder * Azure NetApp Files* an die Quell- und Zielspeicherorte und wählen Sie *Ja*, um die Data-in-Flight-Verschlüsselung zu aktivieren.
+. Folgen Sie den Anweisungen, um die Beziehung zu erstellen:
++
+.. *NFS-Server*/* Azure NetApp Files*: Wählen Sie die NFS-Version und geben Sie dann eine neue NFS-Quelle an oder wählen Sie einen vorhandenen Server aus.
+.. *Funktionalität des Datenbrokers definieren*: Definieren Sie, welcher Datenbroker auf Verbindungsanfragen an einem Port _lauscht_ und welcher die Verbindung _initiiert_.  Treffen Sie Ihre Wahl basierend auf Ihren Netzwerkanforderungen.
+.. *Datenbroker*: Folgen Sie den Anweisungen, um einen neuen Quelldatenbroker hinzuzufügen, oder wählen Sie einen vorhandenen Datenbroker aus.
++
+Beachten Sie Folgendes:
+
++
+*** Wenn Sie eine vorhandene Datenbrokergruppe verwenden möchten, darf die Gruppe nur einen Datenbroker haben.  Mehrere Datenbroker in einer Gruppe werden bei verschlüsselten Synchronisierungsbeziehungen nicht unterstützt.
+*** Wenn der Quelldatenbroker als Listener fungiert, muss es sich um einen neuen Datenbroker handeln.
+*** Wenn Sie einen neuen Datenbroker benötigen, werden Sie von Copy and Sync mit den Installationsanweisungen aufgefordert.  Sie können den Datenbroker in der Cloud bereitstellen oder ein Installationsskript für Ihren eigenen Linux-Host herunterladen.
+
+
+.. *Verzeichnisse*: Wählen Sie die Verzeichnisse aus, die Sie synchronisieren möchten, indem Sie alle Verzeichnisse auswählen oder indem Sie einen Drilldown durchführen und ein Unterverzeichnis auswählen.
++
+Wählen Sie *Quellobjekte filtern*, um Einstellungen zu ändern, die definieren, wie Quelldateien und -ordner am Zielspeicherort synchronisiert und verwaltet werden.
+
++
+image:screenshot_directories.gif["Ein Screenshot, der die Option zum Auswählen eines Verzeichnisses der obersten Ebene, zum Aufschlüsseln und Auswählen der Option „Quellobjekte filtern“ zeigt."]
+
+.. *Ziel-NFS-Server*/*Ziel- Azure NetApp Files*: Wählen Sie die NFS-Version und geben Sie dann ein neues NFS-Ziel ein oder wählen Sie einen vorhandenen Server aus.
+.. *Zieldatenbroker*: Folgen Sie den Anweisungen, um einen neuen Quelldatenbroker hinzuzufügen, oder wählen Sie einen vorhandenen Datenbroker aus.
++
+Wenn der Zieldatenbroker als Listener fungiert, muss es sich um einen neuen Datenbroker handeln.
+
++
+Hier ist ein Beispiel für die Eingabeaufforderung, wenn der Zieldatenbroker als Listener fungiert.  Beachten Sie die Option zur Angabe des Ports.
+
++
+image:screenshot_nfs_encryption_listener.gif["Ein Screenshot, der die Option zum Angeben eines Ports auf dem Listener-Datenbroker zeigt."]
+
+.. *Zielverzeichnisse*: Wählen Sie ein Verzeichnis der obersten Ebene aus oder navigieren Sie zu einem vorhandenen Unterverzeichnis oder erstellen Sie einen neuen Ordner innerhalb eines Exports.
+.. *Einstellungen*: Definieren Sie, wie Quelldateien und -ordner am Zielspeicherort synchronisiert und verwaltet werden.
+.. *Überprüfen*: Überprüfen Sie die Details der Synchronisierungsbeziehung und wählen Sie dann *Beziehung erstellen*.
++
+image:screenshot_nfs_encryption_review.gif["Ein Screenshot, der den Überprüfungsbildschirm zeigt.  Es zeigt die NFS-Server, Datenbroker und Netzwerkinformationen zu jedem Server."]
+
+
+
+
+
+.Ergebnis
+„Kopieren und Synchronisieren“ beginnt mit der Erstellung der neuen Synchronisierungsbeziehung.  Wenn Sie fertig sind, wählen Sie *Im Dashboard anzeigen*, um Details zur neuen Beziehung anzuzeigen.

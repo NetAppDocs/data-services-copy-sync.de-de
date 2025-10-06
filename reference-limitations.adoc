@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: reference-limitations.html 
+keywords: limitations, china, unsupported regions 
+summary: Bekannte Einschränkungen kennzeichnen Plattformen, Geräte oder Funktionen, die von dieser Produktversion nicht unterstützt werden oder nicht ordnungsgemäß mit ihr zusammenarbeiten. Lesen Sie diese Einschränkungen sorgfältig durch. 
+---
+= Einschränkungen bei NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Bekannte Einschränkungen kennzeichnen Plattformen, Geräte oder Funktionen, die von dieser Produktversion nicht unterstützt werden oder nicht ordnungsgemäß mit ihr zusammenarbeiten. Lesen Sie diese Einschränkungen sorgfältig durch.
+
+NetApp Copy and Sync wird in den folgenden Regionen nicht unterstützt:
+
+* AWS-Regierungsregionen
+* Azure Government-Regionen
+* China
+

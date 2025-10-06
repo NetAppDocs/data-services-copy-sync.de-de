@@ -1,0 +1,224 @@
+---
+sidebar: sidebar 
+permalink: task-installing-azure.html 
+keywords: data broker, install, azure, networking, permissions, regions, install data broker in azure, install in azure, deploy in azure, deploy data broker in azure, networking requirements, port, ports, 443, port 443, ntp, network time protocol, azure data broker 
+summary: Wenn Sie einen neuen Datenbroker erstellen, wählen Sie die Option „Azure Data Broker“, um die Datenbroker-Software auf einer neuen virtuellen Maschine in einem VNet bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen. 
+---
+= Erstellen Sie einen neuen Datenbroker in Azure für NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine neue Datenbrokergruppe für NetApp Copy and Sync erstellen, wählen Sie Microsoft Azure, um die Datenbrokersoftware auf einer neuen virtuellen Maschine in einem VNet bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Datenbroker auf einem vorhandenen Linux-Host in der Cloud oder bei Ihnen vor Ort zu installieren. link:task-installing-linux.html["Mehr erfahren"] .
+
+
+
+== Unterstützte Azure-Regionen
+
+Alle Regionen außer China, US-Regierung und US-Verteidigungsministerium werden unterstützt.
+
+
+
+== Root-Berechtigungen
+
+Die Data Broker-Software wird automatisch als Root auf dem Linux-Host ausgeführt.  Für Data Broker-Operationen ist die Ausführung als Root erforderlich.  Beispielsweise zum Mounten von Freigaben.
+
+
+
+== Netzwerkanforderungen
+
+* Der Datenbroker benötigt eine ausgehende Internetverbindung, damit er den Kopier- und Synchronisierungsdienst über Port 443 nach Aufgaben abfragen kann.
++
+Wenn Copy and Sync den Datenbroker in Azure bereitstellt, wird eine Sicherheitsgruppe erstellt, die die erforderliche ausgehende Kommunikation ermöglicht.
+
++
+Wenn Sie die ausgehende Konnektivität einschränken müssen, lesen Sielink:reference-networking.html["die Liste der Endpunkte, die der Datenbroker kontaktiert"] .
+
+* NetApp empfiehlt, Quelle, Ziel und Datenbroker für die Verwendung eines Network Time Protocol (NTP)-Dienstes zu konfigurieren.  Der Zeitunterschied zwischen den drei Komponenten sollte 5 Minuten nicht überschreiten.
+
+
+
+
+== Erforderliche Berechtigungen zum Bereitstellen des Datenbrokers in Azure
+
+Stellen Sie sicher, dass das Azure-Benutzerkonto, das Sie zum Bereitstellen des Datenbrokers verwenden, über die folgenden Berechtigungen verfügt:
+
+[source, json]
+----
+{
+    "Name": "Azure Data Broker",
+    "Actions": [
+					"Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/deployments/operationstatuses/read",
+                    "Microsoft.Resources/subscriptions/locations/read",
+                    "Microsoft.Network/networkInterfaces/read",
+                    "Microsoft.Network/virtualNetworks/subnets/read",
+                    "Microsoft.Resources/subscriptions/resourceGroups/write",
+                    "Microsoft.Resources/subscriptions/resourceGroups/delete",
+                    "Microsoft.Resources/deployments/write",
+                    "Microsoft.Resources/deployments/validate/action",
+                    "Microsoft.Resources/deployments/operationStatuses/read",
+                    "Microsoft.Resources/deployments/cancel/action",
+                    "Microsoft.Compute/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachines/delete",
+                    "Microsoft.Compute/disks/delete",
+                    "Microsoft.Network/networkInterfaces/delete",
+                    "Microsoft.Network/publicIPAddresses/delete",
+                    "Microsoft.Network/networkSecurityGroups/securityRules/delete",
+                    "Microsoft.Resources/subscriptions/resourceGroups/write",
+                    "Microsoft.Compute/virtualMachines/delete",
+                    "Microsoft.Network/networkSecurityGroups/write",
+                    "Microsoft.Network/networkSecurityGroups/join/action",
+                    "Microsoft.Compute/disks/write",
+                    "Microsoft.Network/networkInterfaces/write",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/publicIPAddresses/write",
+                    "Microsoft.Compute/virtualMachines/write",
+                    "Microsoft.Compute/virtualMachines/extensions/write",
+                    "Microsoft.Resources/deployments/read",
+                    "Microsoft.Network/networkSecurityGroups/read",
+                    "Microsoft.Network/publicIPAddresses/read",
+                    "Microsoft.Network/virtualNetworks/subnets/join/action",
+                    "Microsoft.Network/publicIPAddresses/join/action",
+                    "Microsoft.Network/networkInterfaces/join/action",
+                    "Microsoft.Storage/storageAccounts/read",
+                    "Microsoft.EventGrid/systemTopics/eventSubscriptions/write",
+                    "Microsoft.EventGrid/systemTopics/eventSubscriptions/read",
+                    "Microsoft.EventGrid/systemTopics/eventSubscriptions/delete",
+                    "Microsoft.EventGrid/systemTopics/eventSubscriptions/getFullUrl/action",
+                    "Microsoft.EventGrid/systemTopics/eventSubscriptions/getDeliveryAttributes/action",
+                    "Microsoft.EventGrid/systemTopics/read",
+                    "Microsoft.EventGrid/systemTopics/write",
+                    "Microsoft.EventGrid/systemTopics/delete",
+                    "Microsoft.EventGrid/eventSubscriptions/write",
+                    "Microsoft.Storage/storageAccounts/write"
+                    "Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/read"
+                    "Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/write"
+                    "Microsoft.Network/networkSecurityGroups/securityRules/read",
+        	        "Microsoft.Network/networkSecurityGroups/read",
+----
+....
+    ],
+    "NotActions": [],
+    "AssignableScopes": [],
+    "Description": "Azure Data Broker",
+    "IsCustom": "true"
+}
+....
+Hinweis:
+
+. Die folgenden Berechtigungen sind nur erforderlich, wenn Sie die https://docs.netapp.com/us-en/bluexp-copy-sync/task-creating-relationships.html#settings["Einstellung für kontinuierliche Synchronisierung"] bei einer Synchronisierungsbeziehung von Azure zu einem anderen Cloud-Speicherort:
++
+** „Microsoft.Storage/storageAccounts/read“,
+** „Microsoft.EventGrid/systemTopics/eventSubscriptions/write“,
+** „Microsoft.EventGrid/systemTopics/eventSubscriptions/read“,
+** „Microsoft.EventGrid/systemTopics/eventSubscriptions/delete“,
+** „Microsoft.EventGrid/systemTopics/eventSubscriptions/getFullUrl/action“,
+** „Microsoft.EventGrid/systemTopics/eventSubscriptions/getDeliveryAttributes/action“,
+** „Microsoft.EventGrid/systemTopics/read“,
+** „Microsoft.EventGrid/systemTopics/write“,
+** „Microsoft.EventGrid/systemTopics/delete“,
+** „Microsoft.EventGrid/eventSubscriptions/write“,
+** „Microsoft.Storage/storageAccounts/write“
+
+
++
+Darüber hinaus muss der zuweisbare Bereich auf den Abonnementbereich und *nicht* auf den Ressourcengruppenbereich eingestellt werden, wenn Sie Continuous Sync in Azure implementieren möchten.
+
+. Die folgenden Berechtigungen sind nur erforderlich, wenn Sie Ihre eigene Sicherheit für die Datenbroker-Erstellung auswählen möchten:
++
+** „Microsoft.Network/networkSecurityGroups/securityRules/read“
+** „Microsoft.Network/networkSecurityGroups/read“
+
+
+
+
+
+
+== Authentifizierungsmethode
+
+Wenn Sie den Datenbroker bereitstellen, müssen Sie eine Authentifizierungsmethode für die virtuelle Maschine auswählen: ein Kennwort oder ein öffentliches/privates SSH-Schlüsselpaar.
+
+Hilfe zum Erstellen eines Schlüsselpaars finden Sie unter https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys["Azure-Dokumentation: Erstellen und Verwenden eines öffentlichen/privaten SSH-Schlüsselpaars für Linux-VMs in Azure"^] .
+
+
+
+== Erstellen des Datenbrokers
+
+Es gibt mehrere Möglichkeiten, einen neuen Datenbroker zu erstellen.  Diese Schritte beschreiben, wie Sie einen Datenbroker in Azure installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Neue Synchronisierung erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker Group* gelangen.
+
+. Wählen Sie auf der Seite *Data Broker Group* die Option *Create Data Broker* und dann *Microsoft Azure* aus.
++
+image:screenshot-azure.png["Ein Screenshot der Data Broker-Seite, auf der Sie zwischen einem AWS-, Azure-, Google Cloud- und On-Prem-Data Broker wählen können."]
+
+. Geben Sie einen Namen für den Datenbroker ein und wählen Sie *Weiter*.
+. Wenn Sie dazu aufgefordert werden, melden Sie sich bei Ihrem Microsoft-Konto an.  Wenn Sie nicht dazu aufgefordert werden, wählen Sie *Bei Azure anmelden*.
++
+Das Formular ist Eigentum von Microsoft und wird von Microsoft gehostet. Ihre Anmeldeinformationen werden NetApp nicht zur Verfügung gestellt.
+
+. Wählen Sie einen Speicherort für den Datenbroker und geben Sie grundlegende Details zur virtuellen Maschine ein.
++
+image:screenshot_azure_data_broker.png["Ein Screenshot der Azure-Bereitstellungsseite, der die folgenden Felder zeigt: Abonnement, Azure-Region, VNet, Subnetz, VM-Name, Benutzername, Authentifizierungsmethode und Ressourcengruppe."]
+
++
+
+NOTE: Wenn Sie eine Continuous Sync-Beziehung implementieren möchten, müssen Sie Ihrem Datenbroker eine benutzerdefinierte Rolle zuweisen.  Dies kann auch manuell erfolgen, nachdem der Broker erstellt wurde.
+
+. Geben Sie eine Proxy-Konfiguration an, wenn für den Internetzugriff im VNet ein Proxy erforderlich ist.
+. Wählen Sie *Weiter*. Wenn Sie Ihrem Datenbroker S3-Berechtigungen hinzufügen möchten, geben Sie Ihren AWS-Zugriff und Ihre geheimen Schlüssel ein.
+. Wählen Sie *Weiter* und lassen Sie die Seite geöffnet, bis die Bereitstellung abgeschlossen ist.
++
+Der Vorgang kann bis zu 7 Minuten dauern.
+
+. Wählen Sie unter „Kopieren und Synchronisieren“ *Weiter* aus, sobald der Datenbroker verfügbar ist.
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+.Ergebnis
+Sie haben einen Datenbroker in Azure bereitgestellt und eine neue Synchronisierungsbeziehung erstellt.  Sie können diesen Datenbroker mit zusätzlichen Synchronisierungsbeziehungen verwenden.
+
+.Sie erhalten eine Nachricht, dass Sie die Zustimmung des Administrators benötigen?
+****
+Wenn Microsoft Sie benachrichtigt, dass eine Administratorgenehmigung erforderlich ist, weil Copy and Sync die Berechtigung benötigt, in Ihrem Namen auf Ressourcen in Ihrer Organisation zuzugreifen, haben Sie zwei Möglichkeiten:
+
+. Bitten Sie Ihren AD-Administrator, Ihnen die folgende Berechtigung zu erteilen:
++
+Gehen Sie in Azure zu *Admin Center > Azure AD > Benutzer und Gruppen > Benutzereinstellungen* und aktivieren Sie *Benutzer können Apps den Zugriff auf Unternehmensdaten in ihrem Namen gestatten*.
+
+. Bitten Sie Ihren AD-Administrator, in Ihrem Namen die Zustimmung zu *CloudSync-AzureDataBrokerCreator* unter Verwendung der folgenden URL zu erteilen (dies ist der Endpunkt der Administratorzustimmung):
++
+\https://login.microsoftonline.com/{FÜLLEN SIE HIER IHRE MIETER-ID EIN}/v2.0/adminconsent?client_id=8ee4ca3a-bafa-4831-97cc-5a38923cab85&redirect_uri=https://cloudsync.netapp.com&scope=https://management.azure.com/user_impersonationhttps://graph.microsoft.com/User.Read
+
++
+Wie in der URL gezeigt, lautet unsere App-URL \https://cloudsync.netapp.com und die Anwendungsclient-ID ist 8ee4ca3a-bafa-4831-97cc-5a38923cab85.
+
+
+
+****
+
+
+== Details zur Data Broker-VM
+
+Copy and Sync erstellt mithilfe der folgenden Konfiguration einen Datenbroker in Azure.
+
+Node.js-Kompatibilität:: v21.2.0
+VM-Typ:: Standard-DS4 v2
+vCPUs:: 8
+RAM:: 28 GB
+Betriebssystem:: Rocky Linux 9,0
+Festplattengröße und -typ:: 64 GB Premium SSD
+

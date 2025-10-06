@@ -1,0 +1,268 @@
+---
+sidebar: sidebar 
+permalink: task-external-vault.html 
+keywords: hashicorp, vault, credentials, secrets, API 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync-Benutzeroberfläche oder API angeben.  Alternativ können Sie den Datenbroker so einrichten, dass er direkt von einem externen HashiCorp Vault auf die Anmeldeinformationen zugreift. 
+---
+= Richten Sie eine Datenbrokergruppe ein, um einen externen HashiCorp Vault in NetApp Copy and Sync zu verwenden
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Synchronisierungsbeziehung erstellen, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordert, müssen Sie diese Anmeldeinformationen über die NetApp Copy and Sync-Benutzeroberfläche oder API angeben.  Eine Alternative besteht darin, die Datenbrokergruppe so einzurichten, dass sie direkt von einem externen HashiCorp-Tresor auf die Anmeldeinformationen (oder _Geheimnisse_) zugreift.
+
+Diese Funktion wird durch die Copy and Sync-API mit Synchronisierungsbeziehungen unterstützt, die Amazon S3-, Azure- oder Google Cloud-Anmeldeinformationen erfordern.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]Bereiten Sie den Tresor vor
+[role="quick-margin-para"]
+Bereiten Sie den Tresor vor, um der Datenbrokergruppe Anmeldeinformationen bereitzustellen, indem Sie die URLs einrichten.  Die URLs zu den Geheimnissen im Tresor müssen mit _Creds_ enden.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]Vorbereiten der Datenbrokergruppe
+[role="quick-margin-para"]
+Bereiten Sie die Datenbrokergruppe darauf vor, Anmeldeinformationen aus dem externen Tresor abzurufen, indem Sie die lokale Konfigurationsdatei für jeden Datenbroker in der Gruppe ändern.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"]Erstellen einer Synchronisierungsbeziehung mithilfe der API
+[role="quick-margin-para"]
+Nachdem nun alles eingerichtet ist, können Sie einen API-Aufruf senden, um eine Synchronisierungsbeziehung zu erstellen, die Ihren Tresor zum Abrufen der Geheimnisse verwendet.
+
+
+
+== Bereiten Sie den Tresor vor
+
+Sie müssen Copy and Sync die URL zu den Geheimnissen in Ihrem Tresor bereitstellen.  Bereiten Sie den Tresor vor, indem Sie diese URLs einrichten.  Sie müssen URLs zu den Anmeldeinformationen für jede Quelle und jedes Ziel in den Synchronisierungsbeziehungen einrichten, die Sie erstellen möchten.
+
+Die URL muss wie folgt aufgebaut sein:
+
+`/<path>/<requestid>/<endpoint-protocol>Creds`
+
+Weg:: Der Präfixpfad zum Geheimnis.  Dies kann jeder für Sie eindeutige Wert sein.
+Anforderungs-ID:: Eine Anforderungs-ID, die Sie generieren müssen.  Sie müssen die ID in einem der Header in der API-POST-Anforderung angeben, wenn Sie die Synchronisierungsbeziehung erstellen.
+Endpunktprotokoll:: Eines der folgenden Protokolle, wie definiert https://api.cloudsync.netapp.com/docs/#/Relationships-v2/post_relationships_v2["in der Post-Relationship-V2-Dokumentation"^] : S3, AZURE oder GCP (jeweils in Großbuchstaben).
+Credits:: Die URL muss mit _Creds_ enden.
+
+
+
+
+=== Beispiele
+
+Die folgenden Beispiele zeigen URLs zu Geheimnissen.
+
+Beispiel für die vollständige URL und den Pfad für Quellanmeldeinformationen:: \http://example.vault.com:8200/my-path/all-secrets/hb312vdasr2/S3Creds
++
+--
+Wie Sie im Beispiel sehen können, lautet der Präfixpfad _/my-path/all-secrets/_, die Anforderungs-ID ist _hb312vdasr2_ und der Quellendpunkt ist S3.
+
+--
+Beispiel für die vollständige URL und den Pfad für Zielanmeldeinformationen:: \http://example.vault.com:8200/my-path/all-secrets/n32hcbnejk2/AZURECreds
++
+--
+Der Präfixpfad ist _/my-path/all-secrets/_, die Anforderungs-ID ist _n32hcbnejk2_ und der Zielendpunkt ist Azure.
+
+--
+
+
+
+
+== Vorbereiten der Datenbrokergruppe
+
+Bereiten Sie die Datenbrokergruppe darauf vor, Anmeldeinformationen aus dem externen Tresor abzurufen, indem Sie die lokale Konfigurationsdatei für jeden Datenbroker in der Gruppe ändern.
+
+.Schritte
+. Stellen Sie eine SSH-Verbindung zu einem Datenbroker in der Gruppe her.
+. Bearbeiten Sie die Datei local.json, die sich in /opt/netapp/databroker/config befindet.
+. Setzen Sie „enable“ auf *true* und legen Sie die Konfigurationsparameterfelder unter _external-integrations.hashicorp_ wie folgt fest:
++
+ermöglicht::
++
+--
+** Gültige Werte: true/false
+** Typ: Boolean
+** Standardwert: false
+** Wahr: Der Datenbroker erhält Geheimnisse aus Ihrem eigenen externen HashiCorp Vault
+** Falsch: Der Datenbroker speichert Anmeldeinformationen in seinem lokalen Tresor
+
+
+--
+URL::
++
+--
+** Typ: Zeichenfolge
+** Wert: Die URL zu Ihrem externen Tresor
+
+
+--
+Weg::
++
+--
+** Typ: Zeichenfolge
+** Wert: Präfixieren Sie den Pfad zum Geheimnis mit Ihren Anmeldeinformationen
+
+
+--
+Ablehnen – nicht autorisiert::
++
+--
+** Legt fest, ob der Datenbroker nicht autorisierte externe Tresore ablehnen soll
+** Typ: Boolean
+** Standard: false
+
+
+--
+Authentifizierungsmethode::
++
+--
+** Die Authentifizierungsmethode, die der Datenbroker für den Zugriff auf Anmeldeinformationen aus dem externen Tresor verwenden soll
+** Typ: Zeichenfolge
+** Gültige Werte: „aws-iam“ / „role-app“ / „gcp-iam“
+
+
+--
+Rollenname::
++
+--
+** Typ: Zeichenfolge
+** Ihr Rollenname (falls Sie aws-iam oder gcp-iam verwenden)
+
+
+--
+Geheim-ID und Root-ID::
++
+--
+** Typ: Zeichenfolge (falls Sie die App-Rolle verwenden)
+
+
+--
+Namensraum::
++
+--
+** Typ: Zeichenfolge
+** Ihr Namespace (X-Vault-Namespace-Header, falls erforderlich)
+
+
+--
+
+
+. Wiederholen Sie diese Schritte für alle anderen Datenbroker in der Gruppe.
+
+
+
+
+=== Beispiel für die AWS-Rollenauthentifizierung
+
+[source, json]
+----
+{
+          “external-integrations”: {
+                  “hashicorp”: {
+                         “enabled”: true,
+                         “url”: “https://example.vault.com:8200”,
+                         “path”: ““my-path/all-secrets”,
+                         “reject-unauthorized”: false,
+                         “auth-method”: “aws-role”,
+                         “aws-role”: {
+                               “role-name”: “my-role”
+                         }
+                }
+       }
+}
+----
+
+
+=== Beispiel für die GCP-IAM-Authentifizierung
+
+[source, json]
+----
+{
+"external-integrations": {
+    "hashicorp": {
+      "enabled": true,
+      "url": http://ip-10-20-30-55.ec2.internal:8200,
+      "path": "v1/secret",
+      "namespace": "",
+      "reject-unauthorized": true,
+      "auth-method": "gcp-iam",
+      "aws-iam": {
+        "role-name": ""
+      },
+      "app-role": {
+        "root_id": "",
+        "secret_id": ""
+      },
+"gcp-iam": {
+          "role-name": "my-iam-role"
+      }
+    }
+  }
+}
+----
+
+
+=== Richten Sie Berechtigungen ein, wenn Sie die GCP-IAM-Authentifizierung verwenden
+
+Wenn Sie die Authentifizierungsmethode _gcp-iam_ verwenden, muss der Datenbroker über die folgende GCP-Berechtigung verfügen:
+
+[source, yaml]
+----
+- iam.serviceAccounts.signJwt
+----
+link:task-installing-gcp.html#permissions-required-for-the-service-account["Erfahren Sie mehr über die GCP-Berechtigungsanforderungen für den Datenbroker"] .
+
+
+
+== Erstellen einer neuen Synchronisierungsbeziehung mithilfe von Geheimnissen aus dem Tresor
+
+Nachdem nun alles eingerichtet ist, können Sie einen API-Aufruf senden, um eine Synchronisierungsbeziehung zu erstellen, die Ihren Tresor zum Abrufen der Geheimnisse verwendet.
+
+Veröffentlichen Sie die Beziehung mithilfe der Copy and Sync REST-API.
+
+....
+Headers:
+Authorization: Bearer <user-token>
+Content-Type: application/json
+x-account-id: <accountid>
+x-netapp-external-request-id-src: request ID as part of path for source credentials
+x-netapp-external-request-id-trg: request ID as part of path for target credentials
+Body: post relationship v2 body
+....
+* So erhalten Sie ein Benutzertoken und Ihre NetApp Konsolen-Konto-ID:link:api-sync.html["siehe diese Seite in der Dokumentation"] .
+* Um einen Körper für Ihre Post-Beziehung aufzubauen, https://api.cloudsync.netapp.com/docs/#/Relationships-v2/post_relationships_v2["siehe den API-Aufruf „relationships-v2“"^] .
+
+
+
+
+=== Beispiel
+
+Beispiel für die POST-Anfrage:
+
+[source, json]
+----
+url: https://api.cloudsync.netapp.com/api/relationships-v2
+headers:
+"x-account-id": "CS-SasdW"
+"x-netapp-external-request-id-src": "hb312vdasr2"
+"Content-Type": "application/json"
+"Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik…"
+Body:
+{
+"dataBrokerId": "5e6e111d578dtyuu1555sa60",
+"source": {
+        "protocol": "s3",
+        "s3": {
+                "provider": "sgws",
+                "host": "1.1.1.1",
+                "port": "443",
+                "bucket": "my-source"
+     },
+"target": {
+        "protocol": "s3",
+        "s3": {
+                "bucket": "my-target-bucket"
+        }
+    }
+}
+----

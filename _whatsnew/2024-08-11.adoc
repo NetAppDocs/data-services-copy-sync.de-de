@@ -1,0 +1,9 @@
+= Fehlerbehebungen
+:allow-uri-read: 
+
+
+
+
+=== Fehlerbehebungen
+
+Wir haben NetApp Copy and Sync und den Datenbroker aktualisiert, um einige Fehler zu beheben.  Die neue Data Broker-Version ist 1.0.54.

@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: task-prepare-object-storage.html 
+keywords: prepare data broker, data broker, object storage, sync, scanner, configure scanner, bluexp, copy and sync 
+summary: 'Wenn Sie planen, Daten von Objektspeicher zu Objektspeicher (z. B. Amazon S3 zu Azure Blob) mithilfe von NetApp Copy and Sync zu synchronisieren, müssen Sie die Datenbrokergruppe vorbereiten, bevor Sie die Synchronisierungsbeziehung erstellen.' 
+---
+= Bereiten Sie einen Datenbroker vor, um Daten zwischen Objektspeichern in NetApp Copy and Sync zu synchronisieren
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie planen, Daten von Objektspeicher zu Objektspeicher (z. B. Amazon S3 zu Azure Blob) in NetApp Copy and Sync zu synchronisieren, müssen Sie die Datenbrokergruppe vorbereiten, bevor Sie die Synchronisierungsbeziehung erstellen.
+
+.Informationen zu diesem Vorgang
+Um die Datenbrokergruppe vorzubereiten, müssen Sie die Konfiguration des Scanners ändern.  Wenn Sie die Konfiguration nicht ändern, können bei dieser Synchronisierungsbeziehung Leistungsprobleme auftreten.
+
+.Bevor Sie beginnen
+Die Datenbrokergruppe, die Sie zum Synchronisieren von Daten von Objektspeicher zu Objektspeicher verwenden, sollte nur diese Arten von Synchronisierungsbeziehungen verwalten.  Wenn die Datenbrokergruppe eine andere Art von Synchronisierungsbeziehung verwaltet (z. B. NFS zu NFS oder Objektspeicher zu SMB), kann die Leistung dieser Synchronisierungsbeziehungen negativ beeinflusst werden.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie unter „Kopieren und Synchronisieren“ die Option „Datenbroker verwalten“ aus.
+. Wählenimage:icon-settings.png["Ein Screenshot des Einstellungssymbols"]
+. Aktualisieren Sie die Scannerkonfiguration:
++
+.. Ändern Sie *Scanner-Parallelität* in *1*.
+.. Ändern Sie *Scanner-Prozesslimit* auf *1*.
+
+
+. Wählen Sie *Unify-Konfiguration*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren aktualisiert die Konfiguration der Datenbrokergruppe.
+
+.Wie geht es weiter?
+Sie können jetzt die Synchronisierungsbeziehung zwischen Objektspeichern mithilfe der gerade konfigurierten Datenbrokergruppe erstellen.

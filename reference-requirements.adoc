@@ -1,0 +1,335 @@
+---
+sidebar: sidebar 
+permalink: reference-requirements.html 
+keywords: networking, nfs, cifs, smb, version, connection, google, gcp, azure, blob, service account, resource, permissions, networking, version, ntp, network, protocol, aws efs requirements, efs requirements, s3 requirements, azure blob requirements, blob requirements, azure netapp files, cifs requirements, smb requirements, google cloud storage, gcp, ibm cloud object storage, storagegrid, storage tier, blob storage tier, storage class, s3 storage class, nfs versions, smb versions, box 
+summary: Überprüfen Sie, ob Ihre Quelle und Ziele die folgenden Anforderungen erfüllen. 
+---
+= Vorbereiten der Quelle und des Ziels in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Überprüfen Sie, ob Ihre Quelle und Ziele die folgenden Anforderungen in NetApp Copy and Sync erfüllen.
+
+
+
+== Vernetzung
+
+* Quelle und Ziel müssen über eine Netzwerkverbindung zur Datenbrokergruppe verfügen.
++
+Wenn sich beispielsweise ein NFS-Server in Ihrem Rechenzentrum befindet und ein Datenbroker in AWS, benötigen Sie eine Netzwerkverbindung (VPN oder Direct Connect) von Ihrem Netzwerk zur VPC.
+
+* NetApp empfiehlt, die Quelle, das Ziel und die Datenbroker für die Verwendung eines Network Time Protocol (NTP)-Dienstes zu konfigurieren.  Der Zeitunterschied zwischen den drei Komponenten sollte 5 Minuten nicht überschreiten.
+
+
+
+
+== Zielverzeichnis
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen, können Sie mit „Kopieren und Synchronisieren“ ein vorhandenes Zielverzeichnis auswählen und dann optional einen neuen Ordner in diesem Verzeichnis erstellen.  Stellen Sie daher sicher, dass Ihr bevorzugtes Zielverzeichnis bereits vorhanden ist.
+
+
+
+== Berechtigungen zum Lesen von Verzeichnissen
+
+Um jedes Verzeichnis oder jeden Ordner in einer Quelle oder einem Ziel anzuzeigen, benötigt Copy and Sync Leseberechtigungen für das Verzeichnis oder den Ordner.
+
+NFS:: Berechtigungen müssen auf der Quelle/dem Ziel mit UID/GID für Dateien und Verzeichnisse definiert werden.
+Objektspeicher::
++
+--
+* Für AWS und Google Cloud muss ein Datenbroker über Berechtigungen zum Auflisten von Objekten verfügen (diese Berechtigungen werden standardmäßig bereitgestellt, wenn Sie die Installationsschritte des Datenbrokers befolgen).
+* Für Azure, StorageGRID und IBM müssen die Anmeldeinformationen, die Sie beim Einrichten einer Synchronisierungsbeziehung eingeben, über Listenobjektberechtigungen verfügen.
+
+
+--
+KMU:: Die SMB-Anmeldeinformationen, die Sie beim Einrichten einer Synchronisierungsbeziehung eingeben, müssen über Berechtigungen zum Auflisten von Ordnern verfügen.
+
+
+
+NOTE: Der Datenbroker ignoriert standardmäßig die folgenden Verzeichnisse: .snapshot, ~snapshot, .copy-offload
+
+
+
+== [[s3]]Anforderungen für Amazon S3-Buckets
+
+Stellen Sie sicher, dass Ihr Amazon S3-Bucket die folgenden Anforderungen erfüllt.
+
+
+
+=== Unterstützte Datenbroker-Standorte für Amazon S3
+
+Für Synchronisierungsbeziehungen, die S3-Speicher umfassen, ist ein in AWS oder bei Ihnen vor Ort bereitgestellter Datenbroker erforderlich.  In beiden Fällen fordert Copy and Sync Sie während der Installation auf, den Datenbroker mit einem AWS-Konto zu verknüpfen.
+
+* link:task-installing-aws.html["Erfahren Sie, wie Sie den AWS-Datenbroker bereitstellen"]
+* link:task-installing-linux.html["Erfahren Sie, wie Sie den Datenbroker auf einem Linux-Host installieren"]
+
+
+
+
+=== Unterstützte AWS-Regionen
+
+Alle Regionen außer China werden unterstützt.
+
+
+
+=== Erforderliche Berechtigungen für S3-Buckets in anderen AWS-Konten
+
+Beim Einrichten einer Synchronisierungsbeziehung können Sie einen S3-Bucket angeben, der sich in einem AWS-Konto befindet, das keinem Datenbroker zugeordnet ist.
+
+link:media/aws_iam_policy_s3_bucket.json["Die in dieser JSON-Datei enthaltenen Berechtigungen"^]muss auf diesen S3-Bucket angewendet werden, damit ein Datenbroker darauf zugreifen kann.  Diese Berechtigungen ermöglichen es dem Datenbroker, Daten in den Bucket und aus dem Bucket zu kopieren und die Objekte im Bucket aufzulisten.
+
+Beachten Sie Folgendes zu den in der JSON-Datei enthaltenen Berechtigungen:
+
+. _<BucketName>_ ist der Name des Buckets, der sich im AWS-Konto befindet und keinem Datenbroker zugeordnet ist.
+. _<RoleARN>_ sollte durch eines der folgenden ersetzt werden:
++
+** Wenn ein Datenbroker manuell auf einem Linux-Host installiert wurde, sollte _RoleARN_ die ARN des AWS-Benutzers sein, für den Sie beim Bereitstellen eines Datenbrokers AWS-Anmeldeinformationen angegeben haben.
+** Wenn ein Datenbroker mithilfe der CloudFormation-Vorlage in AWS bereitgestellt wurde, sollte _RoleARN_ die ARN der von der Vorlage erstellten IAM-Rolle sein.
++
+Sie finden die Rollen-ARN, indem Sie zur EC2-Konsole gehen, die Datenbroker-Instanz auswählen und dann auf der Registerkarte „Beschreibung“ die IAM-Rolle auswählen.  Anschließend sollte in der IAM-Konsole die Seite „Zusammenfassung“ angezeigt werden, die die Rollen-ARN enthält.
+
++
+image:screenshot_iam_role_arn.gif["Ein Screenshot der AWS IAM-Konsole, der eine Rollen-ARN zeigt."]
+
+
+
+
+
+
+
+== [[blob]]Anforderungen für Azure Blob-Speicher
+
+Stellen Sie sicher, dass Ihr Azure Blob-Speicher die folgenden Anforderungen erfüllt.
+
+
+
+=== Unterstützte Datenbrokerstandorte für Azure Blob
+
+Ein Datenbroker kann sich an jedem beliebigen Ort befinden, wenn eine Synchronisierungsbeziehung Azure Blob Storage umfasst.
+
+
+
+=== Unterstützte Azure-Regionen
+
+Alle Regionen außer China, US-Regierung und US-Verteidigungsministerium werden unterstützt.
+
+
+
+=== Verbindungszeichenfolge für Beziehungen, die Azure Blob und NFS/SMB umfassen
+
+Wenn Sie eine Synchronisierungsbeziehung zwischen einem Azure Blob-Container und einem NFS- oder SMB-Server erstellen, müssen Sie „Copy and Sync“ mit der Verbindungszeichenfolge des Speicherkontos bereitstellen:
+
+image:screenshot_connection_string.gif["Zeigt eine Verbindungszeichenfolge an, die im Azure-Portal verfügbar ist, indem Sie ein Speicherkonto und dann Zugriffsschlüssel auswählen."]
+
+Wenn Sie Daten zwischen zwei Azure Blob-Containern synchronisieren möchten, muss die Verbindungszeichenfolge Folgendes enthalten: https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1["Gemeinsame Zugriffssignatur"^] (SAS).  Sie haben auch die Möglichkeit, bei der Synchronisierung zwischen einem Blob-Container und einem NFS- oder SMB-Server ein SAS zu verwenden.
+
+Das SAS muss den Zugriff auf den Blob-Dienst und alle Ressourcentypen (Dienst, Container und Objekt) ermöglichen.  Die SAS muss außerdem die folgenden Berechtigungen enthalten:
+
+* Für den Quell-Blobcontainer: Lesen und Auflisten
+* Für den Ziel-Blobcontainer: Lesen, Schreiben, Auflisten, Hinzufügen und Erstellen
+
+
+image:screenshot_connection_string_sas.gif["Zeigt eine Shared Access Signature an, die im Azure-Portal verfügbar ist, indem Sie ein Speicherkonto und dann „Shared Access Signature“ auswählen."]
+
+
+NOTE: Wenn Sie eine Continuous Sync-Beziehung implementieren möchten, die einen Azure Blob-Container umfasst, können Sie eine reguläre Verbindungszeichenfolge oder eine SAS-Verbindungszeichenfolge verwenden.  Wenn Sie eine SAS-Verbindungszeichenfolge verwenden, darf diese nicht so eingestellt sein, dass sie in naher Zukunft abläuft.
+
+
+
+== Azure Data Lake Storage Gen2
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen, die Azure Data Lake umfasst, müssen Sie „Kopieren und Synchronisieren“ mit der Verbindungszeichenfolge des Speicherkontos bereitstellen.  Es muss sich um eine reguläre Verbindungszeichenfolge handeln, nicht um eine Shared Access Signature (SAS).
+
+
+
+== Azure NetApp Files Anforderung
+
+Verwenden Sie die Serviceebene „Premium“ oder „Ultra“, wenn Sie Daten mit oder von Azure NetApp Files synchronisieren.  Wenn die Datenträgerdienstebene auf „Standard“ eingestellt ist, können Fehler und Leistungsprobleme auftreten.
+
+
+TIP: Wenden Sie sich an einen Lösungsarchitekten, wenn Sie Hilfe bei der Bestimmung des richtigen Servicelevels benötigen.  Die Volumegröße und die Volumestufe bestimmen den Durchsatz, den Sie erzielen können.
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["Weitere Informationen zu Azure NetApp Files Serviceleveln und Durchsatz"^] .
+
+
+
+== Boxanforderungen
+
+* Um eine Synchronisierungsbeziehung zu erstellen, die Box einschließt, müssen Sie die folgenden Anmeldeinformationen angeben:
++
+** Client-ID
+** Clientgeheimnis
+** Privater Schlüssel
+** Öffentliche Schlüssel-ID
+** Passphrase
+** Unternehmens-ID
+
+
+* Wenn Sie eine Synchronisierungsbeziehung von Amazon S3 zu Box erstellen, müssen Sie eine Datenbrokergruppe verwenden, die über eine einheitliche Konfiguration verfügt, bei der die folgenden Einstellungen auf 1 gesetzt sind:
++
+** Scanner-Parallelität
+** Limit für Scannerprozesse
+** Übertragende Parallelität
+** Limit für Übertragungsprozesse
+
+
++
+link:task-managing-data-brokers.html#set-up-a-unified-configuration["Erfahren Sie, wie Sie eine einheitliche Konfiguration für eine Datenbrokergruppe definieren"^] .
+
+
+
+
+
+== [[google]]Anforderungen an den Google Cloud Storage-Bucket
+
+Stellen Sie sicher, dass Ihr Google Cloud Storage-Bucket die folgenden Anforderungen erfüllt.
+
+
+
+=== Unterstützte Datenbroker-Standorte für Google Cloud Storage
+
+Für Synchronisierungsbeziehungen, die Google Cloud Storage umfassen, ist ein in Google Cloud oder bei Ihnen vor Ort bereitgestellter Datenbroker erforderlich.  Copy and Sync führt Sie durch den Installationsprozess des Datenbrokers, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+* link:task-installing-gcp.html["Erfahren Sie, wie Sie den Google Cloud-Datenbroker bereitstellen"]
+* link:task-installing-linux.html["Erfahren Sie, wie Sie den Datenbroker auf einem Linux-Host installieren"]
+
+
+
+
+=== Unterstützte Google Cloud-Regionen
+
+Alle Regionen werden unterstützt.
+
+
+
+=== Berechtigungen für Buckets in anderen Google Cloud-Projekten
+
+Beim Einrichten einer Synchronisierungsbeziehung können Sie aus Google Cloud-Buckets in verschiedenen Projekten auswählen, wenn Sie dem Dienstkonto des Datenbrokers die erforderlichen Berechtigungen erteilen. link:task-installing-gcp.html["Erfahren Sie, wie Sie das Dienstkonto einrichten"] .
+
+
+
+=== Berechtigungen für ein SnapMirror -Ziel
+
+Wenn die Quelle für eine Synchronisierungsbeziehung ein SnapMirror -Ziel ist (das schreibgeschützt ist), reichen die Berechtigungen „Lesen/Auflisten“ aus, um Daten von der Quelle mit einem Ziel zu synchronisieren.
+
+
+
+=== Verschlüsseln eines Google Cloud-Buckets
+
+Sie können einen Ziel-Google Cloud-Bucket mit einem vom Kunden verwalteten KMS-Schlüssel oder dem standardmäßigen, von Google verwalteten Schlüssel verschlüsseln.  Wenn dem Bucket bereits eine KMS-Verschlüsselung hinzugefügt wurde, wird die standardmäßige, von Google verwaltete Verschlüsselung überschrieben.
+
+Um einen vom Kunden verwalteten KMS-Schlüssel hinzuzufügen, müssen Sie einen Datenbroker mit dem https://docs.netapp.com/us-en/bluexp-copy-sync/task-installing-gcp.html#permissions-required-for-the-service-account["korrekte Berechtigungen"] , und der Schlüssel muss sich in derselben Region wie der Bucket befinden.
+
+
+
+== Google Drive
+
+Wenn Sie eine Synchronisierungsbeziehung einrichten, die Google Drive umfasst, müssen Sie Folgendes angeben:
+
+* Die E-Mail-Adresse eines Benutzers, der Zugriff auf den Google Drive-Speicherort hat, an dem Sie Daten synchronisieren möchten
+* Die E-Mail-Adresse für ein Google Cloud-Dienstkonto, das über Berechtigungen zum Zugriff auf Google Drive verfügt
+* Ein privater Schlüssel für das Dienstkonto
+
+
+Um das Dienstkonto einzurichten, folgen Sie den Anweisungen in der Google-Dokumentation:
+
+* https://developers.google.com/admin-sdk/directory/v1/guides/delegation#create_the_service_account_and_credentials["Erstellen Sie das Dienstkonto und die Anmeldeinformationen"^]
+* https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account["Delegieren Sie die domänenweite Autorität an Ihr Dienstkonto"^]
+
+
+Wenn Sie das Feld „OAuth-Bereiche“ bearbeiten, geben Sie die folgenden Bereiche ein:
+
+* \https://www.googleapis.com/auth/drive
+* \https://www.googleapis.com/auth/drive.file
+
+
+
+
+== NFS-Serveranforderungen
+
+* Der NFS-Server kann ein NetApp -System oder ein Nicht- NetApp -System sein.
+* Der Dateiserver muss einem Datenbroker-Host den Zugriff auf die Exporte über die erforderlichen Ports ermöglichen.
++
+** 111 TCP/UDP
+** 2049 TCP/UDP
+** 5555 TCP/UDP
+
+
+* Es werden die NFS-Versionen 3, 4.0, 4.1 und 4.2 unterstützt.
++
+Die gewünschte Version muss auf dem Server aktiviert sein.
+
+* Wenn Sie NFS-Daten von einem ONTAP System synchronisieren möchten, stellen Sie sicher, dass der Zugriff auf die NFS-Exportliste für eine SVM aktiviert ist (vserver nfs modify -vserver _svm_name_ -showmount enabled).
++
+
+NOTE: Die Standardeinstellung für Showmount ist ab ONTAP 9.2 _aktiviert_.
+
+
+
+
+
+== ONTAP Anforderungen
+
+Wenn die Synchronisierungsbeziehung Cloud Volumes ONTAP oder einen lokalen ONTAP Cluster umfasst und Sie NFSv4 oder höher ausgewählt haben, müssen Sie NFSv4-ACLs auf dem ONTAP System aktivieren.  Dies ist zum Kopieren der ACLs erforderlich.
+
+
+
+== ONTAP S3 Speicheranforderungen
+
+Wenn Sie eine Synchronisierungsbeziehung einrichten, die Folgendes umfasst: https://docs.netapp.com/us-en/ontap/object-storage-management/index.html["ONTAP S3 Speicher"^] müssen Sie Folgendes angeben:
+
+* Die IP-Adresse des LIF, das mit ONTAP S3 verbunden ist
+* Der Zugriffsschlüssel und der geheime Schlüssel, für deren Verwendung ONTAP konfiguriert ist
+
+
+
+
+== SMB-Serveranforderungen
+
+* Der SMB-Server kann ein NetApp -System oder ein Nicht- NetApp -System sein.
+* Sie müssen Copy and Sync Anmeldeinformationen bereitstellen, die über Berechtigungen für den SMB-Server verfügen.
++
+** Für einen Quell-SMB-Server sind die folgenden Berechtigungen erforderlich: Auflisten und Lesen.
++
+Mitglieder der Gruppe „Sicherungsoperatoren“ werden mit einem Quell-SMB-Server unterstützt.
+
+** Für einen Ziel-SMB-Server sind die folgenden Berechtigungen erforderlich: Auflisten, Lesen und Schreiben.
+
+
+* Der Dateiserver muss einem Datenbroker-Host den Zugriff auf die Exporte über die erforderlichen Ports ermöglichen.
++
+** 139 TCP
+** 445 TCP
+** 137-138 UDP
+
+
+* Es werden die SMB-Versionen 1.0, 2.0, 2.1, 3.0 und 3.11 unterstützt.
+* Gewähren Sie der Gruppe „Administratoren“ die Berechtigung „Vollzugriff“ für die Quell- und Zielordner.
++
+Wenn Sie diese Berechtigung nicht erteilen, verfügt der Datenbroker möglicherweise nicht über ausreichende Berechtigungen, um die ACLs für eine Datei oder ein Verzeichnis abzurufen.  In diesem Fall erhalten Sie die folgende Fehlermeldung: „getxattr error 95“
+
+
+
+
+
+=== SMB-Beschränkung für versteckte Verzeichnisse und Dateien
+
+Eine SMB-Einschränkung betrifft versteckte Verzeichnisse und Dateien beim Synchronisieren von Daten zwischen SMB-Servern.  Wenn eines der Verzeichnisse oder Dateien auf dem Quell-SMB-Server durch Windows ausgeblendet wurde, wird das ausgeblendete Attribut nicht auf den Ziel-SMB-Server kopiert.
+
+
+
+=== SMB-Synchronisierungsverhalten aufgrund der Einschränkung der Groß-/Kleinschreibung
+
+Das SMB-Protokoll berücksichtigt die Groß- und Kleinschreibung nicht, d. h. Groß- und Kleinbuchstaben werden als identisch behandelt.  Dieses Verhalten kann zum Überschreiben von Dateien und zu Fehlern beim Kopieren von Verzeichnissen führen, wenn eine Synchronisierungsbeziehung einen SMB-Server umfasst und auf dem Ziel bereits Daten vorhanden sind.
+
+Nehmen wir beispielsweise an, dass es auf der Quelle eine Datei mit dem Namen „a“ und auf dem Ziel eine Datei mit dem Namen „A“ gibt.  Wenn Copy and Sync die Datei mit dem Namen „a“ in das Ziel kopiert, wird die Datei „A“ durch die Datei „a“ aus der Quelle überschrieben.
+
+Nehmen wir im Fall von Verzeichnissen an, dass es auf der Quelle ein Verzeichnis mit dem Namen „b“ und auf dem Ziel ein Verzeichnis mit dem Namen „B“ gibt.  Wenn Copy and Sync versucht, das Verzeichnis mit dem Namen „b“ in das Ziel zu kopieren, erhält Copy and Sync eine Fehlermeldung, die besagt, dass das Verzeichnis bereits existiert.  Dies führt dazu, dass Copy and Sync das Verzeichnis mit dem Namen „b“ immer nicht kopieren kann.
+
+Die beste Möglichkeit, diese Einschränkung zu vermeiden, besteht darin, sicherzustellen, dass Sie die Daten mit einem leeren Verzeichnis synchronisieren.

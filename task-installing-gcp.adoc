@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: task-installing-gcp.html 
+keywords: data broker, install, gcp, google, networking, permissions, regions, install data broker in gcp, install in gcp, deploy in gcp, deploy data broker in gcp, install data broker in google, install in google, deploy in google, deploy data broker in google, networking requirements, port, ports, 443, port 443, ntp, network time protocol, gcp data broker, service account 
+summary: Wenn Sie einen neuen Datenbroker erstellen, wählen Sie die Option „Google Cloud Data Broker“, um die Datenbroker-Software auf einer neuen VM-Instanz in einer VPC bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen. 
+---
+= Erstellen Sie einen neuen Datenbroker in Google Cloud für NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine neue Datenbrokergruppe für NetApp Copy and Sync erstellen, wählen Sie Google Cloud Platform, um die Datenbrokersoftware auf einer neuen VM-Instanz in einer Google Cloud VPC bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Datenbroker auf einem vorhandenen Linux-Host in der Cloud oder bei Ihnen vor Ort zu installieren. link:task-installing-linux.html["Mehr erfahren"] .
+
+
+
+== Unterstützte Google Cloud-Regionen
+
+Alle Regionen werden unterstützt.
+
+
+
+== Root-Berechtigungen
+
+Die Data Broker-Software wird automatisch als Root auf dem Linux-Host ausgeführt.  Für Data Broker-Operationen ist die Ausführung als Root erforderlich.  Beispielsweise zum Mounten von Freigaben.
+
+
+
+== Netzwerkanforderungen
+
+* Der Datenbroker benötigt eine ausgehende Internetverbindung, damit er Copy and Sync über Port 443 nach Aufgaben abfragen kann.
++
+Wenn Copy and Sync den Datenbroker in Google Cloud bereitstellt, wird eine Sicherheitsgruppe erstellt, die die erforderliche ausgehende Kommunikation ermöglicht.
+
++
+Wenn Sie die ausgehende Konnektivität einschränken müssen, lesen Sielink:reference-networking.html["die Liste der Endpunkte, die der Datenbroker kontaktiert"] .
+
+* NetApp empfiehlt, Quelle, Ziel und Datenbroker für die Verwendung eines Network Time Protocol (NTP)-Dienstes zu konfigurieren.  Der Zeitunterschied zwischen den drei Komponenten sollte 5 Minuten nicht überschreiten.
+
+
+
+
+== Erforderliche Berechtigungen zum Bereitstellen des Datenbrokers in Google Cloud
+
+Stellen Sie sicher, dass der Google Cloud-Benutzer, der den Datenbroker bereitstellt, über die folgenden Berechtigungen verfügt:
+
+[source, yaml]
+----
+- compute.networks.list
+- compute.regions.list
+- deploymentmanager.deployments.create
+- deploymentmanager.deployments.delete
+- deploymentmanager.operations.get
+- iam.serviceAccounts.list
+----
+
+
+== Für das Dienstkonto erforderliche Berechtigungen
+
+Wenn Sie den Datenbroker bereitstellen, müssen Sie ein Dienstkonto auswählen, das über die folgenden Berechtigungen verfügt:
+
+[source, yaml]
+----
+- logging.logEntries.create
+- resourcemanager.projects.get
+- storage.buckets.get
+- storage.buckets.list
+- storage.objects.create
+- storage.objects.delete
+- storage.objects.get
+- storage.objects.getIamPolicy
+- storage.objects.list
+- storage.objects.setIamPolicy
+- storage.objects.update
+- iam.serviceAccounts.signJwt
+- pubsub.subscriptions.consume
+- pubsub.subscriptions.create
+- pubsub.subscriptions.delete
+- pubsub.subscriptions.list
+- pubsub.topics.attachSubscription
+- pubsub.topics.create
+- pubsub.topics.delete
+- pubsub.topics.list
+- pubsub.topics.setIamPolicy
+- storage.buckets.update
+- cloudkms.cryptoKeys.list
+- cloudkms.keyRings.list
+----
+Hinweise:
+
+. Die Berechtigung „iam.serviceAccounts.signJwt“ ist nur erforderlich, wenn Sie den Datenbroker für die Verwendung eines externen HashiCorp-Tresors einrichten möchten.
+. Die Berechtigungen „pubsub.*“ und „storage.buckets.update“ sind nur erforderlich, wenn Sie die Einstellung „Kontinuierliche Synchronisierung“ für eine Synchronisierungsbeziehung von Google Cloud Storage zu einem anderen Cloud-Speicherort aktivieren möchten. link:task-creating-relationships.html#settings["Erfahren Sie mehr über die Option „Continuous Sync“"] .
+. Die Berechtigungen „cloudkms.cryptoKeys.list“ und „cloudkms.keyRings.list“ sind nur erforderlich, wenn Sie einen vom Kunden verwalteten KMS-Schlüssel in einem Ziel-Bucket von Google Cloud Storage verwenden möchten.
+
+
+
+
+== Erstellen des Datenbrokers
+
+Es gibt mehrere Möglichkeiten, einen neuen Datenbroker zu erstellen.  Diese Schritte beschreiben, wie Sie einen Datenbroker in Google Cloud installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Neue Synchronisierung erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker Group* gelangen.
+
+. Wählen Sie auf der Seite *Data Broker Group* die Option *Create Data Broker* und dann *Google Cloud Platform* aus.
++
+image:screenshot-google.png["Ein Screenshot der Data Broker-Seite, auf der Sie zwischen einem AWS-, Azure-, Google Cloud- und On-Prem-Data Broker wählen können."]
+
+. Geben Sie einen Namen für den Datenbroker ein und wählen Sie *Weiter*.
+. Wenn Sie dazu aufgefordert werden, melden Sie sich mit Ihrem Google-Konto an.
++
+Das Formular ist Eigentum von Google und wird von Google gehostet. Ihre Anmeldeinformationen werden NetApp nicht zur Verfügung gestellt.
+
+. Wählen Sie ein Projekt und ein Dienstkonto aus und wählen Sie dann einen Standort für den Datenbroker aus. Geben Sie dabei auch an, ob Sie eine öffentliche IP-Adresse aktivieren oder deaktivieren möchten.
++
+Wenn Sie keine öffentliche IP-Adresse aktivieren, müssen Sie im nächsten Schritt einen Proxyserver definieren.
+
++
+image:screenshot_data_broker_gcp.png["Ein Screenshot, der die erforderlichen Informationen zum Bereitstellen eines Datenbrokers in Google Cloud zeigt."]
+
+. Geben Sie eine Proxy-Konfiguration an, wenn für den Internetzugriff in der VPC ein Proxy erforderlich ist.
++
+Wenn für den Internetzugang ein Proxy erforderlich ist, muss sich der Proxy in Google Cloud befinden und dasselbe Dienstkonto wie der Datenbroker verwenden.
+
+. Sobald der Datenbroker verfügbar ist, wählen Sie unter „Kopieren und Synchronisieren“ die Option „Weiter“ aus.
++
+Die Bereitstellung der Instanz dauert etwa 5 bis 10 Minuten.  Sie können den Fortschritt von „Kopieren und Synchronisieren“ überwachen, der automatisch aktualisiert wird, wenn die Instanz verfügbar ist.
+
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+.Ergebnis
+Sie haben einen Datenbroker in Google Cloud bereitgestellt und eine neue Synchronisierungsbeziehung erstellt.  Sie können diesen Datenbroker mit zusätzlichen Synchronisierungsbeziehungen verwenden.
+
+
+
+== Erteilen Sie Berechtigungen zur Verwendung von Buckets in anderen Google Cloud-Projekten
+
+Wenn Sie eine Synchronisierungsbeziehung erstellen und Google Cloud Storage als Quelle oder Ziel auswählen, können Sie mit „Kopieren und Synchronisieren“ aus den Buckets auswählen, für deren Verwendung das Dienstkonto des Datenbrokers berechtigt ist.  Standardmäßig umfasst dies die Buckets, die sich im _gleichen_ Projekt wie das Data Broker-Dienstkonto befinden.  Sie können jedoch Buckets aus _anderen_ Projekten auswählen, wenn Sie die erforderlichen Berechtigungen erteilen.
+
+.Schritte
+. Öffnen Sie die Google Cloud Platform-Konsole und laden Sie den Cloud Storage-Dienst.
+. Wählen Sie den Namen des Buckets aus, den Sie als Quelle oder Ziel in einer Synchronisierungsbeziehung verwenden möchten.
+. Wählen Sie *Berechtigungen*.
+. Wählen Sie *Hinzufügen*.
+. Geben Sie den Namen des Dienstkontos des Datenbrokers ein.
+. Wählen Sie eine Rolle aus, die Folgendes bietet:<<Für das Dienstkonto erforderliche Berechtigungen,die gleichen Berechtigungen wie oben gezeigt>> .
+. Wählen Sie *Speichern*.
+
+
+.Ergebnis
+Wenn Sie eine Synchronisierungsbeziehung einrichten, können Sie jetzt diesen Bucket als Quelle oder Ziel in der Synchronisierungsbeziehung auswählen.
+
+
+
+== Details zur Data Broker-VM-Instanz
+
+Copy and Sync erstellt mithilfe der folgenden Konfiguration einen Datenbroker in Google Cloud.
+
+Node.js-Kompatibilität:: v21.2.0
+Maschinentyp:: n2-Standard-4
+vCPUs:: 4
+RAM:: 15 GB
+Betriebssystem:: Rocky Linux 9,0
+Festplattengröße und -typ:: 20 GB HDD pd-standard
+

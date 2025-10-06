@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: reference-networking.html 
+keywords: networking, 443, port, ports, port 443, connections, connectivity, path, paths, vpn, copy and sync, netapp, bluexp, cloud sync,connectivity,data broker 
+summary: Die Vernetzung für NetApp Copy and Sync umfasst die Konnektivität zwischen der Datenbrokergruppe und den Quell- und Zielstandorten sowie eine ausgehende Internetverbindung von Datenbrokern über Port 443. 
+---
+= Netzwerkübersicht für NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die Vernetzung für NetApp Copy and Sync umfasst die Konnektivität zwischen der Datenbrokergruppe und den Quell- und Zielstandorten sowie eine ausgehende Internetverbindung von Datenbrokern über Port 443.
+
+
+
+== Standort des Datenbrokers
+
+Eine Datenbrokergruppe besteht aus einem oder mehreren Datenbrokern, die in der Cloud oder bei Ihnen vor Ort installiert sind.
+
+
+
+=== Datenbroker in der Cloud
+
+Das folgende Bild zeigt einen Datenbroker, der in der Cloud ausgeführt wird, entweder in AWS, Google Cloud oder Azure.  Quelle und Ziel können an jedem beliebigen Ort liegen, solange eine Verbindung zum Datenbroker besteht.  Beispielsweise verfügen Sie möglicherweise über eine VPN-Verbindung von Ihrem Rechenzentrum zu Ihrem Cloud-Anbieter.
+
+
+NOTE: Wenn Copy and Sync den Datenbroker in AWS, Azure oder Google Cloud bereitstellt, wird eine Sicherheitsgruppe erstellt, die die erforderliche ausgehende Kommunikation ermöglicht.
+
+image:diagram_networking_cloud2.png["Ein Diagramm, das Copy and Sync, den in der Cloud laufenden Datenbroker und Verbindungen zur Quelle und zum Ziel zeigt."]
+
+
+
+=== Datenbroker bei Ihnen vor Ort
+
+Das folgende Bild zeigt den Datenbroker, der vor Ort in einem Rechenzentrum ausgeführt wird.  Auch hier gilt: Quelle und Ziel können an jedem beliebigen Ort liegen, solange eine Verbindung zum Datenbroker besteht.
+
+image:diagram_networking_onprem.png["Ein Diagramm, das Copy and Sync, den vor Ort ausgeführten Datenbroker und Verbindungen zur Quelle und zum Ziel zeigt."]
+
+
+
+== Netzwerkanforderungen
+
+* Quelle und Ziel müssen über eine Netzwerkverbindung zur Datenbrokergruppe verfügen.
++
+Wenn sich beispielsweise ein NFS-Server in Ihrem Rechenzentrum befindet und ein Datenbroker in AWS, benötigen Sie eine Netzwerkverbindung (VPN oder Direct Connect) von Ihrem Netzwerk zur VPC.
+
+* Ein Datenbroker benötigt eine ausgehende Internetverbindung, damit er Copy and Sync über Port 443 nach Aufgaben abfragen kann.
+* NetApp empfiehlt, die Quelle, das Ziel und die Datenbroker für die Verwendung eines Network Time Protocol (NTP)-Dienstes zu konfigurieren.  Der Zeitunterschied zwischen den drei Komponenten sollte 5 Minuten nicht überschreiten.
+
+
+
+
+== Netzwerkendpunkte
+
+Der NetApp Datenbroker benötigt ausgehenden Internetzugriff über Port 443, um mit Copy and Sync zu kommunizieren und einige andere Dienste und Repositories zu kontaktieren.  Ihr lokaler Webbrowser benötigt für bestimmte Aktionen auch Zugriff auf Endpunkte.  Wenn Sie die ausgehende Konnektivität einschränken müssen, beachten Sie beim Konfigurieren Ihrer Firewall für ausgehenden Datenverkehr die folgende Liste von Endpunkten.
+
+
+
+=== Datenbroker-Endpunkte
+
+Ein Datenbroker kontaktiert die folgenden Endpunkte:
+
+[cols="38,62"]
+|===
+| Endpunkte | Zweck 
+
+
+| \https://olcentgbl.trafficmanager.net | So kontaktieren Sie ein Repository zum Aktualisieren von CentOS-Paketen für den Data Broker-Host.  Dieser Endpunkt wird nur kontaktiert, wenn Sie den Datenbroker manuell auf einem CentOS-Host installieren. 
+
+
+| \https://rpm.nodesource.com \https://registry.npmjs.org \https://nodejs.org: | Um Repositories zum Aktualisieren von Node.js, npm und anderen in der Entwicklung verwendeten Drittanbieterpaketen zu kontaktieren. 
+
+
+| \https://tgz.pm2.io | Um auf ein Repository zum Aktualisieren von PM2 zuzugreifen, einem Drittanbieterpaket, das zum Überwachen von Kopieren und Synchronisieren verwendet wird. 
+
+
+| \https://sqs.us-east-1.amazonaws.com \https://kinesis.us-east-1.amazonaws.com | Um die AWS-Dienste zu kontaktieren, die Copy and Sync für Vorgänge verwendet (Dateien in die Warteschlange stellen, Aktionen registrieren und Updates an den Datenbroker übermitteln). 
+
+
+| \https://s3._region_.amazonaws.com Zum Beispiel: s3.us-east-2.amazonaws.com:443https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region["Eine Liste der S3-Endpunkte finden Sie in der AWS-Dokumentation."^] | Um Amazon S3 zu kontaktieren, wenn eine Synchronisierungsbeziehung einen S3-Bucket enthält. 
+
+
+| \https://s3.amazonaws.com/ | Wenn Sie Data Broker-Protokolle von Copy and Sync herunterladen, komprimiert der Data Broker sein Protokollverzeichnis und lädt die Protokolle in einen vordefinierten S3-Bucket in der Region „us-east-1“ hoch. 
+
+
+| \https://storage.googleapis.com/ | Um Google Cloud zu kontaktieren, wenn eine Synchronisierungsbeziehung einen GCP-Bucket verwendet. 
+
+
+| https://_storage-account_.blob.core.windows.net[]Bei Verwendung von Azure Data Lake Gen2:https://_storage-account_.dfs.core.windows.net[] Dabei ist _storage-account_ das Quellspeicherkonto des Benutzers. | So öffnen Sie den Proxy zur Azure-Speicherkontoadresse eines Benutzers. 
+
+
+| \https://cf.cloudsync.netapp.com \https://repo.cloudsync.netapp.com | So kontaktieren Sie Copy and Sync. 
+
+
+| \https://support.netapp.com | So wenden Sie sich an den NetApp -Support, wenn Sie eine BYOL-Lizenz für Synchronisierungsbeziehungen verwenden. 
+
+
+| \https://fedoraproject.org | So installieren Sie 7z während der Installation und Aktualisierung auf der virtuellen Data Broker-Maschine.  7z wird benötigt, um AutoSupport -Nachrichten an den technischen Support von NetApp zu senden. 
+
+
+| \https://sts.amazonaws.com \https://sts.us-east-1.amazonaws.com | Zum Überprüfen der AWS-Anmeldeinformationen, wenn der Datenbroker in AWS bereitgestellt wird oder wenn er bei Ihnen vor Ort bereitgestellt wird und AWS-Anmeldeinformationen bereitgestellt werden.  Der Datenbroker kontaktiert diesen Endpunkt während der Bereitstellung, bei Aktualisierungen und bei Neustarts. 
+
+
+| \https://api.bluexp.netapp.com \https://netapp-cloud-account.auth0.com | So wenden Sie sich an NetApp Data Classification, wenn Sie die Klassifizierung zum Auswählen der Quelldateien für eine neue Synchronisierungsbeziehung verwenden. 
+
+
+| \https://pubsub.googleapis.com | Beim Erstellen einer kontinuierlichen Synchronisierungsbeziehung von einem Google-Speicherkonto. 
+
+
+| https://_storage-account_.queue.core.windows.net[]\https://management.azure.com/subscriptions/${_subscriptionId_} /resourceGroups/${_resourceGroup_}/providers/Microsoft.EventGrid/* Wobei _storage-account_ das Quellspeicherkonto des Benutzers, _subscriptionid_ die Quellabonnement-ID und _resourceGroup_ die Quellressourcengruppe ist. | Beim Erstellen einer kontinuierlichen Synchronisierungsbeziehung von einem Azure-Speicherkonto. 
+|===
+
+
+=== Webbrowser-Endpunkte
+
+Ihr Webbrowser benötigt Zugriff auf den folgenden Endpunkt, um Protokolle zur Fehlerbehebung herunterzuladen:
+
+logs.cloudsync.netapp.com:443

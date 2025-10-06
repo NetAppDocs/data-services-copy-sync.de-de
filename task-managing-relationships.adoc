@@ -1,0 +1,239 @@
+---
+sidebar: sidebar 
+permalink: task-managing-relationships.html 
+keywords: sync, immediate, now, schedule, minutes, hours, on, off, delete, group, accelerate, accelerating, grouping, multiple data brokers, sync now, turn off, turn on, sync schedule, settings, change settings, recently modified files, delete files on target, retries, retry, file types, exclude file type, include file type, delete relationship 
+summary: Sie können Synchronisierungsbeziehungen jederzeit verwalten, indem Sie Daten sofort synchronisieren, Zeitpläne ändern und mehr. 
+---
+= Verwalten von Synchronisierungsbeziehungen in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können Synchronisierungsbeziehungen in NetApp Copy and Sync jederzeit verwalten, indem Sie Daten sofort synchronisieren, Zeitpläne ändern und mehr.
+
+
+
+== Führen Sie eine sofortige Datensynchronisierung durch
+
+Anstatt auf die nächste geplante Synchronisierung zu warten, können Sie Daten sofort zwischen Quelle und Ziel synchronisieren.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Navigieren Sie vom *Dashboard* zur Synchronisierungsbeziehung und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+. Wählen Sie *Jetzt synchronisieren* und dann zur Bestätigung *Synchronisieren*.
+
+
+.Ergebnis
+„Kopieren und Synchronisieren“ startet den Datensynchronisierungsprozess für die Beziehung.
+
+
+
+== Beschleunigen Sie die Synchronisierungsleistung
+
+Beschleunigen Sie die Leistung einer Synchronisierungsbeziehung, indem Sie der Gruppe, die die Beziehung verwaltet, einen zusätzlichen Datenbroker hinzufügen.  Der zusätzliche Datenbroker muss ein _neuer_ Datenbroker sein.
+
+.So funktioniert's
+Wenn die Datenbrokergruppe andere Synchronisierungsbeziehungen verwaltet, beschleunigt der neue Datenbroker, den Sie der Gruppe hinzufügen, auch die Leistung dieser Synchronisierungsbeziehungen.
+
+Nehmen wir beispielsweise an, Sie haben drei Beziehungen:
+
+* Beziehung 1 wird von der Datenbrokergruppe A verwaltet
+* Beziehung 2 wird von der Datenbrokergruppe B verwaltet
+* Beziehung 3 wird von der Datenbrokergruppe A verwaltet
+
+
+Sie möchten die Leistung der Beziehung 1 beschleunigen und fügen daher der Datenbrokergruppe A einen neuen Datenbroker hinzu. Da Gruppe A auch die Synchronisierungsbeziehung 3 verwaltet, wird die Synchronisierungsleistung für die Beziehung ebenfalls automatisch beschleunigt.
+
+.Schritte
+. Stellen Sie sicher, dass mindestens einer der vorhandenen Datenbroker in der Beziehung online ist.
+. Navigieren Sie vom *Dashboard* zur Synchronisierungsbeziehung und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+. Wählen Sie *Beschleunigen*.
+. Folgen Sie den Anweisungen, um einen neuen Datenbroker zu erstellen.
+
+
+.Ergebnis
+Copy and Sync fügt den neuen Datenbroker der Gruppe hinzu.  Die Leistung der nächsten Datensynchronisierung sollte beschleunigt werden.
+
+
+
+== Anmeldeinformationen aktualisieren
+
+Sie können den Datenbroker mit den neuesten Anmeldeinformationen der Quelle oder des Ziels in einer vorhandenen Synchronisierungsbeziehung aktualisieren.  Das Aktualisieren der Anmeldeinformationen kann hilfreich sein, wenn Ihre Sicherheitsrichtlinien eine regelmäßige Aktualisierung der Anmeldeinformationen erfordern.
+
+Das Aktualisieren von Anmeldeinformationen wird für jede Quelle oder jedes Ziel unterstützt, für das Copy and Sync Anmeldeinformationen erfordert: Azure Blob, Box, IBM Cloud Object Storage, StorageGRID, ONTAP S3 Storage, SFTP und SMB-Server.
+
+.Schritte
+. Gehen Sie im *Sync-Dashboard* zu einer Synchronisierungsbeziehung, die Anmeldeinformationen erfordert, und wählen Sie dann *Anmeldeinformationen aktualisieren* aus.
++
+image:screenshot_sync_update_credentials.png["Ein Screenshot, der die Option „Anmeldeinformationen aktualisieren“ auf der Seite „Beziehungen synchronisieren“ direkt unter dem Namen der Quelle oder des Ziels zeigt."]
+
+. Geben Sie die Anmeldeinformationen ein und wählen Sie *Aktualisieren*.
++
+Ein Hinweis zu SMB-Servern: Wenn die Domäne neu ist, müssen Sie sie beim Aktualisieren der Anmeldeinformationen angeben.  Wenn sich die Domäne nicht geändert hat, müssen Sie sie nicht erneut eingeben.
+
++
+Wenn Sie beim Erstellen der Synchronisierungsbeziehung eine Domäne eingegeben haben, beim Aktualisieren der Anmeldeinformationen jedoch keine neue Domäne eingeben, verwendet Copy and Sync weiterhin die von Ihnen angegebene ursprüngliche Domäne.
+
+
+
+.Ergebnis
+Kopieren und Synchronisieren aktualisiert die Anmeldeinformationen auf dem Datenbroker.  Es kann bis zu 10 Minuten dauern, bis der Datenbroker beginnt, die aktualisierten Anmeldeinformationen für die Datensynchronisierung zu verwenden.
+
+
+
+== Benachrichtigungen einrichten
+
+Über eine *Benachrichtigungs*-Einstellung für jede Synchronisierungsbeziehung können Sie auswählen, ob Sie Kopier- und Synchronisierungsbenachrichtigungen im Benachrichtigungscenter der NetApp Konsole erhalten möchten.  Sie können Benachrichtigungen für erfolgreiche, fehlgeschlagene und abgebrochene Datensynchronisierungen aktivieren.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-copy-sync/main/media/screenshot-notification-center.png["Ein Screenshot, der das Benachrichtigungscenter in der NetApp -Konsole zeigt."]
+
+Darüber hinaus können Sie Benachrichtigungen auch per E-Mail erhalten.
+
+.Schritte
+. Ändern Sie die Einstellungen für eine Synchronisierungsbeziehung:
++
+.. Navigieren Sie vom *Dashboard* zur Synchronisierungsbeziehung und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+.. Wählen Sie *Einstellungen*.
+.. Aktivieren Sie *Benachrichtigungen*.
+.. Wählen Sie *Einstellungen speichern*.
+
+
+. Wenn Sie Benachrichtigungen per E-Mail erhalten möchten, konfigurieren Sie die Warn- und Benachrichtigungseinstellungen:
++
+.. Wählen Sie *Einstellungen > Warn- und Benachrichtigungseinstellungen*.
+.. Wählen Sie einen oder mehrere Benutzer aus und wählen Sie den Benachrichtigungstyp *Info*.
+.. Wählen Sie *Übernehmen*.
+
+
+
+
+.Ergebnis
+Sie erhalten jetzt Kopier- und Synchronisierungsbenachrichtigungen im Benachrichtigungscenter der NetApp Konsole. Einige Benachrichtigungen kommen auch per E-Mail, wenn Sie diese Option konfiguriert haben.
+
+
+
+== Ändern der Einstellungen für eine Synchronisierungsbeziehung
+
+Ändern Sie Einstellungen, die definieren, wie Quelldateien und -ordner am Zielspeicherort synchronisiert und verwaltet werden.
+
+. Navigieren Sie vom *Dashboard* zur Synchronisierungsbeziehung und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+. Wählen Sie *Einstellungen*.
+. Ändern Sie die Einstellungen nach Belieben.
++
+image:screenshot_sync_settings.png["Ein Screenshot, der die Einstellungen für eine Synchronisierungsbeziehung zeigt."]
+
++
+[[deleteonsource]] Hier ist eine kurze Beschreibung jeder Einstellung:
+
++
+Zeitplan:: Wählen Sie einen wiederkehrenden Zeitplan für zukünftige Synchronisierungen oder deaktivieren Sie den Synchronisierungszeitplan.  Sie können eine Beziehung so planen, dass die Daten alle 1 Minute synchronisiert werden.
+Synchronisierungs-Timeout:: Legen Sie fest, ob Copy and Sync eine Datensynchronisierung abbrechen soll, wenn die Synchronisierung nicht innerhalb der angegebenen Anzahl von Minuten, Stunden oder Tagen abgeschlossen wurde.
+Benachrichtigungen:: Ermöglicht Ihnen die Auswahl, ob Sie Kopier- und Synchronisierungsbenachrichtigungen im Benachrichtigungscenter der NetApp Konsole erhalten möchten.  Sie können Benachrichtigungen für erfolgreiche, fehlgeschlagene und abgebrochene Datensynchronisierungen aktivieren.
++
+--
+Wenn Sie Benachrichtigungen erhalten möchten für
+
+--
+Wiederholungsversuche:: Legen Sie fest, wie oft Copy and Sync erneut versuchen soll, eine Datei zu synchronisieren, bevor sie übersprungen wird.
+Vergleichen nach:: Wählen Sie, ob Copy and Sync bestimmte Attribute vergleichen soll, wenn festgestellt wird, ob sich eine Datei oder ein Verzeichnis geändert hat und erneut synchronisiert werden soll.
++
+--
+Auch wenn Sie diese Attribute deaktivieren, vergleicht Copy and Sync die Quelle dennoch mit dem Ziel, indem es die Pfade, Dateigrößen und Dateinamen überprüft.  Wenn es Änderungen gibt, werden diese Dateien und Verzeichnisse synchronisiert.
+
+Sie können den Vergleich der folgenden Attribute durch Kopieren und Synchronisieren aktivieren oder deaktivieren:
+
+** *mtime*: Die letzte Änderungszeit einer Datei.  Dieses Attribut ist für Verzeichnisse nicht gültig.
+** *uid*, *gid* und *mode*: Berechtigungsflags für Linux.
+
+
+--
+Kopieren für Objekte:: Sie können diese Option nicht mehr bearbeiten, nachdem Sie die Beziehung erstellt haben.
+Kürzlich geänderte Dateien:: Wählen Sie aus, ob Dateien ausgeschlossen werden sollen, die vor der geplanten Synchronisierung kürzlich geändert wurden.
+Dateien auf der Quelle löschen:: Wählen Sie, ob Dateien vom Quellspeicherort gelöscht werden sollen, nachdem Copy and Sync die Dateien an den Zielspeicherort kopiert hat.  Bei dieser Option besteht das Risiko eines Datenverlusts, da die Quelldateien nach dem Kopieren gelöscht werden.
++
+--
+Wenn Sie diese Option aktivieren, müssen Sie auch einen Parameter in der Datei local.json auf dem Datenbroker ändern.  Öffnen Sie die Datei und aktualisieren Sie sie wie folgt:
+
+[source, json]
+----
+{
+"workers":{
+"transferrer":{
+"delete-on-source": true
+}
+}
+}
+----
+Nach der Aktualisierung der Datei local.json sollten Sie einen Neustart durchführen: `pm2 restart all` .
+
+--
+Dateien auf dem Ziel löschen:: Wählen Sie das Löschen von Dateien vom Zielspeicherort aus, wenn diese vom Quellspeicherort gelöscht wurden.  Standardmäßig werden Dateien nie vom Zielspeicherort gelöscht.
+Dateitypen:: Definieren Sie die Dateitypen, die bei jeder Synchronisierung berücksichtigt werden sollen: Dateien, Verzeichnisse, symbolische Links und Hardlinks.
++
+--
+
+NOTE: Hardlinks sind nur für ungesicherte NFS-zu-NFS-Beziehungen verfügbar.  Benutzer sind auf einen Scanvorgang und eine Scanner-Parallelität beschränkt und Scans müssen von einem Stammverzeichnis aus ausgeführt werden.
+
+--
+Dateierweiterungen ausschließen:: Geben Sie den regulären Ausdruck oder die Dateierweiterungen an, die von der Synchronisierung ausgeschlossen werden sollen, indem Sie die Dateierweiterung eingeben und die Eingabetaste drücken.  Geben Sie beispielsweise _log_ oder _.log_ ein, um *.log-Dateien auszuschließen.  Bei mehreren Erweiterungen ist kein Trennzeichen erforderlich.  Das folgende Video bietet eine kurze Demo:
++
+--
+.Dateierweiterungen für eine Synchronisierungsbeziehung ausschließen
+video::7f957dbf-9215-41ea-a705-b24c010b2212[panopto]
+
+NOTE: Regex oder reguläre Ausdrücke unterscheiden sich von Platzhaltern oder Glob-Ausdrücken.  Diese Funktion funktioniert *nur* mit regulären Ausdrücken.
+
+--
+Verzeichnisse ausschließen:: Geben Sie maximal 15 reguläre Ausdrücke oder Verzeichnisse an, die von der Synchronisierung ausgeschlossen werden sollen, indem Sie deren Namen oder den vollständigen Verzeichnispfad eingeben und die Eingabetaste drücken.  Die Verzeichnisse .copy-offload, .snapshot und ~snapshot sind standardmäßig ausgeschlossen.
++
+--
+
+NOTE: Regex oder reguläre Ausdrücke unterscheiden sich von Platzhaltern oder Glob-Ausdrücken.  Diese Funktion funktioniert *nur* mit regulären Ausdrücken.
+
+--
+Dateigröße:: Wählen Sie, ob alle Dateien unabhängig von ihrer Größe oder nur Dateien in einem bestimmten Größenbereich synchronisiert werden sollen.
+Änderungsdatum:: Wählen Sie alle Dateien unabhängig vom Datum der letzten Änderung, Dateien, die nach einem bestimmten Datum, vor einem bestimmten Datum oder innerhalb eines bestimmten Zeitraums geändert wurden.
+Erstellungsdatum:: Wenn ein SMB-Server die Quelle ist, können Sie mit dieser Einstellung Dateien synchronisieren, die nach einem bestimmten Datum, vor einem bestimmten Datum oder innerhalb eines bestimmten Zeitraums erstellt wurden.
+ACL – Zugriffskontrollliste:: Kopieren Sie nur ACLs, nur Dateien oder ACLs und Dateien von einem SMB-Server, indem Sie beim Erstellen einer Beziehung oder nach dem Erstellen einer Beziehung eine Einstellung aktivieren.
+
+
+. Wählen Sie *Einstellungen speichern*.
+
+
+.Ergebnis
+„Kopieren und Synchronisieren“ ändert die Synchronisierungsbeziehung mit den neuen Einstellungen.
+
+
+
+== Beziehungen löschen
+
+Sie können eine Synchronisierungsbeziehung löschen, wenn Sie keine Daten mehr zwischen Quelle und Ziel synchronisieren müssen.  Durch diese Aktion werden weder die Data Broker-Gruppe (oder die einzelnen Data Broker-Instanzen) noch die Daten aus dem Ziel gelöscht.
+
+
+
+=== Option 1: Löschen einer einzelnen Synchronisierungsbeziehung
+
+.Schritte
+. Navigieren Sie vom *Dashboard* zur Synchronisierungsbeziehung und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+. Wählen Sie *Löschen* und dann zur Bestätigung erneut *Löschen*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren löscht die Synchronisierungsbeziehung.
+
+
+
+=== Option 2: Mehrere Synchronisierungsbeziehungen löschen
+
+.Schritte
+. Navigieren Sie im *Dashboard* zur Schaltfläche „Neue Synchronisierung erstellen“ und wählen Sieimage:icon-sync-action.png["Ein Screenshot der Schaltfläche, mit der Sie Aktionen für eine Synchronisierungsbeziehung ausführen können"]
+. Wählen Sie die Synchronisierungsbeziehungen aus, die Sie löschen möchten, wählen Sie *Löschen* und wählen Sie dann zur Bestätigung erneut *Löschen*.
+
+
+.Ergebnis
+Kopieren und Synchronisieren löscht die Synchronisierungsbeziehungen.

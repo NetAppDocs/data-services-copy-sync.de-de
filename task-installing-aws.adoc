@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: task-installing-aws.html 
+keywords: data broker, install, aws, networking, permissions, regions, install data broker in aws, install in aws, deploy in aws, deploy data broker in aws, cft, template, iam role, use your own iam role, regions, supported regions, networking requirements, port, ports, 443, port 443, ntp, network time protocol, permissions, iam role, iam permissions, aws data broker 
+summary: Wenn Sie einen neuen Datenbroker erstellen, wählen Sie die Option „AWS-Datenbroker“, um die Datenbroker-Software auf einer neuen EC2-Instance in einer VPC bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen. 
+---
+= Erstellen Sie einen neuen Datenbroker in AWS für NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine neue Datenbrokergruppe für NetApp Copy and Sync erstellen, wählen Sie Amazon Web Services, um die Datenbrokersoftware auf einer neuen EC2-Instance in einer VPC bereitzustellen.  NetApp Copy and Sync führt Sie durch den Installationsprozess, die Anforderungen und Schritte werden auf dieser Seite jedoch wiederholt, um Sie bei der Vorbereitung der Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Datenbroker auf einem vorhandenen Linux-Host in der Cloud oder bei Ihnen vor Ort zu installieren. link:task-installing-linux.html["Mehr erfahren"] .
+
+
+
+== Unterstützte AWS-Regionen
+
+Alle Regionen außer China werden unterstützt.
+
+
+
+== Root-Berechtigungen
+
+Die Data Broker-Software wird automatisch als Root auf dem Linux-Host ausgeführt.  Für Data Broker-Operationen ist die Ausführung als Root erforderlich.  Beispielsweise zum Mounten von Freigaben.
+
+
+
+== Netzwerkanforderungen
+
+* Der Datenbroker benötigt eine ausgehende Internetverbindung, damit er Copy and Sync über Port 443 nach Aufgaben abfragen kann.
++
+Wenn Copy and Sync den Datenbroker in AWS bereitstellt, wird eine Sicherheitsgruppe erstellt, die die erforderliche ausgehende Kommunikation ermöglicht.  Beachten Sie, dass Sie den Datenbroker während des Installationsvorgangs so konfigurieren können, dass er einen Proxyserver verwendet.
+
++
+Wenn Sie die ausgehende Konnektivität einschränken müssen, lesen Sielink:reference-networking.html["die Liste der Endpunkte, die der Datenbroker kontaktiert"] .
+
+* NetApp empfiehlt, Quelle, Ziel und Datenbroker für die Verwendung eines Network Time Protocol (NTP)-Dienstes zu konfigurieren.  Der Zeitunterschied zwischen den drei Komponenten sollte 5 Minuten nicht überschreiten.
+
+
+
+
+== Erforderliche Berechtigungen zum Bereitstellen des Datenbrokers in AWS
+
+Das AWS-Benutzerkonto, das Sie zum Bereitstellen des Datenbrokers verwenden, muss über die in https://s3.amazonaws.com/metadata.datafabric.io/docs/aws_iam_policy.json["diese von NetApp bereitgestellte Richtlinie"^] .
+
+
+
+== [[iam]]Voraussetzungen zur Nutzung einer eigenen IAM-Rolle beim AWS-Datenbroker
+
+Wenn Copy and Sync den Datenbroker bereitstellt, wird eine IAM-Rolle für die Datenbrokerinstanz erstellt. Sie können den Datenbroker bei Bedarf mit Ihrer eigenen IAM-Rolle bereitstellen.  Sie können diese Option verwenden, wenn in Ihrer Organisation strenge Sicherheitsrichtlinien gelten.
+
+Die IAM-Rolle muss die folgenden Anforderungen erfüllen:
+
+* Dem EC2-Dienst muss gestattet werden, die IAM-Rolle als vertrauenswürdige Entität zu übernehmen.
+* link:media/aws_iam_policy_data_broker.json["Die in dieser JSON-Datei definierten Berechtigungen"^]muss an die IAM-Rolle angehängt werden, damit der Datenbroker ordnungsgemäß funktionieren kann.
+
+
+Führen Sie die folgenden Schritte aus, um die IAM-Rolle beim Bereitstellen des Datenbrokers anzugeben.
+
+
+
+== Erstellen des Datenbrokers
+
+Es gibt mehrere Möglichkeiten, einen neuen Datenbroker zu erstellen.  Diese Schritte beschreiben, wie Sie beim Erstellen einer Synchronisierungsbeziehung einen Datenbroker in AWS installieren.
+
+.Schritte
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie *Neue Synchronisierung erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker Group* gelangen.
+
+. Wählen Sie auf der Seite *Data Broker Group* die Option *Create Data Broker* und dann *Amazon Web Services* aus.
++
+image:screenshot-aws.png["Ein Screenshot der Data Broker-Seite, auf der Sie zwischen einem AWS-, Azure-, Google Cloud- und On-Prem-Data Broker wählen können."]
+
+. Geben Sie einen Namen für den Datenbroker ein und wählen Sie *Weiter*.
+. Geben Sie einen AWS-Zugriffsschlüssel ein, damit Copy and Sync den Datenbroker in AWS in Ihrem Namen erstellen kann.
++
+Die Schlüssel werden nicht gespeichert oder für andere Zwecke verwendet.
+
++
+Wenn Sie keine Zugriffsschlüssel angeben möchten, wählen Sie den Link unten auf der Seite aus, um stattdessen eine CloudFormation-Vorlage zu verwenden.  Wenn Sie diese Option verwenden, müssen Sie keine Anmeldeinformationen angeben, da Sie sich direkt bei AWS anmelden.
+
++
+[[cft]]Das folgende Video zeigt, wie Sie die Data Broker-Instanz mithilfe einer CloudFormation-Vorlage starten:
+
++
+.Starten Sie einen Datenbroker aus einer AWS CloudFormation-Vorlage
+video::abaf0898-ea15-4f84-938e-b24c010b21e8[panopto]
+. Wenn Sie einen AWS-Zugriffsschlüssel eingegeben haben, wählen Sie einen Speicherort für die Instanz aus, wählen Sie ein Schlüsselpaar aus, entscheiden Sie, ob eine öffentliche IP-Adresse aktiviert werden soll, und wählen Sie eine vorhandene IAM-Rolle aus oder lassen Sie das Feld leer, damit Copy and Sync die Rolle für Sie erstellt.  Sie haben außerdem die Möglichkeit, Ihren Datenbroker mit einem KMS-Schlüssel zu verschlüsseln.
++
+Wenn Sie Ihre eigene IAM-Rolle wählen,<<iam,Sie müssen die erforderlichen Berechtigungen erteilen>> .
+
++
+image:screenshot_aws_data_broker.png["Ein Screenshot der Informationen, die Sie beim Bereitstellen eines Datenbrokers in AWS angeben müssen."]
+
+. Geben Sie eine Proxy-Konfiguration an, wenn für den Internetzugriff in der VPC ein Proxy erforderlich ist.
+. Nachdem der Datenbroker verfügbar ist, wählen Sie unter „Kopieren und Synchronisieren“ die Option „Weiter“ aus.
++
+Das folgende Bild zeigt eine erfolgreich bereitgestellte Instanz in AWS:
+
++
+image:screenshot-data-broker-group-selected.png["Dieser Screenshot zeigt eine erfolgreich bereitgestellte Instanz.  Die Schnittstelle zeigt Details zur Instanz, einschließlich des AWS-Netzwerks."]
+
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+.Ergebnis
+Sie haben einen Datenbroker in AWS bereitgestellt und eine neue Synchronisierungsbeziehung erstellt.  Sie können diese Datenbrokergruppe mit zusätzlichen Synchronisierungsbeziehungen verwenden.
+
+
+
+== Details zur Data Broker-Instanz
+
+Copy and Sync erstellt einen Datenbroker in AWS mit der folgenden Konfiguration.
+
+Node.js-Kompatibilität:: v21.2.0
+Instanztyp:: m5n.xlarge, wenn in der Region verfügbar, andernfalls m5.xlarge
+vCPUs:: 4
+RAM:: 16 GB
+Betriebssystem:: Amazon Linux 2023
+Festplattengröße und -typ:: 10 GB GP2 SSD
+

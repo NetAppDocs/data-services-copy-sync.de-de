@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: task-copying-acls.html 
+keywords: permissions, access control list, acls, ntfs, cifs, smb, shares, robocopy, copy, transfer, activate, operating system, os, ram, cpu, networking, copy acls to the target 
+summary: 'NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben mithilfe von Robocopy manuell beizubehalten.' 
+---
+= Kopieren von ACLs von SMB-Freigaben in NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Copy and Sync kann Zugriffskontrolllisten (ACLs) zwischen SMB-Freigaben und zwischen einer SMB-Freigabe und einem Objektspeicher kopieren (außer ONTAP S3).  Bei Bedarf haben Sie auch die Möglichkeit, ACLs zwischen SMB-Freigaben mithilfe von Robocopy manuell beizubehalten.
+
+.Auswahlmöglichkeiten
+* <<Einrichten von „Kopieren und Synchronisieren“ zum Kopieren von ACLs,Einrichten von „Kopieren und Synchronisieren“, um ACLs automatisch zu kopieren>>
+* <<Manuelles Kopieren von ACLs zwischen SMB-Freigaben,Manuelles Kopieren der ACLs zwischen SMB-Freigaben>>
+
+
+
+
+== Einrichten von „Kopieren und Synchronisieren“ zum Kopieren von ACLs
+
+Kopieren Sie ACLs zwischen SMB-Freigaben und zwischen SMB-Freigaben und Objektspeicher, indem Sie beim Erstellen einer Beziehung oder danach eine Einstellung aktivieren.
+
+.Bevor Sie beginnen
+Diese Funktion funktioniert mit _jedem_ Datenbrokertyp: AWS, Azure, Google Cloud Platform oder On-Premise-Datenbroker.  Der On-Prem-Datenbroker kann ausgeführt werdenlink:task-installing-linux.html["jedes unterstützte Betriebssystem"] .
+
+.Schritte für eine neue Beziehung
+. link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
+. Wählen Sie unter „Kopieren und Synchronisieren“ die Option „Neue Synchronisierung erstellen“ aus.
+. Ziehen Sie per Drag & Drop einen SMB-Server oder Objektspeicher als Quelle und einen SMB-Server oder Objektspeicher als Ziel und wählen Sie *Weiter*.
+. Auf der Seite *SMB-Server*:
++
+.. Geben Sie einen neuen SMB-Server ein oder wählen Sie einen vorhandenen Server aus und wählen Sie *Weiter*.
+.. Geben Sie die Anmeldeinformationen für den SMB-Server ein.
+.. Wählen Sie entweder *Nur Dateien kopieren*, *Nur ACL kopieren* oder *Dateien und ACL kopieren* und wählen Sie *Weiter*.
++
+image:screenshot_acl_support.png["Ein Screenshot, der die Option zum Aktivieren des Kopierens von Zugriffskontrolllisten auf das Ziel zeigt."]
+
+
+
+. Folgen Sie den weiteren Anweisungen, um die Synchronisierungsbeziehung zu erstellen.
++
+Wenn Sie ACLs von SMB in den Objektspeicher kopieren, können Sie je nach Ziel wählen, ob die ACLs in die Tags des Objekts oder in die Metadaten des Objekts kopiert werden sollen.  Für Azure und Google Cloud Storage ist nur die Metadatenoption verfügbar.
+
++
+Der folgende Screenshot zeigt ein Beispiel für den Schritt, in dem Sie diese Auswahl treffen können.
+
++
+image:screenshot-sync-tags-metadata.png["Ein Screenshot des sechsten Schritts im Assistenten zum Synchronisieren von Beziehungen beim Kopieren in den Objektspeicher.  Sie können die ACLs in den Tags oder Metadaten des Objekts speichern."]
+
+
+
+.Schritte für eine bestehende Beziehung
+. Bewegen Sie den Mauszeiger über die Synchronisierungsbeziehung und wählen Sie das Aktionsmenü aus.
+. Wählen Sie *Einstellungen*.
+. Wählen Sie entweder *Nur Dateien kopieren*, *Nur ACL kopieren* oder *Dateien und ACL kopieren* und wählen Sie *Weiter*.
+. Wählen Sie *Einstellungen speichern*.
+
+
+.Ergebnis
+Beim Synchronisieren von Daten behält Copy and Sync die ACLs zwischen Quelle und Ziel bei.
+
+
+
+== Manuelles Kopieren von ACLs zwischen SMB-Freigaben
+
+Sie können ACLs zwischen SMB-Freigaben manuell beibehalten, indem Sie den Windows-Befehl „Robocopy“ verwenden.
+
+.Schritte
+. Identifizieren Sie einen Windows-Host, der vollen Zugriff auf beide SMB-Freigaben hat.
+. Wenn einer der Endpunkte eine Authentifizierung erfordert, verwenden Sie den Befehl *net use*, um vom Windows-Host aus eine Verbindung zu den Endpunkten herzustellen.
++
+Sie müssen diesen Schritt ausführen, bevor Sie Robocopy verwenden.
+
+. Erstellen Sie über „Kopieren und Synchronisieren“ eine neue Beziehung zwischen den Quell- und Ziel-SMB-Freigaben oder synchronisieren Sie eine vorhandene Beziehung.
+. Nachdem die Datensynchronisierung abgeschlossen ist, führen Sie den folgenden Befehl vom Windows-Host aus, um die ACLs und den Besitz zu synchronisieren:
++
+ robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
++
+Sowohl _source_ als auch _target_ sollten im UNC-Format angegeben werden.  Beispiel: \\<Server>\<Freigabe>\<Pfad>
+
+

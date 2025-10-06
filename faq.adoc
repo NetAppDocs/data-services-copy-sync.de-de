@@ -1,0 +1,413 @@
+---
+sidebar: sidebar 
+permalink: faq.html 
+keywords: community, forums, help, support, videos, faq, getting help, permissions, access control lists, acls, preserve, preserving, troubleshooting, support, encryption, smb 
+summary: Sie können Hilfe zu NetApp Copy and Sync erhalten und weitere Informationen über verschiedene Ressourcen finden, darunter Foren, Chat-Dienste und Videos. 
+---
+= Technische FAQ zu NetApp Copy and Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Diese FAQ können hilfreich sein, wenn Sie nur schnell eine Antwort auf eine Frage suchen.
+
+
+
+== Erste Schritte
+
+Die folgenden Fragen beziehen sich auf die ersten Schritte mit NetApp Copy and Sync.
+
+
+
+=== Wie funktioniert NetApp Copy and Sync?
+
+Copy and Sync verwendet die NetApp Data Broker-Software, um Daten von einer Quelle mit einem Ziel zu synchronisieren (dies wird als _Synchronisierungsbeziehung_ bezeichnet).
+
+Eine Datenbrokergruppe steuert die Synchronisierungsbeziehungen zwischen Ihren Quellen und Zielen.  Nachdem Sie eine Synchronisierungsbeziehung eingerichtet haben, analysiert Copy and Sync Ihr Quellsystem und unterteilt es in mehrere Replikationsströme, um die Daten an die von Ihnen ausgewählten Zielsysteme zu übertragen.
+
+Nach der ersten Kopie synchronisiert Copy and Sync alle geänderten Daten basierend auf dem von Ihnen festgelegten Zeitplan.
+
+
+
+=== Wie funktioniert die 14-tägige kostenlose Testversion?
+
+Die 14-tägige kostenlose Testversion beginnt, wenn Sie sich für Copy and Sync anmelden.  Für die von Ihnen erstellten Kopier- und Synchronisierungsbeziehungen fallen 14 Tage lang keine NetApp -Gebühren an.  Es fallen jedoch weiterhin alle Ressourcengebühren für alle von Ihnen bereitgestellten Datenbroker an.
+
+
+
+=== Wie viel kostet Copy and Sync?
+
+Mit der Verwendung von Copy and Sync sind zwei Arten von Kosten verbunden: Servicegebühren und Ressourcengebühren.
+
+*Servicegebühren*
+
+Bei der nutzungsbasierten Preisgestaltung werden die Gebühren für den Kopier- und Synchronisierungsdienst stündlich berechnet und basieren auf der Anzahl der von Ihnen erstellten Synchronisierungsbeziehungen.
+
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["Pay-as-you-go-Preise in AWS anzeigen"^]
+* https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Jährliche Preise in AWS anzeigen"^]
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["Preise in Azure anzeigen"^]
+
+
+Kopier- und Synchronisierungslizenzen sind auch über Ihren NetApp Vertreter erhältlich.  Jede Lizenz ermöglicht 20 Synchronisierungsbeziehungen für 12 Monate.
+
+link:concept-licensing.html["Mehr über Lizenzen erfahren"] .
+
+
+NOTE: Kopier- und Synchronisierungsbeziehungen sind für Azure NetApp Files kostenlos.
+
+*Ressourcenkosten*
+
+Die Ressourcengebühren beziehen sich auf die Rechen- und Speicherkosten für den Betrieb des Datenbrokers in der Cloud.
+
+
+
+=== Wie wird Copy and Sync abgerechnet und wie verwalte ich mein Abonnement?
+
+Es gibt zwei Möglichkeiten, nach Ablauf Ihrer 14-tägigen kostenlosen Testversion für Synchronisierungsbeziehungen zu bezahlen.  Die erste Möglichkeit besteht darin, ein Abonnement bei AWS oder Azure abzuschließen, bei dem Sie nach Verbrauch oder jährlich zahlen können.  Die zweite Möglichkeit besteht darin, Lizenzen direkt von NetApp zu erwerben.  In jedem Fall wird Ihr Abonnement über den Marktplatz Ihres Anbieters und *nicht* über die Copy-and-Sync-Benutzeroberfläche verwaltet.
+
+
+
+=== Kann ich Copy and Sync außerhalb der Cloud verwenden?
+
+Ja, Sie können Copy and Sync in einer Nicht-Cloud-Architektur verwenden.  Quelle und Ziel können sich vor Ort befinden, ebenso wie die Datenbroker-Software.
+
+Beachten Sie die folgenden wichtigen Punkte zur Verwendung von Copy and Sync außerhalb der Cloud:
+
+* Eine Datenbrokergruppe benötigt eine Internetverbindung, um mit Copy and Sync zu kommunizieren.
+* Wenn Sie keine Lizenz direkt von NetApp erwerben, benötigen Sie für die PAYGO Copy and Sync-Abrechnung ein AWS- oder Azure-Konto.
+
+
+
+
+=== Wie greife ich auf „Kopieren und Synchronisieren“ zu?
+
+Kopieren und Synchronisieren ist über die NetApp Konsole verfügbar.  Wählen Sie in der linken Navigation der Konsole *Mobilität* > *Kopieren und Synchronisieren*.
+
+
+
+=== Was ist eine Datenbrokergruppe?
+
+Jeder Datenbroker gehört zu einer Datenbrokergruppe.  Durch die Gruppierung von Datenbrokern lässt sich die Leistung von Synchronisierungsbeziehungen verbessern.
+
+
+
+== Unterstützte Quellen und Ziele
+
+Die folgenden Fragen beziehen sich auf die Quelle und die Ziele, die in einer Synchronisierungsbeziehung unterstützt werden.
+
+
+
+=== Welche Quellen und Ziele werden von Copy and Sync unterstützt?
+
+Copy and Sync unterstützt viele verschiedene Arten von Synchronisierungsbeziehungen. link:reference-supported-relationships.html["Gesamte Liste anzeigen"] .
+
+
+
+=== Welche Versionen von NFS und SMB werden von Copy and Sync unterstützt?
+
+Copy and Sync unterstützt NFS Version 3 und höher sowie SMB Version 1 und höher.
+
+link:reference-requirements.html["Erfahren Sie mehr über die Synchronisierungsanforderungen"] .
+
+
+
+=== Wenn Amazon S3 das Ziel ist, können die Daten auf eine bestimmte S3-Speicherklasse verschoben werden?
+
+Ja, Sie können eine bestimmte S3-Speicherklasse auswählen, wenn AWS S3 das Ziel ist:
+
+* Standard (dies ist die Standardklasse)
+* Intelligentes Tiering
+* Standardmäßiger, seltener Zugriff
+* Eine Zone – seltener Zugriff
+* Glacier Deep Archiv
+* Flexible Gletscherrückgewinnung
+* Sofortiger Gletscherabruf
+
+
+
+
+=== Was ist mit Speicherebenen für Azure Blob Storage?
+
+Sie können eine bestimmte Azure Blob-Speicherebene auswählen, wenn ein Blob-Container das Ziel ist:
+
+* Heiße Lagerung
+* Kühle Lagerung
+
+
+
+
+=== Unterstützen Sie Google Cloud-Speicherebenen?
+
+Ja, Sie können eine bestimmte Speicherklasse auswählen, wenn ein Google Cloud Storage-Bucket das Ziel ist:
+
+* Standard
+* Nearline
+* Coldline
+* Archiv
+
+
+
+
+== Vernetzung
+
+Die folgenden Fragen beziehen sich auf die Netzwerkanforderungen für Copy and Sync.
+
+
+
+=== Welche Netzwerkanforderungen gelten für Copy and Sync?
+
+Die Copy-and-Sync-Umgebung erfordert, dass eine Datenbrokergruppe über das ausgewählte Protokoll oder die Objektspeicher-API (Amazon S3, Azure Blob, IBM Cloud Object Storage) mit der Quelle und dem Ziel verbunden ist.
+
+Darüber hinaus benötigt eine Datenbrokergruppe eine ausgehende Internetverbindung über Port 443, damit sie mit Copy and Sync kommunizieren und einige andere Dienste und Repositories kontaktieren kann.
+
+Weitere Einzelheiten erfahren Sie unterlink:reference-networking.html["Überprüfen Sie die Netzwerkanforderungen"] .
+
+
+
+=== Kann ich mit dem Datenbroker einen Proxyserver verwenden?
+
+Ja.
+
+Copy and Sync unterstützt Proxyserver mit oder ohne Basisauthentifizierung.  Wenn Sie beim Bereitstellen eines Datenbrokers einen Proxyserver angeben, wird der gesamte HTTP- und HTTPS-Verkehr vom Datenbroker über den Proxy geleitet.  Beachten Sie, dass Nicht-HTTP-Verkehr wie NFS oder SMB nicht über einen Proxyserver geleitet werden kann.
+
+Die einzige Einschränkung des Proxyservers besteht bei der Verwendung der Data-in-Flight-Verschlüsselung mit einer NFS- oder Azure NetApp Files Synchronisierungsbeziehung.  Die verschlüsselten Daten werden über HTTPS gesendet und können nicht über einen Proxyserver weitergeleitet werden.
+
+
+
+== Datensynchronisation
+
+Die folgenden Fragen beziehen sich auf die Funktionsweise der Datensynchronisierung.
+
+
+
+=== Wie oft erfolgt die Synchronisierung?
+
+Der Standardzeitplan ist auf tägliche Synchronisierung eingestellt.  Nach der ersten Synchronisierung können Sie:
+
+* Ändern Sie den Synchronisierungsplan auf die gewünschte Anzahl von Tagen, Stunden oder Minuten
+* Deaktivieren des Synchronisierungszeitplans
+* Löschen Sie den Synchronisierungsplan (es gehen keine Daten verloren; nur die Synchronisierungsbeziehung wird entfernt).
+
+
+
+
+=== Was ist der Mindestsynchronisierungsplan?
+
+Sie können eine Beziehung so planen, dass die Daten alle 1 Minute synchronisiert werden.
+
+
+
+=== Führt die Datenbrokergruppe einen erneuten Versuch aus, wenn die Synchronisierung einer Datei fehlschlägt?  Oder läuft es ab?
+
+Bei einer Datenbrokergruppe kommt es nicht zu einer Zeitüberschreitung, wenn die Übertragung einer einzelnen Datei fehlschlägt.  Stattdessen unternimmt die Datenbrokergruppe drei Neuversuche, bevor sie die Datei überspringt.  Der Wiederholungswert kann in den Einstellungen für eine Synchronisierungsbeziehung konfiguriert werden.
+
+link:task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Erfahren Sie, wie Sie die Einstellungen für eine Synchronisierungsbeziehung ändern"] .
+
+
+
+=== Was ist, wenn ich einen sehr großen Datensatz habe?
+
+Wenn ein einzelnes Verzeichnis 600.000 Dateien oder mehr enthält,link:task-get-help.html["Kontakt"] damit wir Ihnen bei der Konfiguration der Datenbrokergruppe zur Handhabung der Nutzlast helfen können. Möglicherweise müssen wir der Datenbrokergruppe zusätzlichen Speicher hinzufügen.
+
+Beachten Sie, dass es keine Begrenzung für die Gesamtzahl der Dateien im Einhängepunkt gibt.  Der zusätzliche Speicher wird für große Verzeichnisse mit 600.000 oder mehr Dateien benötigt, unabhängig von ihrer Ebene in der Hierarchie (oberstes Verzeichnis oder Unterverzeichnis).
+
+
+
+== Sicherheit
+
+Die folgenden Fragen beziehen sich auf die Sicherheit.
+
+
+
+=== Ist Kopieren und Synchronisieren sicher?
+
+Ja. Die gesamte Copy- und Sync-Netzwerkkonnektivität erfolgt über https://aws.amazon.com/sqs/["Amazon Simple Queue Service (SQS)"^] .
+
+Die gesamte Kommunikation zwischen der Datenbrokergruppe und Amazon S3, Azure Blob, Google Cloud Storage und IBM Cloud Object Storage erfolgt über das HTTPS-Protokoll.
+
+Wenn Sie Copy and Sync mit lokalen Systemen (Quell- oder Zielsystemen) verwenden, finden Sie hier einige empfohlene Verbindungsoptionen:
+
+* Eine AWS Direct Connect-, Azure ExpressRoute- oder Google Cloud Interconnect-Verbindung, die nicht über das Internet geroutet wird (und nur mit den von Ihnen angegebenen Cloud-Netzwerken kommunizieren kann)
+* Eine VPN-Verbindung zwischen Ihrem lokalen Gateway-Gerät und Ihren Cloud-Netzwerken
+* Für eine besonders sichere Datenübertragung mit S3-Buckets, Azure Blob Storage oder Google Cloud Storage können ein Amazon Private S3 Endpoint, Azure Virtual Network-Dienstendpunkte oder ein privater Google-Zugriff eingerichtet werden.
+
+
+Jede dieser Methoden stellt eine sichere Verbindung zwischen Ihren lokalen NAS-Servern und einer Copy-and-Sync-Datenbrokergruppe her.
+
+
+
+=== Werden die Daten durch Copy and Sync verschlüsselt?
+
+* Copy and Sync unterstützt die Verschlüsselung von Daten während der Übertragung zwischen Quell- und Ziel-NFS-Servern. link:task-nfs-encryption.html["Mehr erfahren"] .
+* Für SMB unterstützt Copy and Sync SMB 3.0- und 3.11-Daten, die Sie serverseitig verschlüsselt haben.  Kopieren und Synchronisieren kopiert die verschlüsselten Daten von der Quelle zum Ziel, wo die Daten verschlüsselt bleiben.
++
+Copy and Sync kann SMB-Daten selbst nicht verschlüsseln.
+
+* Wenn ein Amazon S3-Bucket das Ziel einer Synchronisierungsbeziehung ist, können Sie wählen, ob Sie die Datenverschlüsselung mit AWS KMS-Verschlüsselung oder AES-256-Verschlüsselung aktivieren möchten.
+* Wenn ein Google Storage-Bucket das Ziel einer Synchronisierungsbeziehung ist, können Sie wählen, ob Sie den standardmäßigen, von Google verwalteten Verschlüsselungsschlüssel oder Ihren eigenen KMS-Schlüssel verwenden möchten.
+
+
+
+
+== Berechtigungen
+
+Die folgenden Fragen beziehen sich auf Datenberechtigungen.
+
+
+
+=== Werden SMB-Datenberechtigungen mit dem Zielspeicherort synchronisiert?
+
+Sie können „Kopieren und Synchronisieren“ so einrichten, dass Zugriffskontrolllisten (ACLs) zwischen einer SMB-Quellfreigabe und einer SMB-Zielfreigabe sowie von einer SMB-Quellfreigabe zum Objektspeicher (außer ONTAP S3) erhalten bleiben.
+
+
+NOTE: Copy and Sync unterstützt nicht das Kopieren von ACLs vom Objektspeicher in SMB-Freigaben.
+
+link:task-copying-acls.html["Erfahren Sie, wie Sie ACLs zwischen SMB-Freigaben kopieren"] .
+
+
+
+=== Werden NFS-Datenberechtigungen mit dem Zielspeicherort synchronisiert?
+
+Copy and Sync kopiert NFS-Berechtigungen automatisch zwischen NFS-Servern wie folgt:
+
+* NFS Version 3: Kopieren und Synchronisieren kopiert die Berechtigungen und den Benutzergruppenbesitzer.
+* NFS Version 4: Kopieren und Synchronisieren kopiert die ACLs.
+
+
+
+
+== Objektspeicher-Metadaten
+
+
+
+=== Welche Arten von Synchronisierungsbeziehungen bewahren die Metadaten des Objektspeichers?
+
+„Kopieren und Synchronisieren“ kopiert Objektspeichermetadaten von der Quelle zum Ziel für die folgenden Arten von Synchronisierungsbeziehungen:
+
+* Amazon S3 -> Amazon S3 ^1^
+* Amazon S3 -> StorageGRID
+* StorageGRID -> Amazon S3
+* StorageGRID -> StorageGRID
+* StorageGRID -> Google Cloud Storage
+* Google Cloud Storage -> StorageGRID ^1^
+* Google Cloud Storage -> IBM Cloud Object Storage ^1^
+* Google Cloud Storage -> Amazon S3 ^1^
+* Amazon S3 -> Google Cloud Storage
+* IBM Cloud Object Storage -> Google Cloud Storage
+* StorageGRID -> IBM Cloud Object Storage
+* IBM Cloud Object Storage -> StorageGRID
+* IBM Cloud Object Storage -> IBM Cloud Object Storage
+
+
+^1^ Für diese Synchronisierungsbeziehungen müssen Sielink:task-creating-relationships.html["Aktivieren Sie die Einstellung „Kopieren für Objekte“, wenn Sie die Synchronisierungsbeziehung erstellen"] .
+
+
+
+=== Welche Arten von Metadaten werden bei Synchronisierungen repliziert, bei denen NFS oder SMB die Quelle sind?
+
+Metadaten wie Benutzer-ID, Änderungszeit, Zugriffszeit und GID werden standardmäßig repliziert.  Benutzer können sich für die Replikation von ACLs aus CIFs entscheiden, indem sie diese beim Erstellen einer Synchronisierungsbeziehung als erforderlich markieren.
+
+
+
+== Performance
+
+Die folgenden Fragen beziehen sich auf die Kopier- und Synchronisierungsleistung.
+
+
+
+=== Was stellt die Fortschrittsanzeige für eine Synchronisierungsbeziehung dar?
+
+Die Synchronisierungsbeziehung zeigt den Durchsatz des Netzwerkadapters der Datenbrokergruppe.  Wenn Sie die Synchronisierungsleistung durch die Verwendung mehrerer Datenbroker beschleunigt haben, ist der Durchsatz die Summe des gesamten Datenverkehrs.  Dieser Durchsatz wird alle 20 Sekunden aktualisiert.
+
+
+
+=== Ich habe Leistungsprobleme.  Können wir die Anzahl gleichzeitiger Übertragungen begrenzen?
+
+Wenn Sie über sehr große Dateien (jeweils mehrere TiB) verfügen, kann der Übertragungsvorgang lange dauern und die Leistung kann beeinträchtigt werden.
+
+Eine Begrenzung der Anzahl gleichzeitiger Übertragungen kann hilfreich sein. link:task-get-help.html["Kontaktieren Sie uns für Hilfe"] .
+
+
+
+=== Warum ist die Leistung bei Azure NetApp Files gering?
+
+Wenn Sie Daten mit oder von Azure NetApp Files synchronisieren, kann es zu Fehlern und Leistungsproblemen kommen, wenn die Datenträgerdienstebene auf „Standard“ eingestellt ist.
+
+Ändern Sie die Serviceebene auf Premium oder Ultra, um die Synchronisierungsleistung zu verbessern.
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["Weitere Informationen zu Azure NetApp Files Serviceleveln und Durchsatz"^] .
+
+
+
+=== Wie viele Datenbroker werden in einer Gruppe benötigt?
+
+Wenn Sie eine neue Beziehung erstellen, beginnen Sie mit einem einzelnen Datenbroker in einer Gruppe (es sei denn, Sie haben einen vorhandenen Datenbroker ausgewählt, der zu einer Beziehung mit beschleunigter Synchronisierung gehört).  In vielen Fällen kann ein einzelner Datenbroker die Leistungsanforderungen für eine Synchronisierungsbeziehung erfüllen.  Wenn dies nicht der Fall ist, können Sie die Synchronisierungsleistung beschleunigen, indem Sie der Gruppe zusätzliche Datenbroker hinzufügen.  Sie sollten jedoch zunächst andere Faktoren prüfen, die die Synchronisierungsleistung beeinträchtigen können.
+
+Die Datenübertragungsleistung kann durch mehrere Faktoren beeinträchtigt werden.  Die Gesamtsynchronisierungsleistung kann durch die Netzwerkbandbreite, Latenz und Netzwerktopologie sowie die VM-Spezifikationen des Datenbrokers und die Leistung des Speichersystems beeinträchtigt werden.  Beispielsweise kann ein einzelner Datenbroker in einer Gruppe 100 MB/s erreichen, während der Festplattendurchsatz auf dem Ziel möglicherweise nur 64 MB/s zulässt.  Dies führt dazu, dass die Datenbrokergruppe weiterhin versucht, die Daten zu kopieren, das Ziel jedoch nicht die Leistung der Datenbrokergruppe erreichen kann.
+
+Überprüfen Sie daher unbedingt die Leistung Ihres Netzwerks und den Festplattendurchsatz auf dem Ziel.
+
+Anschließend können Sie die Synchronisierungsleistung beschleunigen, indem Sie einer Gruppe zusätzliche Datenbroker hinzufügen, um die Last dieser Beziehung zu teilen. link:task-managing-relationships.html#accelerate-sync-performance["Erfahren Sie, wie Sie die Synchronisierungsleistung beschleunigen"] .
+
+
+
+== Dinge löschen
+
+Die folgenden Fragen beziehen sich auf das Löschen von Synchronisierungsbeziehungen und Daten aus Quellen und Zielen.
+
+
+
+=== Was passiert, wenn ich meine Copy-and-Sync-Beziehung lösche?
+
+Durch das Löschen einer Beziehung werden alle zukünftigen Datensynchronisierungen gestoppt und die Zahlung beendet.  Alle mit dem Ziel synchronisierten Daten bleiben unverändert.
+
+
+
+=== Was passiert, wenn ich etwas von meinem Quellserver lösche?  Wird es auch vom Ziel entfernt?
+
+Wenn Sie über eine aktive Synchronisierungsbeziehung verfügen, wird das auf dem Quellserver gelöschte Element bei der nächsten Synchronisierung standardmäßig nicht vom Ziel gelöscht.  Es gibt jedoch eine Option in den Synchronisierungseinstellungen für jede Beziehung, mit der Sie festlegen können, dass „Kopieren und Synchronisieren“ Dateien am Zielspeicherort löscht, wenn sie aus der Quelle gelöscht wurden.
+
+link:task-managing-relationships.html#change-the-settings-for-a-sync-relationship["Erfahren Sie, wie Sie die Einstellungen für eine Synchronisierungsbeziehung ändern"] .
+
+
+
+=== Was passiert, wenn ich etwas aus meinem Ziel lösche?  Wird es auch aus meiner Quelle entfernt?
+
+Wenn ein Element aus dem Ziel gelöscht wird, wird es nicht aus der Quelle entfernt.  Die Beziehung ist einseitig – von der Quelle zum Ziel.  Beim nächsten Synchronisierungszyklus vergleicht Copy and Sync die Quelle mit dem Ziel, stellt fest, dass das Element fehlt, und kopiert es erneut von der Quelle zum Ziel.
+
+
+
+== Fehlerbehebung
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Cloud_Sync/Cloud_Sync_FAQ:_Support_and_Troubleshooting["NetApp Knowledgebase: Häufig gestellte Fragen zu Kopieren und Synchronisieren: Support und Fehlerbehebung"^]
+
+
+
+== Ausführliche Informationen zum Datenbroker
+
+Die folgende Frage bezieht sich auf den Datenbroker.
+
+
+
+=== Können Sie die Architektur des Datenbrokers erläutern?
+
+Sicher.  Hier die wichtigsten Punkte:
+
+* Der Datenbroker ist eine Node.js-Anwendung, die auf einem Linux-Host ausgeführt wird.
+* Copy and Sync stellt den Datenbroker wie folgt bereit:
++
+** AWS: Aus einer AWS CloudFormation-Vorlage
+** Azure: Vom Azure Resource Manager
+** Google: Vom Google Cloud Deployment Manager
+** Wenn Sie Ihren eigenen Linux-Host verwenden, müssen Sie die Software manuell installieren
+
+
+* Die Data Broker-Software aktualisiert sich automatisch auf die neueste Version.
+* Der Datenbroker nutzt AWS SQS als zuverlässigen und sicheren Kommunikationskanal sowie zur Steuerung und Überwachung.  SQS bietet auch eine Persistenzschicht.
+* Sie können einer Gruppe zusätzliche Datenbroker hinzufügen, um die Übertragungsgeschwindigkeit zu erhöhen und eine hohe Verfügbarkeit zu erreichen.  Die Service-Ausfallsicherheit ist gewährleistet, wenn ein Datenbroker ausfällt.
+
