@@ -55,6 +55,9 @@ KMU:: Die SMB-Anmeldeinformationen, die Sie beim Einrichten einer Synchronisieru
 NOTE: Der Datenbroker ignoriert standardmäßig die folgenden Verzeichnisse: .snapshot, ~snapshot, .copy-offload
 
 
+NOTE: Beim Kopieren von SMB-Daten in Cloud Volumes ONTAP mit Copy and Sync werden die Datei- und Ordnerbesitzrechte des Quellsystems nicht beibehalten.  Dieses Verhalten tritt auf, weil Copy and Sync einen Linux-SMB-Client verwendet, der die Besitzrechte dem Benutzer- oder Dienstkonto zuweist, das zur Authentifizierung der Übertragung verwendet wird.  Während Zugriffskontrolllisten beibehalten werden können, können sich die Eigentums- und Prüfinformationen vom Quellsystem unterscheiden. Dies ist ein erwartbares Verhalten.
+
+
 
 == [[s3]]Anforderungen für Amazon S3-Buckets
 

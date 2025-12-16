@@ -63,6 +63,11 @@ image:screenshot-sync-tags-metadata.png["Ein Screenshot des sechsten Schritts im
 . Wählen Sie *Einstellungen speichern*.
 
 
+[NOTE]
+====
+Copy and Sync erhält die SMB-ACLs (Berechtigungen), kopiert aber nicht die Datei- oder Ordnerbesitzverhältnisse.  Die Eigentumsverhältnisse werden bei der SMB-ACL-Übertragung nicht berücksichtigt.
+
+====
 .Ergebnis
 Beim Synchronisieren von Daten behält Copy and Sync die ACLs zwischen Quelle und Ziel bei.
 
@@ -72,6 +77,11 @@ Beim Synchronisieren von Daten behält Copy and Sync die ACLs zwischen Quelle un
 
 Sie können ACLs zwischen SMB-Freigaben manuell beibehalten, indem Sie den Windows-Befehl „Robocopy“ verwenden.
 
+[NOTE]
+====
+Wenn Sie neben den Zugriffskontrolllisten (ACLs) auch die Eigentumsrechte (Besitzer und Gruppe) beibehalten müssen, können Sie Folgendes verwenden: `robocopy` Befehl.  Verwendung der `/copyall` Flag-Kopien enthalten ACLs, Eigentümer- und Audit-Informationen.
+
+====
 .Schritte
 . Identifizieren Sie einen Windows-Host, der vollen Zugriff auf beide SMB-Freigaben hat.
 . Wenn einer der Endpunkte eine Authentifizierung erfordert, verwenden Sie den Befehl *net use*, um vom Windows-Host aus eine Verbindung zu den Endpunkten herzustellen.

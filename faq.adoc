@@ -270,6 +270,9 @@ NOTE: Copy and Sync unterstützt nicht das Kopieren von ACLs vom Objektspeicher 
 link:task-copying-acls.html["Erfahren Sie, wie Sie ACLs zwischen SMB-Freigaben kopieren"] .
 
 
+NOTE: Copy Sync kopiert SMB-ACLs (Berechtigungen), jedoch nicht die Datei- oder Ordnerbesitzverhältnisse.  Das Eigentumsattribut wird beim Kopieren der SMB-ACL nicht berücksichtigt.  Wenn Sie beim Kopieren von Daten zwischen SMB-Freigaben die Eigentumsrechte erhalten müssen, verwenden Sie `robocopy` Die Sicherheitsinformationen manuell kopieren.  Zum Beispiel die `/copyall` Flag kopiert ACLs, Eigentümer- und Auditdaten.
+
+
 
 === Werden NFS-Datenberechtigungen mit dem Zielspeicherort synchronisiert?
 
