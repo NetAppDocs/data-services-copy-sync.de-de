@@ -20,7 +20,7 @@ Wenn Sie eine neue Datenbrokergruppe für NetApp Copy and Sync erstellen, wähle
 
 == Linux-Hostanforderungen
 
-* *Node.js-Kompatibilität*: v21.2.0
+* *Node.js-Kompatibilität*: v25.x
 * *Betriebssystem*:
 +
 ** CentOS 8.0 und 8.5
@@ -35,7 +35,7 @@ CentOS Stream wird nicht unterstützt.
 Der Befehl `yum update` muss auf dem Host ausgeführt werden, bevor Sie den Datenbroker installieren.
 
 +
-Ein Red Hat Enterprise Linux-System muss bei Red Hat Subscription Management registriert sein.  Wenn es nicht registriert ist, kann das System während der Installation nicht auf Repositories zugreifen, um erforderliche Software von Drittanbietern zu aktualisieren.
+Ein Red Hat Enterprise Linux-System muss bei Red Hat Subscription Management registriert sein. Wenn es nicht registriert ist, kann das System während der Installation nicht auf die Repositories zugreifen, um benötigte Drittanbietersoftware zu aktualisieren.
 
 
 
@@ -121,11 +121,11 @@ Sie können einen Datenbroker auf einem Linux-Host installieren, wenn Sie eine S
 .Schritte
 . link:task-login-copyandsync.html["Bei Copy and Sync anmelden"] .
 . Wählen Sie *Neue Synchronisierung erstellen*.
-. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
+. Auf der Seite *Synchronisierungsbeziehung definieren* wählen Sie eine Quelle und ein Ziel aus und wählen Sie dann *Weiter*.
 +
 Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker Group* gelangen.
 
-. Wählen Sie auf der Seite *Data Broker Group* die Option *Create Data Broker* und dann *On-Prem Data Broker* aus.
+. Auf der Seite *Data Broker Group* wählen Sie *Create Data Broker* und anschließend *On-Prem Data Broker*.
 +
 image:screenshot-on-prem.png["Ein Screenshot der Data Broker-Seite, auf der Sie zwischen einem AWS-, Azure-, Google Cloud- und On-Prem-Data Broker wählen können."]
 
@@ -133,13 +133,13 @@ image:screenshot-on-prem.png["Ein Screenshot der Data Broker-Seite, auf der Sie 
 
 NOTE: Obwohl die Option mit *_On-Prem_ Data Broker* gekennzeichnet ist, gilt sie für einen Linux-Host bei Ihnen vor Ort oder in der Cloud.
 
-. Geben Sie einen Namen für den Datenbroker ein und wählen Sie *Weiter*.
+. Geben Sie einen Namen für den Datenbroker ein und wählen Sie dann *Weiter*.
 +
-Die Anleitungsseite wird in Kürze geladen.  Sie müssen diese Anweisungen befolgen. Sie enthalten einen eindeutigen Link zum Herunterladen des Installationsprogramms.
+Nach dem Laden der Anleitungsseite folgen Sie den Anweisungen, die einen eindeutigen Link zum Herunterladen des Installers enthalten.
 
 . Auf der Anleitungsseite:
 +
-.. Wählen Sie aus, ob der Zugriff auf *AWS*, *Google Cloud* oder beide aktiviert werden soll.
+.. Wählen Sie, ob Sie den Zugriff auf *AWS*, *Google Cloud* oder beides aktivieren möchten.
 .. Wählen Sie eine Installationsoption: *Kein Proxy*, *Proxyserver verwenden* oder *Proxyserver mit Authentifizierung verwenden*.
 +
 
